@@ -138,6 +138,13 @@ body {
     max-width: 200px;
 }
 
+@media screen and (max-width: 800px) {
+    .right-content, .bg-image-right, .center-content-tabs-blank {   
+      flex-direction: column;
+      display: none;
+    }
+}
+
 /* Left image crop */
 .bg-image-left {
     float: left;
