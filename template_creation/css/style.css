@@ -159,13 +159,6 @@ body {
     max-width: 200px;
 }
 
-@media screen and (max-width: 1080px) {
-    .right-content {   
-      flex-direction: column;
-      display: none;
-    }
-}
-
 /* Left image crop */
 .bg-image-left {
     float: left;
