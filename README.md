@@ -2,7 +2,17 @@
 COS397 Project Repository for In-House Operations
 
 
-new repository to include django instructions
+Instructions on running local server:
+
+### Requirements (these packages can be installed using pip or your preferred package manager):
+Django
+psycopg2
+django-extensions
+djangorestframework
+gunicorn
+
+###Get Postgresql installed locally:
+https://www.postgresql.org/download/
 
 
 to runserver:
