@@ -1,5 +1,6 @@
-Django==3.2.11
-distribute==0.6.27
-dj-database-url==0.2.1
-psycopg2==2.4.5
-wsgiref==0.1.2
+Django
+psycopg2
+django-extensions
+djangorestframework
+gunicorn
+postgresql
