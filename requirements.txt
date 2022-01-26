@@ -3,4 +3,3 @@ psycopg2
 django-extensions
 djangorestframework
 gunicorn
-postgresql
