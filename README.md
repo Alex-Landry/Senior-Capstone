@@ -19,7 +19,10 @@ to runserver:
 
 in shell, navigate to inhouse folder in repo
 
-``` $ python manage.py runserver ```
+``` shell
+$ python manage.py runserver 
+
+```
 
 then open browser and navigate to:
 ### http://127.0.0.1:8000/boardmanlab/
