@@ -371,6 +371,54 @@ input[type=submit]:hover {
     font-size: 12px;
 }
 
+.error-container{
+    background-color: #111111;
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    margin: 0 auto;
+    top: 25px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.error-window-bottom-bar{
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color:  #1D2E3F;
+    bottom: 0px;
+    border-radius: 0 0 20px 20px;
+    font-size: 12px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.error_title {
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 28px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.error_text {
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 12px;
+    text-align: center;
+    padding: 0 0 80px 0;
+}
+
+.error_return {
+    cursor: pointer !important;
+    font-weight: 500;
+    color: #79BBE7;
+    text-align: center;
+    font-size: 12px;
+}
+
 @media screen and (max-width: 1080px) {
     .right-content {   
       flex-direction: column;
