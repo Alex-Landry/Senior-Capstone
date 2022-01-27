@@ -244,6 +244,45 @@ body {
     color: #FFFFFF;
 }
 
+.content-container{
+    position: relative;
+    min-height: 600px;
+    background-color: black;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.content-bgimage {
+    display: flex;
+    background-color: black;
+}
+
+.content-bgimage img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.login-container{
+    background-color: #FFFFFF;
+    height: 500px;
+    width: 400px;
+    position: absolute;
+    margin: 0 auto;
+    top: 25px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.login-logo{
+    position: relative;
+    margin: 0 auto;
+    object-fit: cover;
+    padding: 20px;
+}
+
 
 .unselectable {
     user-select: none;
@@ -258,6 +297,78 @@ a:link {
 
 a:hover{
     cursor:default;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+
+  input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+  
+input[type=submit] {
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+    width: 120px;
+    color: #FFFFFF;
+    text-align: center;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #29DF25;
+    padding: 12px;
+    filter: drop-shadow(0 .2rem .1rem #999999);
+  }
+  
+input[type=submit]:hover {
+    background-color: #45a049;
+  }
+
+.input-bottom-bar{
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #C4C4C4;
+    bottom: 0px;
+    border-radius: 0 0 20px 20px;
+    font-size: 12px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.tos {
+    cursor: pointer !important;
+    font-weight: 500;
+    color: blue;
+    font-size: 12px;
 }
 
 @media screen and (max-width: 1080px) {
@@ -281,3 +392,4 @@ a:hover{
         font-size: 14px;
     }
 }
+
