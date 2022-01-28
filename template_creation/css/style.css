@@ -419,6 +419,21 @@ input[type=submit]:hover {
     font-size: 12px;
 }
 
+.help_session_filter_btn {
+    color: #1D2E3F;
+    text-align: center;
+    margin: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #C4C4C4;
+    padding: 6px 48px;
+}
+
+.help_session_filter_btn:hover{
+    background-color: #1D2E3F;
+    color: #FFFFFF;
+}
 @media screen and (max-width: 1080px) {
     .right-content {   
       flex-direction: column;
