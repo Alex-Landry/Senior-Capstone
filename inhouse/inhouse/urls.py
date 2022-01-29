@@ -16,8 +16,10 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
+from boardmanlab.views import index, login
 
 urlpatterns = [
-    path('boardmanlab/', include('boardmanlab.urls')),
     path('admin/', admin.site.urls),
+    path('home/', index),
+    path('', login),
 ]
