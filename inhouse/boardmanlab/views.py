@@ -9,3 +9,12 @@ def index(request):
 
 def login(request):
     return render(request, 'login.html')
+
+def calendar(request):
+    return render(request, 'calendar.html')
+
+def helpsessions(request):
+    return render(request, 'my_help_sessions_student_view.html')
+
+def error(request):
+    return render(request, 'error.html')
