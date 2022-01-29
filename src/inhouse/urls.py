@@ -19,6 +19,7 @@ from django.urls import include, path
 from boardmanlab.views import index, login
 
 urlpatterns = [
+    path("o/", include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('admin/', admin.site.urls),
     path('home/', index),
     path('', login),
