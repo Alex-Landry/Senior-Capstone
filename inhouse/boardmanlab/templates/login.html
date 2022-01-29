@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>In House Operations</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+
+<body>
+  <div class="header">
+    <div class="head-strip">
+      <img src="{% static 'images/head_strip.jpeg' %}" />
+    </div>
+    <div class="header-text">
+      Computer Science | Boardman Lab
+    </div>
+    
+  </div>
+
+
+
+<!-- Page Content -->
+
+
+<div class="content-container">
+
+
+    <div class="login-container"></div>
+    <div class="content-bgimage">
+    <img src="{% static 'images/sw_bg.jpeg' %}" />
+    </div>
+    <div class="login-container">
+        <div class="login-logo"><img src="{% static 'images/umaine_fullcrest_small.png' %}" /></div>
+
+        <div class="input-container">
+            <form action="/index.html">
+            <input type="text" id="email" name="firstname" placeholder="Umaine Username">
+            <input type="text" id="password" name="lastname" placeholder="password">
+            <input type="submit" value="Login">
+            </form>
+            <a href="index.html" class="tos">Terms of Service</a>
+        </div>
+    
+        <div class="input-bottom-bar">Powered by Google OAUTH</div>
+
+    </div>
+
+</div>
+
+
+<!-- End of Page Content -->
+
+
+
+<div class="footer">
+  Copyright 2022 | University of Maine
+</div>
+
+
+</body>
+
+</html>
