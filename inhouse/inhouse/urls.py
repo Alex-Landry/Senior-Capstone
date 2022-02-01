@@ -20,6 +20,7 @@ from boardmanlab.views import index, login, helpsessions, calendar, error
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('home/', index),
     path('helpsessions/', helpsessions),
     path('calendar/', calendar),
