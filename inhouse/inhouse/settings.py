@@ -78,7 +78,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'csbldb',
-        'USER': 'postgres',
+        'USER': 'pgadmin',
         'PASSWORD': 'orange',
         'HOST': 'localhost',
         'PORT': '5432',
