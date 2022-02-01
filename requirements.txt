@@ -3,3 +3,4 @@ psycopg2
 django-extensions
 djangorestframework
 gunicorn
+django-oauth-toolkit
