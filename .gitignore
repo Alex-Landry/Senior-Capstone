@@ -1,2 +1,5 @@
 # ignore annoying apple file
 .DS_store
+
+# ignore the pycache files
+__pycache__/
