@@ -37,10 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'boardmanlab'
+    'boardmanlab',
+    'users',
+    'oauth2_provider',
+    'corsheaders',
 ]
 
+AUTH_USER_MODEL='users.User'
+
+LOGIN_URL='/admin/login/'
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'inhouse.urls'
 
@@ -78,7 +88,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'csbldb',
-        'USER': 'postgres',
+        'USER': 'pgadmin',
         'PASSWORD': 'orange',
         'HOST': 'localhost',
         'PORT': '5432',
