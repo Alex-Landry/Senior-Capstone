@@ -323,6 +323,7 @@ input[type=text], select {
 
   input[type=text], select {
     width: 100%;
+    height: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -332,11 +333,10 @@ input[type=text], select {
     background-color: #f2f2f2;
     padding: 20px;
   }
+
   
 input[type=submit] {
-    -ms-transform: translateX(100%);
-    transform: translateX(100%);
-    width: 120px;
+    width: 100%;
     color: #FFFFFF;
     text-align: center;
     margin: 8px 0;
