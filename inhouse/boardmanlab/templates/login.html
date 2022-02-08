@@ -17,7 +17,7 @@
         <div class="login-logo"><img src="{% static 'images/umaine_fullcrest_small.png' %}" /></div>
 
         <div class="input-container">
-
+            <img src="{% static 'images/login.png' %}" />
             {% if user.is_authenticated %}
                 <p>Welcome {{ user.username }} !!!</p>
                 <form action="/calendar">
