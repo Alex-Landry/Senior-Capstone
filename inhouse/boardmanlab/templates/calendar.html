@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load socialaccount %}
 
 
 {% block leftnav %}
@@ -21,7 +22,7 @@
 
       <div class="center-content-tab-content">
         <!-- PAGE CONTENT GOES HERE -->
-        CALENDER
+        Welcome {{ user.username }}, This is the calendar page!
       
       
 

@@ -13,9 +13,11 @@ def index(request):
 def login(request):
     return render(request, 'login.html')
 
+@login_required()
 def calendar(request):
     return render(request, 'calendar.html')
 
+@login_required()
 def helpsessions(request):
     return render(request, 'my_help_sessions_student_view.html')
 

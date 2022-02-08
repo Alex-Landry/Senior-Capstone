@@ -17,33 +17,20 @@
         <div class="login-logo"><img src="{% static 'images/umaine_fullcrest_small.png' %}" /></div>
 
         <div class="input-container">
-            {% if form.errors %}
-            <p>Your username and password didn't match. Please try again.</p>
-            {% endif %}
-
-            <!--next is the URL to redirect to after successful login. This may contain a query string, too-->
-            {% if next %} 
-                {% if user.is_authenticated %}
-                <p>Your account doesn't have access to this page. To proceed,
-                please login with an account that has access.</p>
-                {% else %}
-                <p>Please login to see this page.</p>
-                {% endif %}
-            {% endif %}
-
-            <!-- POST tries to log the user in. If login is successful, the view redirects to the URL specified in next. 
-                 If login isn’t successful, it redisplays the login form.-->
-            
 
             {% if user.is_authenticated %}
                 <p>Welcome {{ user.username }} !!!</p>
+                <form action="/calendar">
+                <input type="submit" value="Calendar"></input>
+            </form>
                 {% else %}
                 <p>Please login to see this page.</p>
-                {% endif %}
-                <form method="post">
+                <form method="post" action="{% provider_login_url 'google' %}">
                     {% csrf_token %}
-                    <button type="submit">{% trans "Continue" %}</button>
-                  </form>
+                    <input type="submit" id="login" value="Login with Umaine Account"></input>
+                </form>
+                {% endif %}
+                
             
             
             

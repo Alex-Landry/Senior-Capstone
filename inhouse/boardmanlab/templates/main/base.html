@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,14 +13,33 @@
 
   <!-- Header image and title -->
   <div class="header">
+
     <div class="head-strip">
       <img src="{% static 'images/head_strip.jpeg' %}" />
     </div>
-    <div class="umaine-logo"><img src="{% static 'images/umaine_fullcrest_small.png' %}" /></div>
-    <div class="header-text">
-      Computer Science | Boardman Lab
+
+    <div class="header-container">
+
+      <div class="umaine-logo">
+        <img src="{% static 'images/umaine_fullcrest_small.png' %}" />
+      </div>
+
+      <div class="header-text">
+        Computer Science | Boardman Lab
+      </div>
+
+      <div class="logout-container">
+        <form method="post" action="{% url 'account_logout' %}">
+          {% csrf_token %}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+          {% endif %}
+          <input type="submit" id="logout" value="Log Out"></input>
+        </form>
+      </div>
+
     </div>
-    
+
   </div>
   <!-- End of Header image and title -->
 
