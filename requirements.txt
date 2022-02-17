@@ -5,4 +5,5 @@ djangorestframework
 gunicorn
 django-oauth-toolkit
 django-cors-headers
+django-allauth
 google-auth

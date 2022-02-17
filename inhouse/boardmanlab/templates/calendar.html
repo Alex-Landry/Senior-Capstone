@@ -1,10 +1,11 @@
 {% extends 'main/base.html' %}
+{% load socialaccount %}
 
 
 {% block leftnav %}
-  <a href="/home" class="sidebar-button-open unselectable">Calendar</a>
-  <a href="/home" class="sidebar-button-closed unselectable">Account</a>
-  <a href="/home" class="sidebar-button-closed unselectable">Feedback</a>
+  <a href="/calendar" class="sidebar-button-open unselectable">Calendar</a>
+  <a href="/calendar" class="sidebar-button-closed unselectable">Account</a>
+  <a href="/calendar" class="sidebar-button-closed unselectable">Feedback</a>
 {% endblock %}
 
 
@@ -21,13 +22,9 @@
 
       <div class="center-content-tab-content">
         <!-- PAGE CONTENT GOES HERE -->
-        CALENDER
-      
-      
-
-
-
-
+        {% include 'elements/calendar_content.html' %}
+        
+    
 
 
         <!-- END PAGE CONTENT -->

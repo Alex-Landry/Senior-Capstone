@@ -1,9 +1,12 @@
 {% extends 'main/base_simple.html' %}
+{% load socialaccount %}
+{% get_providers as socialaccount_providers %}
 {% load static %}
-
+{% load i18n %}
 
 <!-- Page Content -->
 {% block content %}
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <div class="content-container">
 
     <div class="login-container"></div>
@@ -14,30 +17,25 @@
         <div class="login-logo"><img src="{% static 'images/umaine_fullcrest_small.png' %}" /></div>
 
         <div class="input-container">
-            {% if form.errors %}
-            <p>Your username and password didn't match. Please try again.</p>
-            {% endif %}
-
-            <!--next is the URL to redirect to after successful login. This may contain a query string, too-->
-            {% if next %} 
-                {% if user.is_authenticated %}
-                <p>Your account doesn't have access to this page. To proceed,
-                please login with an account that has access.</p>
+            <img src="{% static 'images/login.png' %}" />
+            {% if user.is_authenticated %}
+                <p>Welcome {{ user.username }} !!!</p>
+                <form action="/calendar">
+                <input type="submit" value="Calendar"></input>
+            </form>
                 {% else %}
                 <p>Please login to see this page.</p>
+                <form method="post" action="{% provider_login_url 'google' %}">
+                    {% csrf_token %}
+                    <input type="submit" id="login" value="Login with Umaine Account"></input>
+                </form>
                 {% endif %}
-            {% endif %}
+                
+            
+            
+            
 
-            <!-- POST tries to log the user in. If login is successful, the view redirects to the URL specified in next. 
-                 If login isn’t successful, it redisplays the login form.-->
-            <form method = "post" action="/index.html">
-            {% csrf_token %}
-            <input type="text" id="email" name="firstname" placeholder="Umaine Username">
-            <input type="text" id="password" name="lastname" placeholder="password">
-            <input type="submit" value="Login">
-            <input type="hidden" name="next" value="{{ next }}">
-            </form>
-            <a href="index.html" class="tos">Terms of Service</a>
+
         </div>
     
         <div class="input-bottom-bar">Powered by Google OAUTH</div>
