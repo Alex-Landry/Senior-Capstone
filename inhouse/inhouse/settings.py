@@ -43,7 +43,8 @@ AUTH_USER_MODEL='users.User'
 
 LOGIN_URL='/'
 
-LOGIN_REDIRECT_URL = '/calendar'
+LOGIN_REDIRECT_URL = '/calendar/0/0/0'
+
 
 AUTHENTICATION_BACKENDS = [
     # Oauth2 token authentication backend

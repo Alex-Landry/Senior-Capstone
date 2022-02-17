@@ -19,13 +19,19 @@ def login(request):
     return render(request, 'login.html')
 
 @login_required()
-def calendar(request):
+def calendar(request, year, month, day):
+    if year == 0 and month == 0:
+        year = datetime.now().year
+        month = datetime.now().month
+        day = datetime.now().day
+    if day == 0 and month == datetime.now().month:
+        day = datetime.now().day
     context = {
         "day_string_list": [6,0,1,2,3,4,5],
-        "day": datetime.now().day,
-        "month": datetime.now().month,
-        "year": datetime.now().year,
-        "month_obj": cal.monthdayscalendar(datetime.now().year, datetime.now().month),
+        "day": day,
+        "month": month,
+        "year": year,
+        "month_obj": cal.monthdayscalendar(year, month),
     }
     return render(request, 'calendar.html', context)
 

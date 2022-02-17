@@ -34,7 +34,8 @@ urlpatterns = [
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('home/', index),
     path('helpsessions/', helpsessions),
-    path('calendar/', calendar),
+    path('/calendar', calendar, name='calendar'),
+    path('calendar/<int:year>/<int:month>/<int:day>/', calendar),
     path('error/', error),
     path('', login),
     path('allauth', Home.as_view(), name='home'), # new
