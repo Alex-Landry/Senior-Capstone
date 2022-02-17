@@ -5,6 +5,10 @@
     Welcome {{ user.first_name }}, This is the calendar page!
 </div>
 
+<div class="calendar-content-header">
+    {% gen_month_string month %}
+</div>
+
 <div class="calendar-day-labels">
 {% for day in day_string_list %}
     <div class="calendar-content-day-labels">{% gen_day_string day %}</div>

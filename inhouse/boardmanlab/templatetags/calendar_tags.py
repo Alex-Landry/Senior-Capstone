@@ -24,7 +24,9 @@ def month_obj(year, month):
 def gen_day_string(value):
     return calendar.day_name[value]  #'Wednesday'
 
-
+@register.simple_tag
+def gen_month_string(value):
+    return calendar.month_name[value].title()  #'Wednesday'
 
 
 

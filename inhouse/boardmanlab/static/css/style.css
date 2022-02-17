@@ -3,8 +3,6 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     max-width: 2000px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
 }
 
 .header {
@@ -113,17 +111,10 @@ body {
 .content-container {
     display: -webkit-flex;
     display: flex;
+    flex-direction: row;
     background-color: black;
 }
 
-.left-content {
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    padding: 0px;
-    background-color: rgb(0, 0, 0);
-    max-width: 200px;
-  }
 
 .center-content {
     display: flex;
@@ -209,10 +200,23 @@ body {
 
 }
 
+.left-content {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    background-color: rgb(0, 0, 0);
+    max-width: 200px;
+  }
+
 .right-content {
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
+    display: flex;
+    flex-direction: row;
     padding: 0px;
     background-color: rgb(0, 0, 0);
     max-width: 200px;
@@ -222,37 +226,33 @@ body {
 .bg-image-left {
     float: left;
     width: 200px;
-    height: auto;
     overflow: hidden;
     display: flex;
     flex-direction: row;
-}
-
-/* Left image specifications for crop */
-.bg-image-left img {
-    width: 1080px;
-    height: 800px;
-    margin: 0px 0px 0px 0px;
-    object-fit: cover;
-    opacity: 0.5;
 }
 
 /* Right image crop */
 .bg-image-right {
     float: right;
     width: 200px;
-    height: auto;
     overflow: hidden;
     display: flex;
     flex-direction: row;
    }
 
+/* Left image specifications for crop */
+.bg-image-left img {
+    width: 1080px;
+    margin: 100px 0px 0px 0px;
+    object-fit: cover;
+    opacity: 0.5;
+}
+
 /* Right image specifications for crop */
 .bg-image-right img {
     position: relative;
     width: 1080px;
-    height: 800px;
-    margin: 0px 0px 0px -880px;
+    margin: 100px 0px 0px -880px;
     object-fit: cover;
     opacity: 0.5;
 }
@@ -541,8 +541,11 @@ input[type=text], select {
 }
 
 .calendar-content-header{
+    padding-left: 4px;
     width: 100%;
-    height: 100px;
+    height: 50px;
+    font-size: 16px;
+    font-weight:500;
 }
 
 .calendar-content-day{
