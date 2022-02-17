@@ -163,3 +163,5 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
     }
 }
+
+SOCIALACCOUNT_ADAPTER = "users.models.CustomSocialAccountAdapter"
