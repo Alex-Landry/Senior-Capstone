@@ -1,14 +1,14 @@
 {% load calendar_tags %}
 
 
-<div class="calendar-content-strip" style="font-size: large;">
-    Welcome {{ user.first_name }}!
+<div style="font-size: 10px; font-weight: 300;">
+    This is a check to make sure we are getting {{ user.first_name }} {{user.last_name}}'s profile.
 </div>
 
 <div class="calendar-content-strip">
-    <a href="/calendar/{% decrement_year year month %}/{% decrement month %}/0/" class="left-arrow"></a>
+    <a href="/calendarMonth/{% decrement_year year month %}/{% decrement month %}/0/" class="left-arrow"></a>
     {% gen_month_string month %} {{year}}
-    <a href="/calendar/{% increment_year year month %}/{% increment month %}/0/" class="right-arrow"></a>
+    <a href="/calendarMonth/{% increment_year year month %}/{% increment month %}/0/" class="right-arrow"></a>
 </div>
 
 <div class="calendar-day-labels">
@@ -24,13 +24,13 @@
     {% for date in week %}
         {% if date != 0 %}
             {% if date != day %}
-                <div class="calendar-content-day blue">
+                <a href="/calendarDay/{{year}}/{{month}}/{{date}}/" class="calendar-content-day blue">
                     <div class="calendar-content-date-container">{{date}}</div>
-                </div>
+                </a>
             {% else %} 
-                <div class="calendar-content-day lightblue">
+                <a href="/calendarDay/{{year}}/{{month}}/{{date}}/" class="calendar-content-day lightblue">
                     <div class="calendar-content-date-container ultrablue darktext">{{date}}</div>
-                </div>
+                </a>
             {% endif %}
         {% else %}    
             <div class="calendar-content-day gray"></div>

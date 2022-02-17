@@ -21,9 +21,9 @@
             <img src="{% static 'images/login.png' %}" />
             {% if user.is_authenticated %}
                 <p>Welcome {{ user.username }} !!!</p>
-                <form action="/calendar">
-                <input type="submit" value="Calendar"></input>
-            </form>
+                <form action="/calendarMonth">
+                    <input type="submit" value="Calendar"></input>
+                </form>
                 {% else %}
                 <p>Please login to see this page.</p>
                 <form method="post" action="{% provider_login_url 'google' %}">

@@ -19,7 +19,7 @@ def login(request):
     return render(request, 'login.html')
 
 @login_required()
-def calendar(request, year, month, day):
+def calendarMonth(request, year, month, day):
     if year == 0 and month == 0:
         year = datetime.now().year
         month = datetime.now().month
@@ -33,11 +33,28 @@ def calendar(request, year, month, day):
         "year": year,
         "month_obj": cal.monthdayscalendar(year, month),
     }
-    return render(request, 'calendar.html', context)
+    return render(request, 'calendarMonth.html', context)
+
+@login_required()
+def calendarDay(request, year, month, day):
+    if year == 0 and month == 0:
+        year = datetime.now().year
+        month = datetime.now().month
+        day = datetime.now().day
+    if day == 0 and month == datetime.now().month:
+        day = datetime.now().day
+    context = {
+        "day_string_list": [6,0,1,2,3,4,5],
+        "day": day,
+        "month": month,
+        "year": year,
+        "month_obj": cal.monthdayscalendar(year, month),
+    }
+    return render(request, 'calendarDay.html', context)
 
 @login_required()
 def helpsessions(request):
-    return render(request, 'my_help_sessions_student_view.html')
+    return render(request, 'helpSessions.html')
 
 def error(request):
     return render(request, 'error.html')
@@ -65,7 +82,7 @@ def error_500(request):
         data = {}
         return render(request,'errors/500.html', data)
 
-def error_400(request,  exception):
+def error_400(request, exception):
         data = {}
         return render(request,'errors/400.html', data)
 
