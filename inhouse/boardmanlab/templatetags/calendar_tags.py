@@ -20,6 +20,10 @@ def get_month():
 def month_obj(year, month):
     return datetime.monthdayscalendar(year, month)
 
+@register.simple_tag
+def gen_day_string(value):
+    return calendar.day_name[value]  #'Wednesday'
+
 
 
 

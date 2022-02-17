@@ -6,6 +6,8 @@ from django.views.generic import TemplateView
 from datetime import datetime
 import calendar
 cal = calendar.Calendar()
+cal.setfirstweekday(calendar.SUNDAY)
+
 
 # Create your views here.
 
@@ -19,6 +21,7 @@ def login(request):
 @login_required()
 def calendar(request):
     context = {
+        "day_string_list": [6,0,1,2,3,4,5],
         "day": datetime.now().day,
         "month": datetime.now().month,
         "year": datetime.now().year,

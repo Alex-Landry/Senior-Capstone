@@ -3,6 +3,8 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     max-width: 2000px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
@@ -111,7 +113,6 @@ body {
 .content-container {
     display: -webkit-flex;
     display: flex;
-    min-height: 600px;
     background-color: black;
 }
 
@@ -139,6 +140,7 @@ body {
     display: flex;
     width: 100%;
     height: auto;
+    flex-direction: row;
 }
 
 .center-content-open-tab {
@@ -193,7 +195,6 @@ body {
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
-
 }
 
 .center-content-tab-content {
@@ -221,8 +222,10 @@ body {
 .bg-image-left {
     float: left;
     width: 200px;
-    height: 800px;
+    height: auto;
     overflow: hidden;
+    display: flex;
+    flex-direction: row;
 }
 
 /* Left image specifications for crop */
@@ -232,15 +235,16 @@ body {
     margin: 0px 0px 0px 0px;
     object-fit: cover;
     opacity: 0.5;
-
 }
 
 /* Right image crop */
 .bg-image-right {
     float: right;
     width: 200px;
-    height: 800px;
+    height: auto;
     overflow: hidden;
+    display: flex;
+    flex-direction: row;
    }
 
 /* Right image specifications for crop */
@@ -251,7 +255,6 @@ body {
     margin: 0px 0px 0px -880px;
     object-fit: cover;
     opacity: 0.5;
-
 }
 
 .sidebar-overlay {
@@ -505,6 +508,12 @@ input[type=text], select {
       flex-direction: column;
       display: none;
     }
+    .calendar-content-day{
+        height: 7vw !important; 
+    }
+.calendar-content-day-labels{
+        font-size: 1.5vw !important;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -523,6 +532,12 @@ input[type=text], select {
         text-align: right !important;
         font-size: 14px;
     }
+    .calendar-content-day{
+        height: 10vw !important;
+    }
+    .calendar-content-day-labels{
+        font-size: 2vw !important;
+    }
 }
 
 .calendar-content-header{
@@ -531,8 +546,36 @@ input[type=text], select {
 }
 
 .calendar-content-day{
-    display: inline-block;
-    width: 14%;
-    height: 100px;
+    padding: 4px;
+    margin: 4px;
+    width: auto;
+    height:5vw;
+    background-color: #1D2E3F;
+}
+
+.calendar-content-day-labels{
+    padding: 4px;
+    margin: 4px;
+    width: auto;
+    font-size: 1.2vw;
+    color: #CCCCCC;
+    text-align: center;
+}
+
+.gray {
+    background-color: #333333;
+}
+
+.blue {
+    background-color: #1D2E3F;
+}
+
+.blue:hover{
     background-color: #0a3c5f;
+}
+
+.calendar-day-labels,
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }

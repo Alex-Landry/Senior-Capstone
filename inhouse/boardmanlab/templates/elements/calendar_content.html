@@ -1,14 +1,27 @@
 {% load calendar_tags %}
 
+
 <div class="calendar-content-header">
     Welcome {{ user.first_name }}, This is the calendar page!
 </div>
 
+<div class="calendar-day-labels">
+{% for day in day_string_list %}
+    <div class="calendar-content-day-labels">{% gen_day_string day %}</div>
+{% endfor %}
+</div>
 
 
+
+<div class="calendar-grid">
 {% for week in month_obj %}
     {% for day in week %}
-        <div class="calendar-content-day">{{day}}</div>
+        {% if day != 0 %}
+            <div class="calendar-content-day blue">{{day}}</div>
+        {% else %}    
+            <div class="calendar-content-day gray"></div>
+        {% endif %}
     {% endfor %}
 
 {% endfor %}
+</div>

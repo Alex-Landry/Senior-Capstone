@@ -161,7 +161,8 @@ SOCIALACCOUNT_PROVIDERS = {
             'openid',
             'https://www.googleapis.com/auth/calendar.readonly'
         ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
     }
 }
-
-SOCIALACCOUNT_ADAPTER = "users.models.CustomSocialAccountAdapter"
