@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>In House Operations</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="stylesheet" href="{% static '/css/style.css' %}">
+
+
+</head>
+
+<body>
+  <div class="header">
+    <div class="head-strip">
+      <img src="{% static 'images/head_strip.jpeg' %}" />
+    </div>
+    <div class="header-text">
+      Computer Science | Boardman Lab
+    </div>
+    
+  </div>
+
+
+
+<!-- Page Content -->
+
+{% block content %}
+{% endblock %}
+
+
+<!-- End of Page Content -->
+
+
+
+<div class="footer">
+  Copyright 2022 | University of Maine
+</div>
+
+
+</body>
+
+</html>

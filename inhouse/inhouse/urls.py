@@ -34,7 +34,7 @@ urlpatterns = [
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('home/', index),
     path('helpsessions/', helpsessions),
-    path('/calendar', calendar, name='calendar'),
+    path('calendar', calendar, name='calendar'),
     path('calendar/<int:year>/<int:month>/<int:day>/', calendar),
     path('error/', error),
     path('', login),
@@ -46,3 +46,10 @@ urlpatterns = [
     path('api/hello', ApiEndpoint.as_view()),  # an example resource endpoint
     path('accounts/', include('allauth.urls')),
 ]
+
+# Error handling
+
+handler404 = 'boardmanlab.views.error_404'
+handler500 = 'boardmanlab.views.error_500'
+handler403 = 'boardmanlab.views.error_403'
+handler400 = 'boardmanlab.views.error_400'
