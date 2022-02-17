@@ -3,6 +3,9 @@ from oauth2_provider.views.generic import ProtectedResourceView
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.views.generic import TemplateView
+from datetime import datetime
+import calendar
+cal = calendar.Calendar()
 
 # Create your views here.
 
@@ -15,7 +18,13 @@ def login(request):
 
 @login_required()
 def calendar(request):
-    return render(request, 'calendar.html')
+    context = {
+        "day": datetime.now().day,
+        "month": datetime.now().month,
+        "year": datetime.now().year,
+        "month_obj": cal.monthdayscalendar(datetime.now().year, datetime.now().month),
+    }
+    return render(request, 'calendar.html', context)
 
 @login_required()
 def helpsessions(request):

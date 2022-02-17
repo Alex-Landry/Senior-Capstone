@@ -1,2 +1,3 @@
 # ignore annoying apple file
 .DS_store
+*.pyc

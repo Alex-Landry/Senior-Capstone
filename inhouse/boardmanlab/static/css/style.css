@@ -525,3 +525,14 @@ input[type=text], select {
     }
 }
 
+.calendar-content-header{
+    width: 100%;
+    height: 100px;
+}
+
+.calendar-content-day{
+    display: inline-block;
+    width: 14%;
+    height: 100px;
+    background-color: #0a3c5f;
+}
