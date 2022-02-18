@@ -514,6 +514,9 @@ input[type=text], select {
 .calendar-content-day-labels{
         font-size: 1.5vw !important;
     }
+.calendar-content-day-big-number{
+        display: none !important;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -538,6 +541,9 @@ input[type=text], select {
     .calendar-content-day-labels{
         font-size: 2vw !important;
     }
+    .calendar-content-day-big-number{
+        display: none !important;
+    }
 }
 
 .calendar-content-strip{
@@ -553,11 +559,24 @@ input[type=text], select {
 }
 
 .calendar-content-day{
+    position: relative;
     margin: 4px;
     width: auto;
     height:5vw;
     background-color: #1D2E3F;
     filter: drop-shadow(3px 3px 1px rgb(0,0,0, .2));
+}
+
+.calendar-content-day-big-number{
+    position: absolute;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 2vw;
+    font-weight: 600;
+    color: #FFFFFF !important;
 }
 
 .calendar-content-day-labels{
@@ -651,14 +670,6 @@ input[type=text], select {
     filter: drop-shadow(3px 3px 1px rgb(0,0,0, .2));
 }
 
-.left-arrow:hover{
-    border-right: 12px solid #8fd1fc !important;
-}
-
-.right-arrow:hover{
-    border-left: 12px solid #8fd1fc !important;
-}
-
 .right-arrow {
     margin: 4px;
     vertical-align: middle;
@@ -669,4 +680,12 @@ input[type=text], select {
     border-right: 0;
     border-left: 12px solid #0D598E;
     filter: drop-shadow(3px 3px 1px rgb(0,0,0, .2));
+}
+
+.left-arrow:hover{
+    border-right: 12px solid #8fd1fc !important;
+}
+
+.right-arrow:hover{
+    border-left: 12px solid #8fd1fc !important;
 }
