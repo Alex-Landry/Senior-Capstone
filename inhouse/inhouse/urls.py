@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import include, path
-from boardmanlab.views import index, login, helpsessions, calendar, error
+from boardmanlab.views import index, login, helpsessions, calendarMonth, error, calendarDay
 import oauth2_provider.views as oauth2_views
 from django.conf import settings
 from boardmanlab.views import ApiEndpoint, Home
@@ -31,10 +31,12 @@ if settings.DEBUG:
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    #path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('home/', index),
     path('helpsessions/', helpsessions),
-    path('calendar/', calendar),
+    path('calendarMonth', calendarMonth, name='calendarMonth'),
+    path('calendarMonth/<int:year>/<int:month>/<int:day>/', calendarMonth),
+    path('calendarDay/<int:year>/<int:month>/<int:day>/', calendarDay, name='calendarDay'),
     path('error/', error),
     path('', login),
     path('allauth', Home.as_view(), name='home'), # new
@@ -45,3 +47,10 @@ urlpatterns = [
     path('api/hello', ApiEndpoint.as_view()),  # an example resource endpoint
     path('accounts/', include('allauth.urls')),
 ]
+
+# Error handling
+
+handler404 = 'boardmanlab.views.error_404'
+handler500 = 'boardmanlab.views.error_500'
+handler403 = 'boardmanlab.views.error_403'
+handler400 = 'boardmanlab.views.error_400'

@@ -1,0 +1,52 @@
+{% load calendar_tags %}
+
+
+<div style="font-size: 10px; font-weight: 300;">
+    This is a check to make sure we are getting {{ user.first_name }} {{user.last_name}}'s profile.
+</div>
+
+<div class="calendar-content-strip">
+    <a href="/calendarMonth/{% decrement_year year month %}/{% decrement month %}/0/" class="left-arrow"></a>
+    {% gen_month_string month %} {{year}}
+    <a href="/calendarMonth/{% increment_year year month %}/{% increment month %}/0/" class="right-arrow"></a>
+</div>
+
+<div class="calendar-day-labels">
+{% for day in day_string_list %}
+    <div class="calendar-content-day-labels">{% gen_day_string day %}</div>
+{% endfor %}
+</div>
+
+
+
+<div class="calendar-grid">
+{% for week in month_obj %}
+    {% for date in week %}
+        {% if date != 0 %}
+            {% if date != day %}
+                <a href="/calendarDay/{{year}}/{{month}}/{{date}}/" class="calendar-content-day blue">
+                    <div class="calendar-content-date-container">{{date}}</div>
+                    <div class="calendar-content-day-big-number">{{date}}</div>
+                </a>
+            {% else %} 
+                <a href="/calendarDay/{{year}}/{{month}}/{{date}}/" class="calendar-content-day lightblue">
+                    <div class="calendar-content-date-container ultrablue darktext">{{date}}</div>
+                    <div class="calendar-content-day-big-number">{{date}}</div>
+                </a>
+            {% endif %}
+        {% else %}    
+            <div class="calendar-content-day gray"></div>
+        {% endif %}
+    {% endfor %}
+
+{% endfor %}
+</div>
+
+
+
+<!-- Not Used Currently (not sure if its needed)
+<div class="legend-object">
+    <div class="smallbox ultrablue"></div>
+    <div class="padding-left">Today</div> 
+</div> 
+-->

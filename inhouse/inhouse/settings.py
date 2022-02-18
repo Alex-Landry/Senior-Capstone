@@ -43,7 +43,8 @@ AUTH_USER_MODEL='users.User'
 
 LOGIN_URL='/'
 
-LOGIN_REDIRECT_URL = '/calendar'
+LOGIN_REDIRECT_URL = '/calendarMonth/0/0/0'
+
 
 AUTHENTICATION_BACKENDS = [
     # Oauth2 token authentication backend
@@ -161,7 +162,8 @@ SOCIALACCOUNT_PROVIDERS = {
             'openid',
             'https://www.googleapis.com/auth/calendar.readonly'
         ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
     }
 }
-
-SOCIALACCOUNT_ADAPTER = "users.models.CustomSocialAccountAdapter"

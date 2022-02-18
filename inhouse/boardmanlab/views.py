@@ -6,6 +6,8 @@ from django.views.generic import TemplateView
 from datetime import datetime
 import calendar
 cal = calendar.Calendar()
+cal.setfirstweekday(calendar.SUNDAY)
+
 
 # Create your views here.
 
@@ -17,18 +19,42 @@ def login(request):
     return render(request, 'login.html')
 
 @login_required()
-def calendar(request):
+def calendarMonth(request, year, month, day):
+    if year == 0 and month == 0:
+        year = datetime.now().year
+        month = datetime.now().month
+        day = datetime.now().day
+    if day == 0 and month == datetime.now().month:
+        day = datetime.now().day
     context = {
-        "day": datetime.now().day,
-        "month": datetime.now().month,
-        "year": datetime.now().year,
-        "month_obj": cal.monthdayscalendar(datetime.now().year, datetime.now().month),
+        "day_string_list": [6,0,1,2,3,4,5],
+        "day": day,
+        "month": month,
+        "year": year,
+        "month_obj": cal.monthdayscalendar(year, month),
     }
-    return render(request, 'calendar.html', context)
+    return render(request, 'calendarMonth.html', context)
+
+@login_required()
+def calendarDay(request, year, month, day):
+    if year == 0 and month == 0:
+        year = datetime.now().year
+        month = datetime.now().month
+        day = datetime.now().day
+    if day == 0 and month == datetime.now().month:
+        day = datetime.now().day
+    context = {
+        "day_string_list": [6,0,1,2,3,4,5],
+        "day": day,
+        "month": month,
+        "year": year,
+        "month_obj": cal.monthdayscalendar(year, month),
+    }
+    return render(request, 'calendarDay.html', context)
 
 @login_required()
 def helpsessions(request):
-    return render(request, 'my_help_sessions_student_view.html')
+    return render(request, 'helpSessions.html')
 
 def error(request):
     return render(request, 'error.html')
@@ -44,3 +70,22 @@ class ApiEndpoint(ProtectedResourceView):
 
 class Home(TemplateView):
     template_name = 'home.html'
+
+
+
+# Error Handling
+def error_404(request, exception):
+        data = {}
+        return render(request,'errors/404.html', data)
+
+def error_500(request):
+        data = {}
+        return render(request,'errors/500.html', data)
+
+def error_400(request, exception):
+        data = {}
+        return render(request,'errors/400.html', data)
+
+def error_403(request,  exception):
+        data = {}
+        return render(request,'errors/403.html', data)
