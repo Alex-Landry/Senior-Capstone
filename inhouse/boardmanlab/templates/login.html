@@ -20,9 +20,9 @@
         <div class="input-container">
             <img src="{% static 'images/login.png' %}" />
             {% if user.is_authenticated %}
-                <p>Welcome {{ user.username }} !!!</p>
-                <form action="/calendarMonth">
-                    <input type="submit" value="Calendar"></input>
+                <p>Welcome {{ user.first_name }}!</p>
+                <form action="/calendarMonth/0/0/0">
+                    <input type="submit" class="lightblue" id="submit" value="Calendar"></input>
                 </form>
                 {% else %}
                 <p>Please login to see this page.</p>
