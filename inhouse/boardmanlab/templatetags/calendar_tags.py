@@ -4,6 +4,7 @@ register = template.Library()
 
 import calendar
 from datetime import datetime
+from datetime import date
 
 # Get the current month: return obj
 @register.simple_tag
@@ -20,9 +21,16 @@ def get_month():
 def month_obj(year, month):
     return datetime.monthdayscalendar(year, month)
 
+# This is used for the labels for the top of the month view
 @register.simple_tag
 def gen_day_string(value):
     return calendar.day_name[value]  #'Wednesday'
+
+# This is used for the day view (generated day string)
+@register.simple_tag
+def get_day_string(year, month, day):
+    day = datetime(year, month, day).weekday()
+    return calendar.day_name[day]
 
 @register.simple_tag
 def gen_month_string(value):
