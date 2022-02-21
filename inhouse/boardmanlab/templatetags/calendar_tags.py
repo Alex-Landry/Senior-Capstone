@@ -4,7 +4,7 @@ register = template.Library()
 
 import calendar
 from datetime import datetime
-from datetime import date
+from datetime import timedelta
 
 # Get the current month: return obj
 @register.simple_tag
@@ -37,32 +37,56 @@ def gen_month_string(value):
     return calendar.month_name[value].title()  #'March'
 
 @register.simple_tag
-def increment(value):
-    if value == 12:
+def increment_day(year, month, day):
+    day = datetime(year, month, day)
+    day = day + timedelta(days = 1)
+    return day.day
+
+@register.simple_tag
+def decrement_day(year, month, day):
+    date = datetime(year, month, day)
+    date = date - timedelta(days = 1)
+    return date.day
+
+@register.simple_tag
+def increment_month(year, month, day):
+    date = datetime(year, month, day)
+    date = date + timedelta(days = 1)
+    return date.month
+
+@register.simple_tag
+def decrement_month(year, month, day):
+    date = datetime(year, month, day)
+    date = date - timedelta(days = 1)
+    return date.month
+
+@register.simple_tag
+def increment_month_alt(year, month, day):
+    if month == 12:
         return 1
     else:
-        return value + 1  #'2'
+        return month + 1
 
 @register.simple_tag
-def decrement(value):
-    if value == 1:
+def decrement_month_alt(year, month, day):
+    if month == 1:
         return 12
     else:
-        return value - 1  #'0'
+        return month - 1
 
 @register.simple_tag
-def increment_year(value, month):
+def increment_year(year, month):
     if month != 12:
-        return value # same
+        return year # same
     else:
-        return value + 1
+        return year + 1
 
 @register.simple_tag
-def decrement_year(value, month):
+def decrement_year(year, month):
     if month != 1:
-        return value # same
+        return year # same
     else:
-        return value - 1
+        return year - 1
 
 
 

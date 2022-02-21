@@ -6,9 +6,9 @@
 </div>
 
 <div class="calendar-content-strip">
-    <a href="/calendarMonth/{% decrement_year year month %}/{% decrement month %}/0/" class="left-arrow"></a>
+    <a href="/calendarMonth/{% decrement_year year month %}/{% decrement_month_alt year month day %}/0/" class="left-arrow"></a>
     {% gen_month_string month %} {{year}}
-    <a href="/calendarMonth/{% increment_year year month %}/{% increment month %}/0/" class="right-arrow"></a>
+    <a href="/calendarMonth/{% increment_year year month %}/{% increment_month_alt year month day %}/0/" class="right-arrow"></a>
 </div>
 
 <div class="calendar-day-labels">

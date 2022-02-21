@@ -2,7 +2,13 @@
 
 
 <div class="calendar-content-strip">
-Help Sessions for {% get_day_string year month day %}, {% gen_month_string month %} {{day}}, {{year}}.
+Help Sessions for .
+</div>
+
+<div class="calendar-content-strip">
+    <a href="/calendarDay/{% decrement_year year month %}/{% decrement_month year month day %}/{% decrement_day year month day %}/" class="left-arrow"></a>
+    {% get_day_string year month day %}, {% gen_month_string month %} {{day}}, {{year}}
+    <a href="/calendarDay/{% increment_year year month %}/{% increment_month year month day %}/{% increment_day year month day %}/" class="right-arrow"></a>
 </div>
 
 <form action="/calendarMonth/0/0/0/">
