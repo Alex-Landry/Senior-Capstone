@@ -1,22 +1,24 @@
 {% load calendar_tags %}
 
-
 <div class="calendar-content-strip">
-Help Sessions for .
+
+    <div class="calendar-content-view-menu">
+        <a href="/calendarDay/{% decrement_year year month %}/{% decrement_month year month day %}/{% decrement_day year month day %}/" class="left-arrow"></a>
+        <div class="text-date-menu">{% get_day_string year month day %}, {% gen_month_string month %} {{day}}, {{year}}</div>
+        <a href="/calendarDay/{% increment_year year month %}/{% increment_month year month day %}/{% increment_day year month day %}/" class="right-arrow"></a>
+    </div>
+
+    <form action="/calendarMonth/0/0/0/" class="form-custom">
+        <input type="submit" id="small-button" value="Month View"></input>
+    </form>
+    
 </div>
 
+
+
 <div class="calendar-content-strip">
-    <a href="/calendarDay/{% decrement_year year month %}/{% decrement_month year month day %}/{% decrement_day year month day %}/" class="left-arrow"></a>
-    {% get_day_string year month day %}, {% gen_month_string month %} {{day}}, {{year}}
-    <a href="/calendarDay/{% increment_year year month %}/{% increment_month year month day %}/{% increment_day year month day %}/" class="right-arrow"></a>
-</div>
-
-<form action="/calendarMonth/0/0/0/">
-    <input type="submit" id="login" value="Take me back to the month view!"></input>
-</form>
-
-
 <div class="legend-object">
     <div class="smallbox ultrablue"></div>
     <div class="padding-left" style="background-color: #333333;">This is inside a div tag</div> 
 </div> 
+</div>

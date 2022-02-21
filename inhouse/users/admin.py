@@ -7,7 +7,7 @@ from .models import User
 class CustomUserAdmin(UserAdmin):
     list_display = (
         'username', 'email', 'first_name', 'last_name', 'is_staff',
-        'is_student', 'is_helper', 'is_admin'
+        'is_student', 'is_helper', 'is_admin', 'picture',
         )
 
     fieldsets = (
@@ -15,7 +15,7 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('username', 'password')
         }),
         ('Personal info', {
-            'fields': ('first_name', 'last_name', 'email')
+            'fields': ('first_name', 'last_name', 'email', 'picture')
         }),
         ('Permissions', {
             'fields': (
