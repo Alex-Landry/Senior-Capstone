@@ -36,7 +36,12 @@
           {% endif %}
           <input type="submit" id="logout" value="Log Out"></input>
         </form>
-        <div class="logout-image-container"><img src="{% static 'images/login_header.png' %}" /></div>
+        {% if user.picture %}
+          <div class="logout-image-container"><img src="{{ user.picture }}" /></div>
+        {% else %}
+          <div class="logout-image-container"><img src="{% static 'images/login_header.png' %}" /></div>
+        {% endif %}
+        
       </div>
 
     </div>

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL='users.User'
 
+SOCIALACCOUNT_ADAPTER = 'users.models.CustomSocialAccountAdapter'
+
 LOGIN_URL='/'
 
 LOGIN_REDIRECT_URL = '/calendarMonth/0/0/0'
@@ -160,10 +162,14 @@ SOCIALACCOUNT_PROVIDERS = {
             'profile',
             'email',
             'openid',
-            'https://www.googleapis.com/auth/calendar.readonly'
         ],
         'AUTH_PARAMS': {
             'access_type': 'online',
         }
     }
 }
+
+
+SOCIAL_AUTH_PIPELINE = (
+   'users.views.update_user_social_data'
+)

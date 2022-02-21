@@ -35,3 +35,10 @@ $ python manage.py runserver
 
 then open browser and navigate to:
 ### http://127.0.0.1:8000/boardmanlab/
+
+
+Helpful database query (to destroy all):
+``` shell
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+```

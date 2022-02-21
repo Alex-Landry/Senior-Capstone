@@ -1,3 +1,51 @@
+@media screen and (max-width: 1080px) {
+    .right-content {   
+      flex-direction: column !important;
+      display: none !important;
+    }
+    .calendar-content-day{
+        height: 7vw !important; 
+    }
+    .calendar-content-day-labels{
+        font-size: 1.5vw !important;
+    }
+    .calendar-content-date-container{
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .right-content {   
+      flex-direction: column !important;
+      display: none !important;
+    }
+    .left-content {
+        flex-direction: column !important;
+        display: none !important;
+    }
+    .umaine-logo{
+        display: none !important;
+    }
+    .header-text{
+        text-align: right !important;
+        font-size: 14px !important;
+    }
+    .calendar-content-day{
+        height: 10vw !important;
+    }
+    .calendar-content-day-labels{
+        font-size: 2vw !important;
+    }
+    .calendar-content-date-container{
+        display: none !important;
+    }
+    .calendar-content-day-big-number{
+        font-size: 6vw !important;
+        color:#0f1922 !important;
+    }
+}
+
+
 body {
     background-color: #111111;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -82,6 +130,20 @@ body {
 .logout-image-container{
     display: inline-block;
     padding: 4px;
+    height: 52px;
+}
+
+.logout-image-container img{
+    position: relative;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    text-align: center;
 }
 
 .logout-container form{
@@ -419,6 +481,22 @@ input[type=text], select {
     background-color: #0a3c5f;
   }
 
+#small-button {
+    display: inline-block;
+    color: #FFFFFF;
+    text-align: center;
+    margin: 4px 0;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    background-color: #0D598E;
+    padding: 8px;
+    filter: drop-shadow(0 .2rem .1rem rgb(0,0,0, .2));
+  }
+
+#small-button:hover {
+    background-color: #0a3c5f;
+  }
 
 
 .input-bottom-bar{
@@ -503,59 +581,25 @@ input[type=text], select {
     background-color: #1D2E3F;
     color: #FFFFFF;
 }
-@media screen and (max-width: 1080px) {
-    .right-content {   
-      flex-direction: column;
-      display: none;
-    }
-    .calendar-content-day{
-        height: 7vw !important; 
-    }
-.calendar-content-day-labels{
-        font-size: 1.5vw !important;
-    }
-.calendar-content-day-big-number{
-        display: none !important;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .right-content {   
-      flex-direction: column;
-      display: none;
-    }
-    .left-content {
-        flex-direction: column;
-        display: none;
-    }
-    .umaine-logo{
-        display: none;
-    }
-    .header-text{
-        text-align: right !important;
-        font-size: 14px;
-    }
-    .calendar-content-day{
-        height: 10vw !important;
-    }
-    .calendar-content-day-labels{
-        font-size: 2vw !important;
-    }
-    .calendar-content-day-big-number{
-        display: none !important;
-    }
-}
 
 .calendar-content-strip{
-    margin-left: 10px;
-    margin-top: 10px;
     padding-left: 4px;
     width: 100%;
     height: 40px;
     font-size: 16px;
     font-weight:500;
-    display: inline-block;
-    
+    vertical-align: middle;
+    display: inline-block;  
+}
+
+.calendar-content-view-menu{
+    width: auto;
+    height: auto;
+    padding: 10px 0;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight:500;
+    display: inline-block;  
 }
 
 .calendar-content-day{
@@ -568,7 +612,6 @@ input[type=text], select {
 }
 
 .calendar-content-day-big-number{
-    position: absolute;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -627,6 +670,11 @@ input[type=text], select {
     display: block;
 }
 
+.form-custom{
+    display: inline-block;
+    padding-left: 10px;
+}
+
 .gray {
     background-color: #333333 !important;
 }
@@ -658,9 +706,16 @@ input[type=text], select {
   grid-template-columns: repeat(7, 1fr);
 }
 
+.text-date-menu{
+    top:50%;
+    padding: 7px;
+    transform: translate(0%, -2%);
+    display: inline-block;
+    margin: auto;
+}
+
 .left-arrow {
-    margin: 4px;
-    vertical-align: middle;
+    margin: auto;
     display: inline-block;
     height: 0px;
     width: 0px;
@@ -671,8 +726,7 @@ input[type=text], select {
 }
 
 .right-arrow {
-    margin: 4px;
-    vertical-align: middle;
+    margin: auto;
     display: inline-block;
     height: 0px;
     width: 0px;
