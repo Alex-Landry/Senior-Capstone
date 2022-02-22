@@ -56,6 +56,10 @@ def calendarDay(request, year, month, day):
 def helpsessions(request):
     return render(request, 'helpSessions.html')
 
+@login_required()
+def createHelpSession(request):
+    return render(request, 'createHelpSession.html')
+
 def error(request):
     return render(request, 'error.html')
 

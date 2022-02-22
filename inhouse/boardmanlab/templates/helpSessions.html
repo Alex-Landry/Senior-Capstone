@@ -16,6 +16,14 @@
 
 
         <!-- PAGE CONTENT GOES HERE -->
+
+        {% if user.is_helper %}
+        <form action="/createHelpSession/" class="form-custom">
+          <input type="submit" id="small-button" value="Create new help session"></input>
+        </form>
+        {% endif %}
+
+
         <div class="help-session-box" style="padding: 10px">
           <div class="help-session-title">Monday 11/22/22 12:30 pm - 1:30 pm</div>
           <div class="help-session-info-row">
