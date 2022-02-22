@@ -744,3 +744,37 @@ input[type=text], select {
 .right-arrow:hover{
     border-left: 12px solid #8fd1fc !important;
 }
+
+.help-session-box{
+    background-color: #0D598E;
+    margin-left: 40px;
+    margin-top: 40px;
+    padding: 4px;
+    width: 55vw;
+}
+
+.help-session-title{
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.help-session-info-row{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 4px;
+    width: 80%;
+    margin-top: 4px;
+}
+
+.help-session-label{
+    background-color: #444444;
+}
+
+.help-session-info{
+    background-color: #1D2E3F;
+}
