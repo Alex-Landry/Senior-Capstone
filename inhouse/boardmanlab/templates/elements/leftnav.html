@@ -1,0 +1,6 @@
+
+<a href="/calendarMonth/0/0/0/" class="sidebar-button-open unselectable">Calendar</a>
+<a href="/calendarMonth/0/0/0/" class="sidebar-button-closed unselectable">Account</a>
+{% if request.user.is_helper %}
+    <a href="/calendarMonth/0/0/0/" class="sidebar-button-closed unselectable">Feedback</a>
+{% endif %}

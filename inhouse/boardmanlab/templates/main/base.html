@@ -59,8 +59,7 @@
       <img src="{% static 'images/sw_bg.jpeg' %}"/>
     </div>
     <div class="sidebar-overlay">
-      {% block leftnav %}
-      {% endblock %}
+      {% include 'elements/leftnav.html' %}
       <div class="sidebar-blank" style="opacity: .8"></div>
       <div class="sidebar-blank" style="opacity: .6"></div>
       <div class="sidebar-blank" style="opacity: .4"></div>
