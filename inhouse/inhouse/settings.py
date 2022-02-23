@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'boardmanlab',
     'users',
+    'reservations',
     'oauth2_provider',
     'corsheaders',
     #allauth apps:

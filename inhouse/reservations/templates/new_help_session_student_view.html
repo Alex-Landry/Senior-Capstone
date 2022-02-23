@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="center-content">
+    <div class="center-content-tab-container">
+      <a href="/calendar" class="center-content-closed-tab unselectable">Calendar</a>
+      <div class="center-content-open-tab unselectable" style="margin-left: 0">My Help Sessions</div>
+      <div class="help_session_filter_btn">Filter</div>
+      <div class="center-content-blank-tab"></div>
+    </div>
+    
+    <div class="center-content-tab-content-container">
+        <div class="center-content-tab-content">
+            <p class="content-box-header">Monday 12:30 pm - 1:30 pm</p>
+            <div class="content-box-holder">
+                <p class="content-box">Helper</p>
+                <p class="content-box">Topic</p>
+                <p class="content-box">Time</p>
+            </div>
+            <form action="" method="post" class="select-menu-holder">
+                {% csrf_token %}
+                <select id="helper" name="helper" class="select-menu">
+                    <option>Zach Hutchinson (PHD Student)</option>
+                </select> 
+                <select id="topic" name="topic" class="select-menu">
+                    <option>COS 125</option>
+                </select> 
+                <select id="time" name="time" class="select-menu">
+                    <option>15 Minutes</option>
+                </select> 
+                <div class="new_help_session_btn_holder">
+                <a href='/helpsessions' class="new_help_session_cancel_btn">Cancel</a>
+                <input type="submit" id="book_appointment" value="Book My Appointment" class="new_help_session_submit_btn"></input>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

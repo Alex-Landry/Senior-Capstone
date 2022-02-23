@@ -36,7 +36,10 @@
     </div>
 
     <div class="help-session-info-fullrow">
-        <form action="/calendarMonth/0/0/0/" class="form-button">
+        <form action="" method="post" class="form-button">
+            {% csrf_token %}
+            <input type="none" value={{helpSession}} name="helpSession" style="display: none;"></input>
+            <input type="none" value={{user}} name="user" style="display: none;"></input>
             <input type="submit" class="green" id="small-button" value="Attend Help Session"></input>
         </form>
         <form action="/calendarMonth/0/0/0/" class="form-button">

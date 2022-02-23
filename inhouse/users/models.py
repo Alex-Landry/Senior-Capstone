@@ -21,6 +21,7 @@ class User(AbstractUser):
     is_admin = models.BooleanField(default=False)
     picture = models.TextField(null=True, blank=True)
     topics = models.ManyToManyField(Topic)
+    
 
 
     

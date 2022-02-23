@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from boardmanlab.views import index, login, helpsessions, calendarMonth, error, calendarDay, createHelpSession
+from reservations.views import new_help_session
 import oauth2_provider.views as oauth2_views
 from django.conf import settings
 from boardmanlab.views import ApiEndpoint, Home
@@ -35,6 +36,7 @@ urlpatterns = [
     path('home/', index),
     path('helpsessions/', helpsessions),
     path('createHelpSession/', createHelpSession, name='createHelpSession'),
+    path('new_help_session/', new_help_session),
     path('calendarMonth', calendarMonth, name='calendarMonth'),
     path('calendarMonth/<int:year>/<int:month>/<int:day>/', calendarMonth),
     path('calendarDay/<int:year>/<int:month>/<int:day>/', calendarDay, name='calendarDay'),
