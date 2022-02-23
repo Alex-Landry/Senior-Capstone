@@ -4,8 +4,7 @@ from users import models as u
 
 class helpSession(models.Model):
     helper = models.ForeignKey(u.User, on_delete=models.CASCADE)
-    subject = models.TextField(max_length=300)
+    topic = models.TextField(max_length=300)
     date = models.DateField()
     duration = models.IntegerField(default=30)
-    topic = models.TextField(max_length=300)
     attendance = models.IntegerField(default=0)

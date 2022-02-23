@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from datetime import datetime
+from .models import helpSession
 import calendar
 cal = calendar.Calendar()
 cal.setfirstweekday(calendar.SUNDAY)
@@ -58,7 +59,40 @@ def helpsessions(request):
 
 @login_required()
 def createHelpSession(request):
+    year = datetime.now().year
+    month = datetime.now().month
+    day = datetime.now().day
+
+    context = {
+        "day": day,
+        "month": month,
+        "year": year,
+    }
+
+    if request.method=="POST":
+        date = request.POST['date']
+        time = request.POST['time']
+        duration = request.POST['duration']
+        topic = request.POST['topic']
+        user = user
+
+        context={
+            "date": date,
+            "time": topic,
+            "duration": time,
+            "topic": topic,
+            "user": user,
+        }
+
+        date = datetime.combine(datetime.date(date), datetime.time(time))
+
+        ins = helpSession(helper=user, topic=topic, date=date, duration=duration)
+        ins.save()
+        return render(request, "/helpsessions.html", context)
+
     return render(request, 'createHelpSession.html')
+
+    ##
 
 def error(request):
     return render(request, 'error.html')

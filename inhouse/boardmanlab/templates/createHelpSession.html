@@ -17,8 +17,9 @@
 
         <!-- PAGE CONTENT GOES HERE -->
 
-      <form action="" class="form-custom">
-
+      <form action="" method="post" class="form-custom">
+        {% csrf_token %}
+        
         <div class="help-session-box" style="padding: 10px">
           <div class="help-session-title">Help Session</div>
 
@@ -30,17 +31,18 @@
         <div class="help-session-info-row">  
           <div class="help-session-label">Date</div>
             <div class="help-session-info">
-              <input type="date" id="start" name="Date"
-              value="2018-07-22"
-              min="2018-01-01" max="2023-12-31">
+              <input type="date" id="start" name="date"
+              value="{{year}}-{{month}}-{{day}}"
+              min="" max="">
             </div>
         </div>
           
         <div class="help-session-info-row">
           <div class="help-session-label">Time</div>
-              <div class="help-session-info"><input type="time" id="start" name="Time"
-                  value="2018-07-22"
-                  min="2018-01-01" max="2023-12-31">
+              <div class="help-session-info">
+                <input type="time" id="start" name="time"
+                  value=""
+                  min="" max="">
               </div>
         </div>
 
@@ -48,7 +50,7 @@
             <div class="help-session-label">Duration</div>
             <div class="help-session-info">
               
-              <select name="Topic" id="select">
+              <select name="duration" id="select">
                 <option value="15">15 min</option>
                 <option value="30">30 min</option>
                 <option value="45">45 min</option>
@@ -63,7 +65,7 @@
 
             <div class="help-session-info">
 
-              <select name="Topic" id="select">
+              <select name="topic" id="select">
                 <option value="all">All</option>
                 {% for topic in user.topics.all %}
                   <option value="{{topic}}">{{topic}}</option>
