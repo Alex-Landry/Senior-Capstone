@@ -6,6 +6,8 @@ from django.views.generic import TemplateView
 from django.views.generic import ListView
 from datetime import datetime
 from .models import helpSession
+from reservations.models import Reservation
+from users.models import User
 import calendar
 cal = calendar.Calendar()
 cal.setfirstweekday(calendar.SUNDAY)
@@ -39,6 +41,30 @@ def calendarMonth(request, year, month, day):
 
 @login_required()
 def calendarDay(request, year, month, day):
+    if request.method=="POST":
+            key = request.POST['helpSession']
+            res_HelpSession = helpSession.objects.get(pk=key)
+            key = request.POST['user']
+            user = User.objects.get(pk=key)
+            
+            # Check to see if user is already signed up for helpSession
+            if Reservation.objects.filter(user=user, helpSession=res_HelpSession):
+                already_attending = True
+            else:
+                already_attending = False
+                ins = Reservation(user=user, helpSession=res_HelpSession)
+                ins.save()
+                
+            # get current reservations
+            reservations = Reservation.objects.filter(user = user)
+
+            context={
+                "reservations": reservations,
+                "already_attending": already_attending,
+                }
+
+            return render(request, "helpSession_booked.html", context)
+
     if year == 0 and month == 0:
         year = datetime.now().year
         month = datetime.now().month
@@ -56,9 +82,17 @@ def calendarDay(request, year, month, day):
     }
     return render(request, 'calendarDay.html', context)
 
+
+        
 @login_required()
 def helpsessions(request):
-    return render(request, 'helpSessions.html')
+    user = request.user
+    reservations = Reservation.objects.filter(user = user)
+    context = {
+        "reservations": reservations,
+    }
+
+    return render(request, 'helpSessions.html', context)
 
 @login_required()
 def createHelpSession(request):

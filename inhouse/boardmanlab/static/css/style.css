@@ -771,6 +771,7 @@ input[type=text], select {
     margin-top: 40px;
     padding: 4px;
     width: 55vw;
+    filter: drop-shadow(3px 3px 1px rgb(0,0,0, .2));
 }
 
 .help-session-title{

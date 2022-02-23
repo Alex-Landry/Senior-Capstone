@@ -16,7 +16,7 @@ def new_help_session(request):
             "topic": topic,
             "time": time
         }
-        ins = Reservation(topic=topic, time=time, student=user, helper=helper)
+        ins = Reservation(user=user, helpSession=helpSession)
         ins.save()
         return render(request, "successful_booking.html", context)
 

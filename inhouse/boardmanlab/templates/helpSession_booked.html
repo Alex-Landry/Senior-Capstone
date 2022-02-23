@@ -1,5 +1,5 @@
 {% extends 'main/base.html' %}
-
+{% load calendar_tags %}
 
 {% block content %}
 <!-- Center Flex Box -->
@@ -17,13 +17,19 @@
 
         <!-- PAGE CONTENT GOES HERE -->
 
+
         {% if user.is_helper %}
         <form action="/createHelpSession/" class="form-custom">
           <input type="submit" id="small-button" value="Create new help session"></input>
         </form>
         {% endif %}
 
-
+        {% if already_attending %}
+            <p class="successful-booking-label">You are already booked for this help session.</p>
+        {% else %}
+            <p class="successful-booking-label">Appointment Successfully Booked!</p>
+        {% endif %}
+        
 
         {% for reservation in reservations %}
         <div class="help-session-box" style="padding: 10px">
