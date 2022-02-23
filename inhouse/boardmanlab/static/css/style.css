@@ -720,6 +720,16 @@ input[type=text], select {
     color: #0a3c5f !important;
 }
 
+.red{
+    background-color: #ff0000 !important;
+    color: #ffffff !important;
+}
+
+.red:hover{
+    background-color: #ce0000 !important;
+    color: #ffffff !important;
+}
+
 
 .calendar-day-labels,
 .calendar-grid {

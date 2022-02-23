@@ -42,11 +42,18 @@ def calendarMonth(request, year, month, day):
 @login_required()
 def calendarDay(request, year, month, day):
     if request.method=="POST":
-            key = request.POST['helpSession']
-            res_HelpSession = helpSession.objects.get(pk=key)
-            key = request.POST['user']
-            user = User.objects.get(pk=key)
-            
+        
+        key = request.POST['helpSession']
+        res_HelpSession = helpSession.objects.get(pk=key)
+        key = request.POST['user']
+        user = User.objects.get(pk=key)
+
+        #check request for delete
+        try:
+            delete = request.POST['delete']
+            if delete:
+                res_HelpSession.delete()
+        except:
             # Check to see if user is already signed up for helpSession
             if Reservation.objects.filter(user=user, helpSession=res_HelpSession):
                 already_attending = True
@@ -54,7 +61,7 @@ def calendarDay(request, year, month, day):
                 already_attending = False
                 ins = Reservation(user=user, helpSession=res_HelpSession)
                 ins.save()
-                
+                    
             # get current reservations
             reservations = Reservation.objects.filter(user = user)
 
@@ -119,6 +126,7 @@ def createHelpSession(request):
         duration = request.POST['duration']
         topic = request.POST['topic']
         user = request.POST['user']
+        reservations = Reservation.objects.filter(user=request.user)
 
         context={
             "date": date,
@@ -126,6 +134,8 @@ def createHelpSession(request):
             "duration": duration,
             "topic": topic,
             "user": user,
+            "reservations": reservations,
+            "created_new": True,
         }
         user = request.user
         ins = helpSession(helper=user, topic=topic, date=date, time=date.time(), duration=duration)
