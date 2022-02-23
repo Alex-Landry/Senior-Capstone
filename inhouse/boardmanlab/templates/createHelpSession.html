@@ -20,7 +20,7 @@
       <form action="" class="form-custom">
 
         <div class="help-session-box" style="padding: 10px">
-          <div class="help-session-title">Time</div>
+          <div class="help-session-title">Help Session</div>
 
         <div class="help-session-info-row">
           <div class="help-session-label">Helper</div>
@@ -48,11 +48,11 @@
             <div class="help-session-label">Duration</div>
             <div class="help-session-info">
               
-              <select name="Topic" id="start">
-                <option value="15">15</option>
-                <option value="30">30</option>
-                <option value="45">45</option>
-                <option value="60">60</option>
+              <select name="Topic" id="select">
+                <option value="15">15 min</option>
+                <option value="30">30 min</option>
+                <option value="45">45 min</option>
+                <option value="60">60 min</option>
               </select>
             
             </div>
@@ -60,9 +60,10 @@
           
           <div class="help-session-info-row">
             <div class="help-session-label">Topic</div>
+
             <div class="help-session-info">
 
-              <select name="Topic" id="start">
+              <select name="Topic" id="select">
                 <option value="all">All</option>
                 {% for topic in user.topics.all %}
                   <option value="{{topic}}">{{topic}}</option>
@@ -74,7 +75,7 @@
             </div>
           </div>
 
-            <input type="submit" id="small-button" value="Save" class="ultrablue"></input>
+            <input type="submit" id="small-button" value="Create New Help Session" class="ultrablue"></input>
 
         </div>
 

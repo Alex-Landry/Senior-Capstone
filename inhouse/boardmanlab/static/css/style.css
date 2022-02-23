@@ -754,6 +754,8 @@ input[type=text], select {
 }
 
 .help-session-title{
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-family: Roboto;
     font-size: 18px;
     font-style: normal;
@@ -773,8 +775,18 @@ input[type=text], select {
 
 .help-session-label{
     background-color: #444444;
+    padding: 4px;
 }
 
 .help-session-info{
     background-color: #1D2E3F;
+    padding: 4px;
+}
+
+#select {
+    background-color: #1D2E3F;
+    border: none;
+    color: #FFFFFF;
+    border-radius: none !important;
+    height: fit-content !important;
 }
