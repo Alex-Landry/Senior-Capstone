@@ -4,7 +4,11 @@ from django.contrib import admin
 
 
 from users.models import Topic
+from .models import helpSession
 
 class TopicAdmin(admin.ModelAdmin):
     pass
 admin.site.register(Topic, TopicAdmin)
+
+admin.site.register(helpSession, TopicAdmin)
+

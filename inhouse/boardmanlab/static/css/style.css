@@ -661,7 +661,7 @@ input[type=text], select {
 }
 
 .darktext {
-    color: #000000;
+    color: #000000 !important;
 }
 
 .smallbox {
@@ -674,6 +674,10 @@ input[type=text], select {
 .form-custom{
     display: inline-block;
     padding-left: 10px;
+}
+
+.form-button{
+    display: inline-block;
 }
 
 .gray {
@@ -689,7 +693,13 @@ input[type=text], select {
 }
 
 .ultrablue {
-    background: #8fd1fc !important;
+    background-color: #8fd1fc !important;
+    color: #0a3c5f !important;
+}
+
+.ultrablue:hover {
+    background-color: #1478c0 !important;
+    color: #0a3c5f !important;
 }
 
 .lightblue:hover {
@@ -698,6 +708,16 @@ input[type=text], select {
 
 .blue:hover {
     background-color: #0a3c5f !important;
+}
+
+.green{
+    background-color: #29DF25 !important;
+    color: #0a3c5f !important;
+}
+
+.green:hover{
+    background-color: #45a049 !important;
+    color: #0a3c5f !important;
 }
 
 
@@ -768,6 +788,14 @@ input[type=text], select {
 .help-session-info-row{
     display: grid;
     grid-template-columns: 1fr 4fr;
+    grid-gap: 4px;
+    width: 80%;
+    margin-top: 4px;
+}
+
+.help-session-info-fullrow{
+    display: inline-block;
+
     grid-gap: 4px;
     width: 80%;
     margin-top: 4px;

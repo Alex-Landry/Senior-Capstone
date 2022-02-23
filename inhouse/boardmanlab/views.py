@@ -3,6 +3,7 @@ from oauth2_provider.views.generic import ProtectedResourceView
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.views.generic import TemplateView
+from django.views.generic import ListView
 from datetime import datetime
 from .models import helpSession
 import calendar
@@ -44,7 +45,9 @@ def calendarDay(request, year, month, day):
         day = datetime.now().day
     if day == 0 and month == datetime.now().month:
         day = datetime.now().day
+    helpSessions = helpSession.objects.filter(date__year=str(year), date__month=str(month), date__day=str(day))
     context = {
+        "helpSessions": helpSessions,
         "day_string_list": [6,0,1,2,3,4,5],
         "day": day,
         "month": month,
@@ -70,27 +73,32 @@ def createHelpSession(request):
     }
 
     if request.method=="POST":
-        date = request.POST['date']
+        dateString = request.POST['date']
+        year = int(dateString.split('-')[0])
+        month = int(dateString.split('-')[1])
+        day = int(dateString.split('-')[2])
         time = request.POST['time']
+        timeString = time
+        hour = int(timeString.split(':')[0])
+        minute = int(timeString.split(':')[1])
+        date = datetime(year, month, day, hour, minute)
         duration = request.POST['duration']
         topic = request.POST['topic']
-        user = user
+        user = request.POST['user']
 
         context={
             "date": date,
-            "time": topic,
-            "duration": time,
+            "time": time,
+            "duration": duration,
             "topic": topic,
             "user": user,
         }
-
-        date = datetime.combine(datetime.date(date), datetime.time(time))
-
-        ins = helpSession(helper=user, topic=topic, date=date, duration=duration)
+        user = request.user
+        ins = helpSession(helper=user, topic=topic, date=date, time=date.time(), duration=duration)
         ins.save()
-        return render(request, "/helpsessions.html", context)
+        return render(request, "helpsessions.html", context)
 
-    return render(request, 'createHelpSession.html')
+    return render(request, 'createHelpSession.html', context)
 
     ##
 

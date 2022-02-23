@@ -19,13 +19,15 @@
 
       <form action="" method="post" class="form-custom">
         {% csrf_token %}
-        
+
         <div class="help-session-box" style="padding: 10px">
           <div class="help-session-title">Help Session</div>
 
         <div class="help-session-info-row">
           <div class="help-session-label">Helper</div>
-          <div class="help-session-info">{{user.first_name}} {{user.last_name}}</div>
+          <div class="help-session-info">{{user.first_name}} {{user.last_name}}
+            <input name="user" value="{{user}}" style="display: none;">
+          </div>
         </div>
 
         <div class="help-session-info-row">  

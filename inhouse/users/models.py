@@ -22,6 +22,7 @@ class User(AbstractUser):
     picture = models.TextField(null=True, blank=True)
     topics = models.ManyToManyField(Topic)
 
+
     
 
 class CustomSocialAccountAdapter(DefaultSocialAccountAdapter):

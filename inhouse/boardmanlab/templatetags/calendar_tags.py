@@ -88,7 +88,13 @@ def decrement_year(year, month):
     else:
         return year - 1
 
-
+@register.simple_tag
+def add_minutes(date, time, duration):
+    endtime = datetime.combine(date, time) + timedelta(minutes = duration)
+    endtime = endtime.time().strftime("%I:%M %p")
+    if endtime[0] == '0':
+        endtime = endtime[1:]
+    return endtime
 
 
 
