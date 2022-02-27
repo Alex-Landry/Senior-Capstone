@@ -1,7 +1,18 @@
 import email
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
+
+
+class Topic(models.Model):
+    topic = models.TextField(max_length=300, null=True, blank=True)
+
+    class Meta:
+        ordering = ['topic']
+
+    def __str__(self):
+        return self.topic
 
 
 class User(AbstractUser):
@@ -9,7 +20,11 @@ class User(AbstractUser):
     is_helper = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     picture = models.TextField(null=True, blank=True)
+    topics = models.ManyToManyField(Topic)
+    
 
+
+    
 
 class CustomSocialAccountAdapter(DefaultSocialAccountAdapter):
 
