@@ -102,6 +102,16 @@ def helpsessions(request):
     return render(request, 'helpSessions.html', context)
 
 @login_required()
+def managehelpsessions(request):
+    user = request.user
+    reservations = Reservation.objects.filter(user = user)
+    context = {
+        "reservations": reservations,
+    }
+
+    return render(request, 'manageHelpSessions.html', context)
+
+@login_required()
 def createHelpSession(request):
     year = datetime.now().year
     month = datetime.now().month

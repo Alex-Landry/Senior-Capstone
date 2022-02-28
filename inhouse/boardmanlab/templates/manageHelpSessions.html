@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+<!-- Center Flex Box -->
+  <div class="center-content">
+    <div class="center-content-tab-container">
+      <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
+      <a href="/helpsessions" class="center-content-closed-tab unselectable">Help Sessions</a>
+      {% if user.is_helper or user.is_admin %}
+      <div class="center-content-open-tab unselectable" style="margin-left: 0">Manage Help Sessions</div>
+      {% endif %}
+      <div class="help_session_filter_btn">Filter</div>
+      <div class="center-content-blank-tab"></div>
+    </div>
+    <div class="center-content-tab-content-container">
+
+      <div class="center-content-tab-content">
+
+
+        <!-- PAGE CONTENT GOES HERE -->
+        {% if user.is_helper %}
+        <form action="/createHelpSession/" class="form-custom">
+          <input type="submit" id="small-button" value="Create new help session"></input>
+        </form>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+<!-- End Center Flex Box -->
+{% endblock %}

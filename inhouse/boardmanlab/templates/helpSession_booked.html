@@ -7,6 +7,10 @@
     <div class="center-content-tab-container">
       <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
       <div class="center-content-open-tab unselectable" style="margin-left: 0">My Help Sessions</div>
+        {% if user.is_helper or user.is_admin %}
+      <a href="/manageHelpSessions" class="center-content-closed-tab unselectable">Manage Help Sessions</a>
+      {% endif %}
+
       <div class="help_session_filter_btn">Filter</div>
       <div class="center-content-blank-tab"></div>
     </div>

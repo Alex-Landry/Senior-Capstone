@@ -8,6 +8,9 @@
     <div class="center-content-tab-container">
       <div class="center-content-open-tab unselectable">Calendar</div>
       <a href="/helpsessions" class="center-content-closed-tab unselectable">My Help Sessions</a>
+      {% if user.is_helper or user.is_admin %}
+      <a href="/manageHelpSessions" class="center-content-closed-tab unselectable">Manage Help Sessions</a>
+      {% endif %}
       <div class="center-content-blank-tab"></div>
       <div class="center-content-blank-tab"></div>
     </div>
