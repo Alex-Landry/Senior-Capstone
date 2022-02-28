@@ -8,6 +8,7 @@ from datetime import datetime
 from .models import helpSession
 from reservations.models import Reservation
 from users.models import User
+from .forms import FilterMonth
 import calendar
 cal = calendar.Calendar()
 cal.setfirstweekday(calendar.SUNDAY)
@@ -109,7 +110,9 @@ def managehelpsessions(request):
     context = {
         "helpSessions": helpsessions,
         "reservations": reservations,
-    }
+        "created_new": False,
+        "filter_month": FilterMonth(),
+        }
 
     return render(request, 'manageHelpSessions.html', context)
 
@@ -137,8 +140,8 @@ def createHelpSession(request):
         date = datetime(year, month, day, hour, minute)
         duration = request.POST['duration']
         topic = request.POST['topic']
-        user = request.POST['user']
         reservations = Reservation.objects.filter(user=request.user)
+        helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
 
         context={
             "date": date,
@@ -148,6 +151,7 @@ def createHelpSession(request):
             "user": request.user,
             "reservations": reservations,
             "created_new": True,
+            "helpSessions": helpsessions,
         }
         user = request.user
         ins = helpSession(helper=user, topic=topic, date=date, time=date.time(), duration=duration)
