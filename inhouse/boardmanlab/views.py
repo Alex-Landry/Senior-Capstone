@@ -140,37 +140,45 @@ def createHelpSession(request):
         "day": day,
         "month": month,
         "year": year,
-        "FormCreateHelpSession": FormCreateHelpSession(request.user)
+        "FormCreateHelpSession": FormCreateHelpSession()
     }
 
     if request.method=="POST":
-        createform = FormCreateHelpSession(request.user)
+        createform = FormCreateHelpSession(request.POST)
         if createform.is_valid():
             date = createform.cleaned_data['date']
             time = createform.cleaned_data['time']
             duration = createform.cleaned_data['duration']
             topic_pk = createform.cleaned_data['topic']
-            topic = Topic.objects.filter(pk=topic_pk)
+            topic = Topic.objects.get(pk=topic_pk)
 
-            reservations = Reservation.objects.filter(user=request.user)
             helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
 
             context={
-                "date": datetime.date(date),
-                "time": datetime.time(time),
-                "duration": duration,
-                "topic": topic,
-                "user": request.user,
-                "reservations": reservations,
-                "created_new": True,
                 "helpSessions": helpsessions,
+                "created_new": True,
+                "FormFilterDate": FormFilterDate(),
+                "FormDeleteHelpSession": FormDeleteHelpSession(),
             }
             user = request.user
             ins = helpSession(helper=user, topic=topic, date=date, time=time, duration=duration)
             ins.save()
             return render(request, "manageHelpSessions.html", context)
-        else:
-            return HttpResponse("<p>{{createform.errors}}<p>", context={'createform':createform})
+    if request.method=="POST":
+        deleteform = FormDeleteHelpSession(request.POST)
+        if deleteform.is_valid():
+            key = deleteform.cleaned_data['helpSessionID']
+            res_HelpSession = helpSession.objects.get(pk=key)
+            res_HelpSession.delete()
+
+            helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
+            context = {
+                "helpSessions": helpsessions,
+                "created_new": False,
+                "FormFilterDate": FormFilterDate(),
+                "FormDeleteHelpSession": FormDeleteHelpSession(),
+                }
+        return render(request, 'manageHelpSessions.html', context)
 
     return render(request, 'createHelpSession.html', context)
 

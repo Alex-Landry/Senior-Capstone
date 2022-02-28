@@ -27,11 +27,6 @@ YEARS = (
 
 class FormCreateHelpSession(forms.Form):
 
-    def __init__(self, user, *args, **kwargs):
-        self.user = kwargs.pop('user',None)
-        super(FormCreateHelpSession, self).__init__(*args, **kwargs)
-        self.fields['topic'].queryset = user.topics.all()
-
     date = forms.DateField(
         label='date', 
         initial=today.date,
@@ -41,7 +36,6 @@ class FormCreateHelpSession(forms.Form):
         )
     time = forms.TimeField(
         label='time', 
-        initial=today.time,
         widget=forms.TimeInput(
             attrs={'type': 'time'}
             ),

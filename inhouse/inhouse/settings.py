@@ -174,3 +174,12 @@ SOCIALACCOUNT_PROVIDERS = {
 SOCIAL_AUTH_PIPELINE = (
    'users.views.update_user_social_data'
 )
+
+DATE_INPUT_FORMAT = [
+    '%Y-%m-%d', '%Y/%m/%d', # '2006-10-25', '10/25/2006', '10/25/06'
+    '%m-%d-%Y', '%m/%d/%Y'
+]
+
+TIME_INPUT_FORMAT = [
+    '%H:%M:%S',     # '14:30:59'
+]
