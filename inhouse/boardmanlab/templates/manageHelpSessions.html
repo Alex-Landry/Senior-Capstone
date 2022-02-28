@@ -6,7 +6,7 @@
   <div class="center-content">
     <div class="center-content-tab-container">
       <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
-      <a href="/helpsessions" class="center-content-closed-tab unselectable" style="margin-left: 0">Help Sessions</a>
+      <a href="/helpsessions" class="center-content-closed-tab unselectable" style="margin-left: 0">Sessions</a>
       {% if user.is_helper or user.is_admin %}
       <div class="center-content-open-tab unselectable" style="margin-left: 0">Manage</div>
       {% endif %}
@@ -23,15 +23,15 @@
         {% if created_new %}
           <p> New Help Session Successfully Created</p>
           {% endif %}
-        {% if user.is_helper %}
       </div>
 
       <!-- BEGIN MANAGE MENU -->
+
+      {% if user.is_helper %}
       <div class="manage-content-strip">
 
-        <form action="/createHelpSession/" class="form-custom">
-          <input type="submit" id="create-button" value="Create new help session"></input>
-        </form>
+        <a href="/createHelpSession/" id="create-button" >Create Help Session</a>
+
       </div>
 
       <div class="manage-content-strip">
@@ -42,6 +42,8 @@
                 <input type="submit" id="small-button" value="Filter"></input>
             </form>
       </div>
+
+      {% endif %}
       <!-- END MANAGE MENU -->
       
       <!-- BEGIN SCROLLABLE CONTENT -->
@@ -76,14 +78,13 @@
           {% endif %}
 
           {% if user.is_helper and helpSession.helper == user %}
-            <form action="" method="post" class="form-button">
+            <form method="post" class="form-button">
               {% csrf_token %}
-              <input type="none" value='delete' name="delete" style="display: none;"></input>
-              <input type="none" value={{helpSession.pk}} name="helpSession" style="display: none;"></input>
-              <input type="none" value={{user.pk}} name="user" style="display: none;"></input>
-              <input type="submit" class="red" id="small-button" value="Remove"></input>
+              <input id="id_{{FormDeleteHelpSession.helpSessionID.html_name}}" name="{{FormDeleteHelpSession.helpSessionID.html_name}}" type="hidden" value="{{helpSession.pk}}"></input>
+              <input type="submit" name="delete" class="red" id="small-button" value="Remove"></input>
             </form>
           {% endif %}
+          
 
           </div>
 

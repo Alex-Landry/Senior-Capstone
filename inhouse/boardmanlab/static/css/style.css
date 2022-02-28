@@ -500,7 +500,8 @@ input[type=text], select {
 
 #create-button {
     display: inline-block;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
+    font-weight: 400 !important;
     text-align: center;
     margin: 4px 0;
     border: none;
@@ -808,6 +809,7 @@ input[type=text], select {
     margin-top: 20px;
     padding: 4px;
     width: 90%;
+    max-width: 800px;
     filter: drop-shadow(3px 3px 1px rgb(0,0,0, .2));
 }
 

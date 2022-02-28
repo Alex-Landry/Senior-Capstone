@@ -101,5 +101,8 @@ def time_format(time):
     time = time.strftime("%I:%M %p").replace(' 0', '')
     return time
 
-
+@register.simple_tag
+def set_pk(aform, helpSessionpk):
+    aform = helpSessionpk
+    return aform
 

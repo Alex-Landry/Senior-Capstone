@@ -1,7 +1,8 @@
 from django import forms
 from datetime import datetime
+from users.models import User, Topic
 
-date = datetime.now()
+today = datetime.now()
 
 MONTHS = (
     ("1", "January"),
@@ -24,23 +25,48 @@ YEARS = (
     ("2024", "2024"),
 )
 
-class CreateHelpSession(forms.Form):
-    pass
-    #date = forms.DateField(label='date', initial=datetime.date.today)
-    #year = int(date.year)
-    #month = int(date.month)
-    #day = int(date.day)
-    #time = forms.TimeField(label='time', initial=datetime.now())
-    #hour = int(time.hour)
-    #minute = int(time.minute)
-    #duration = forms.IntegerField(label='duration', initial=30)
-    #topic = forms.ModelChoiceField(queryset= User.objects.topics.all )
-    #user = request.POST['user']
+class FormCreateHelpSession(forms.Form):
 
+    def __init__(self, user, *args, **kwargs):
+        self.user = kwargs.pop('user',None)
+        super(FormCreateHelpSession, self).__init__(*args, **kwargs)
+        self.fields['topic'].queryset = user.topics.all()
+
+    date = forms.DateField(
+        label='date', 
+        initial=today.date,
+        widget=forms.DateInput(
+            attrs={'type': 'date'}
+            ),
+        )
+    time = forms.TimeField(
+        label='time', 
+        initial=today.time,
+        widget=forms.TimeInput(
+            attrs={'type': 'time'}
+            ),
+        )
+    duration = forms.ChoiceField(
+        choices=[(i, i) for i in range(15, 130, 15)],
+        label='duration', 
+        initial=30,
+        widget=forms.Select(
+            attrs={'id': 'selectFilter'}
+            ),
+        )
+    topic = forms.ChoiceField(
+        choices=[(topic.pk, topic) for topic in Topic.objects.all()],
+        widget=forms.Select(
+            attrs={'id': 'selectFilter'}
+            ),
+        )
+
+    
+# Form for filtering by month, year
 class FormFilterDate(forms.Form):
     month = forms.ChoiceField(
         choices=MONTHS,
-        initial=MONTHS[date.month - 1],
+        initial=MONTHS[today.month - 1],
         widget=forms.Select(
             attrs={'id': 'selectFilter'}
             ),
@@ -51,6 +77,13 @@ class FormFilterDate(forms.Form):
             attrs={'id': 'selectFilter'}
             ),
         )
+
+class FormDeleteHelpSession(forms.Form):
+    helpSessionID = forms.IntegerField(
+        widget=forms.NumberInput()
+    )
+    pass
+
 
 
 class ProfileEdit(forms.Form):

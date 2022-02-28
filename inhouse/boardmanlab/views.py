@@ -7,8 +7,8 @@ from django.views.generic import ListView
 from datetime import datetime
 from .models import helpSession
 from reservations.models import Reservation
-from users.models import User
-from .forms import FormFilterDate
+from users.models import User, Topic
+from .forms import FormFilterDate, FormCreateHelpSession, FormDeleteHelpSession
 import calendar
 cal = calendar.Calendar()
 cal.setfirstweekday(calendar.SUNDAY)
@@ -42,7 +42,7 @@ def calendarMonth(request, year, month, day):
 
 @login_required()
 def calendarDay(request, year, month, day):
-    if request.method=="POST":
+    if request.method == "POST":
         
         key = request.POST['helpSession']
         res_HelpSession = helpSession.objects.get(pk=key)
@@ -72,6 +72,7 @@ def calendarDay(request, year, month, day):
                 "reservations": reservations,
                 "already_attending": already_attending,
                 "new_reservation": new_reservation,
+                "FormFilterDate": FormFilterDate(),
                 }
 
             return render(request, "helpSessions.html", context)
@@ -103,6 +104,7 @@ def helpsessions(request):
         "reservations": reservations,
         "already_attending": False,
         "new_reservation": False,
+        "FormFilterDate": FormFilterDate(),
     }
 
     return render(request, 'helpSessions.html', context)
@@ -110,13 +112,20 @@ def helpsessions(request):
 @login_required()
 def managehelpsessions(request):
     helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
-    user = request.user
-    reservations = Reservation.objects.filter(user = user)
+    # removing help sessions
+    if request.method == 'POST':
+        deleteform = FormDeleteHelpSession(request.POST)
+        if deleteform.is_valid():
+            key = deleteform.cleaned_data['helpSessionID']
+            res_HelpSession = helpSession.objects.get(pk=key)
+            res_HelpSession.delete()
+
+    # editing help sessions
     context = {
         "helpSessions": helpsessions,
-        "reservations": reservations,
         "created_new": False,
         "FormFilterDate": FormFilterDate(),
+        "FormDeleteHelpSession": FormDeleteHelpSession(),
         }
 
     return render(request, 'manageHelpSessions.html', context)
@@ -131,37 +140,37 @@ def createHelpSession(request):
         "day": day,
         "month": month,
         "year": year,
+        "FormCreateHelpSession": FormCreateHelpSession(request.user)
     }
 
     if request.method=="POST":
-        dateString = request.POST['date']
-        year = int(dateString.split('-')[0])
-        month = int(dateString.split('-')[1])
-        day = int(dateString.split('-')[2])
-        time = request.POST['time']
-        timeString = time
-        hour = int(timeString.split(':')[0])
-        minute = int(timeString.split(':')[1])
-        date = datetime(year, month, day, hour, minute)
-        duration = request.POST['duration']
-        topic = request.POST['topic']
-        reservations = Reservation.objects.filter(user=request.user)
-        helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
+        createform = FormCreateHelpSession(request.user)
+        if createform.is_valid():
+            date = createform.cleaned_data['date']
+            time = createform.cleaned_data['time']
+            duration = createform.cleaned_data['duration']
+            topic_pk = createform.cleaned_data['topic']
+            topic = Topic.objects.filter(pk=topic_pk)
 
-        context={
-            "date": date,
-            "time": time,
-            "duration": duration,
-            "topic": topic,
-            "user": request.user,
-            "reservations": reservations,
-            "created_new": True,
-            "helpSessions": helpsessions,
-        }
-        user = request.user
-        ins = helpSession(helper=user, topic=topic, date=date, time=date.time(), duration=duration)
-        ins.save()
-        return render(request, "manageHelpSessions.html", context)
+            reservations = Reservation.objects.filter(user=request.user)
+            helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
+
+            context={
+                "date": datetime.date(date),
+                "time": datetime.time(time),
+                "duration": duration,
+                "topic": topic,
+                "user": request.user,
+                "reservations": reservations,
+                "created_new": True,
+                "helpSessions": helpsessions,
+            }
+            user = request.user
+            ins = helpSession(helper=user, topic=topic, date=date, time=time, duration=duration)
+            ins.save()
+            return render(request, "manageHelpSessions.html", context)
+        else:
+            return HttpResponse("<p>{{createform.errors}}<p>", context={'createform':createform})
 
     return render(request, 'createHelpSession.html', context)
 
