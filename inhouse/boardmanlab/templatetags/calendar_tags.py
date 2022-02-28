@@ -96,6 +96,10 @@ def add_minutes(date, time, duration):
         endtime = endtime[1:]
     return endtime
 
+@register.simple_tag
+def time_format(time):
+    time = time.strftime("%I:%M %p").replace(' 0', '')
+    return time
 
 
 

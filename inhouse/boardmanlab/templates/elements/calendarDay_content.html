@@ -1,6 +1,6 @@
 {% load calendar_tags %}
 
-<div class="calendar-content-strip">
+<div class="calendar-content-strip" style = "padding-bottom: 20px;">
 
     <div class="calendar-content-view-menu">
         <a href="/calendarDay/{% decrement_year year month %}/{% decrement_month year month day %}/{% decrement_day year month day %}/" class="left-arrow"></a>
@@ -14,7 +14,7 @@
     </form>
     
 </div>
-
+<div style = "overflow-y: scroll; max-height: 600px;">
 {% for helpSession in helpSessions %}
 <div class="help-session-box" style="padding: 10px">
     <div class="help-session-title">{{helpSession.time}} - {% add_minutes helpSession.date helpSession.time helpSession.duration %}</div>
@@ -63,4 +63,5 @@
 
   </div>
 {% endfor %}
+</div>
 

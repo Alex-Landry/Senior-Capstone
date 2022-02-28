@@ -1,5 +1,5 @@
 {% extends 'main/base.html' %}
-
+{% load calendar_tags %}
 
 {% block content %}
 <!-- Center Flex Box -->
@@ -24,6 +24,49 @@
           <input type="submit" id="small-button" value="Create new help session"></input>
         </form>
         {% endif %}
+        <div style = "overflow-y: scroll; max-height: 600px;">
+        {% for helpSession in helpSessions %}
+<div class="help-session-box" style="padding: 10px">
+    <div class="help-session-title">{{ helpSession.date }}</div>
+    <div class="help-session-info-row">
+        <div class="help-session-label">Time</div>
+        <div class="help-session-info">{% time_format helpSession.time %}- {% add_minutes helpSession.date helpSession.time helpSession.duration %}</div>
+      </div>
+    <div class="help-session-info-row">
+      <div class="help-session-label">Helper</div>
+      <div class="help-session-info">{{helpSession.helper.first_name}} {{helpSession.helper.last_name}}</div>
+    </div>
+    <div class="help-session-info-row">
+      <div class="help-session-label">Topic</div>
+      <div class="help-session-info">{{helpSession.topic}}</div>
+    </div>
+    <div class="help-session-info-row">
+      <div class="help-session-label">Duration</div>
+      <div class="help-session-info">{{helpSession.duration}} minutes</div>
+    </div>
+
+    <div class="help-session-info-fullrow">
+      {% if user.is_helper and helpSession.helper == user %}
+      <form action="/calendarMonth/0/0/0/" class="form-button">
+          <input type="submit" class="ultrablue darktext" id="small-button" value="Edit Help Session"></input>
+      </form>
+      {% endif %}
+
+      {% if user.is_helper and helpSession.helper == user %}
+      <form action="" method="post" class="form-button">
+        {% csrf_token %}
+        <input type="none" value='delete' name="delete" style="display: none;"></input>
+        <input type="none" value={{helpSession.pk}} name="helpSession" style="display: none;"></input>
+        <input type="none" value={{user.pk}} name="user" style="display: none;"></input>
+        <input type="submit" class="red" id="small-button" value="Remove"></input>
+      </form>
+      {% endif %}
+
+    </div>
+
+  </div>
+{% endfor %}
+</div>
 
       </div>
     </div>

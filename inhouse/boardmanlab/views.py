@@ -103,9 +103,11 @@ def helpsessions(request):
 
 @login_required()
 def managehelpsessions(request):
+    helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
     user = request.user
     reservations = Reservation.objects.filter(user = user)
     context = {
+        "helpSessions": helpsessions,
         "reservations": reservations,
     }
 
@@ -143,18 +145,17 @@ def createHelpSession(request):
             "time": time,
             "duration": duration,
             "topic": topic,
-            "user": user,
+            "user": request.user,
             "reservations": reservations,
             "created_new": True,
         }
         user = request.user
         ins = helpSession(helper=user, topic=topic, date=date, time=date.time(), duration=duration)
         ins.save()
-        return render(request, "helpsessions.html", context)
+        return render(request, "manageHelpSessions.html", context)
 
     return render(request, 'createHelpSession.html', context)
 
-    ##
 
 def error(request):
     return render(request, 'error.html')
