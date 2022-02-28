@@ -885,11 +885,13 @@ input[type=text], select {
   
   /* Track */
 .scroll-content::-webkit-scrollbar-track {
+    border-radius: 5px !important;
     background:#0a3c5f; 
   }
    
   /* Handle */
 .scroll-content::-webkit-scrollbar-thumb {
+    border-radius: 5px !important;
     background:#0f1922; 
   }
   
