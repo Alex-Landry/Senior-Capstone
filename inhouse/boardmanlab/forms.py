@@ -29,11 +29,7 @@ class CreateHelpSession(forms.Form):
     #topic = forms.ModelChoiceField(queryset= User.objects.topics.all )
     #user = request.POST['user']
 
-
-    your_name = forms.CharField(label='Your name', max_length=100)
-
 class FilterMonth(forms.Form):
-
     month = forms.ChoiceField(choices=MONTHS)
 
 

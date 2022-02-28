@@ -29,7 +29,7 @@
         {% endif %}
 
          <p> Hello Test
-          <form action="">
+          <form method="post">
                 {% csrf_token %}
                 {{filter_month}}
                 <input type="submit" id="small-button" value="Filter by Month"></input>
