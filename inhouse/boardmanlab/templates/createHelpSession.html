@@ -8,9 +8,8 @@
       <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
        <a href="/helpsessions" class="center-content-closed-tab unselectable">Help Sessions</a>
       {% if user.is_helper or user.is_admin %}
-      <div class="center-content-open-tab unselectable" style="margin-left: 0">Manage Help Sessions</div>
+      <div class="center-content-open-tab unselectable" style="margin-left: 0">Manage</div>
       {% endif %}
-      <div class="help_session_filter_btn">Filter</div>
       <div class="center-content-blank-tab"></div>
     </div>
     <div class="center-content-tab-content-container">
@@ -19,8 +18,7 @@
 
 
         <!-- PAGE CONTENT GOES HERE -->
-
-      <form action="" method="post" class="form-custom">
+      <form action="" method="post" class="form-custom" style="width:90%">
         {% csrf_token %}
 
         <div class="help-session-box" style="padding: 10px">
@@ -88,7 +86,6 @@
 
 
       </form>
-
 
 
         

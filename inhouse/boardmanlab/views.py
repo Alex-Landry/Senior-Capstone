@@ -8,7 +8,7 @@ from datetime import datetime
 from .models import helpSession
 from reservations.models import Reservation
 from users.models import User
-from .forms import FilterMonth
+from .forms import FormFilterDate
 import calendar
 cal = calendar.Calendar()
 cal.setfirstweekday(calendar.SUNDAY)
@@ -58,8 +58,10 @@ def calendarDay(request, year, month, day):
             # Check to see if user is already signed up for helpSession
             if Reservation.objects.filter(user=user, helpSession=res_HelpSession):
                 already_attending = True
+                new_reservation = False
             else:
                 already_attending = False
+                new_reservation = True
                 ins = Reservation(user=user, helpSession=res_HelpSession)
                 ins.save()
                     
@@ -69,9 +71,10 @@ def calendarDay(request, year, month, day):
             context={
                 "reservations": reservations,
                 "already_attending": already_attending,
+                "new_reservation": new_reservation,
                 }
 
-            return render(request, "helpSession_booked.html", context)
+            return render(request, "helpSessions.html", context)
 
     if year == 0 and month == 0:
         year = datetime.now().year
@@ -98,6 +101,8 @@ def helpsessions(request):
     reservations = Reservation.objects.filter(user = user)
     context = {
         "reservations": reservations,
+        "already_attending": False,
+        "new_reservation": False,
     }
 
     return render(request, 'helpSessions.html', context)
@@ -111,7 +116,7 @@ def managehelpsessions(request):
         "helpSessions": helpsessions,
         "reservations": reservations,
         "created_new": False,
-        "filter_month": FilterMonth(),
+        "FormFilterDate": FormFilterDate(),
         }
 
     return render(request, 'manageHelpSessions.html', context)

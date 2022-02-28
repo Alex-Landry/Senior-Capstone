@@ -202,7 +202,7 @@ body {
     flex: 2;
     margin-left: 7px;
     margin-top: 7px;
-    float: left;
+    text-align: center;
     padding: 10px;
     background-color: #222222;
     height: auto;
@@ -215,7 +215,7 @@ body {
     margin-left: 7px;
     margin-right: 7px;
     margin-top: 7px;
-    float: left;
+    text-align: center;
     padding: 10px;
     background-color: #222222;
     opacity: .5;
@@ -498,6 +498,23 @@ input[type=text], select {
     background-color: #0a3c5f;
   }
 
+#create-button {
+    display: inline-block;
+    color: #FFFFFF;
+    text-align: center;
+    margin: 4px 0;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    background-color: #29DF25;
+    padding: 8px;
+    filter: drop-shadow(0 .2rem .1rem rgb(0,0,0, .2));
+  }
+
+#create-button:hover {
+    background-color: #45a049 !important;
+  }
+
 
 .input-bottom-bar{
     position: absolute;
@@ -643,6 +660,16 @@ input[type=text], select {
     color: #CCCCCC;
 }
 
+.manage-content-strip{
+    padding-left: 4px;
+    width: 100%;
+    height: fit-content;
+    font-size: 16px;
+    font-weight:500;
+    vertical-align: middle;
+    display: inline-block !important;  
+}
+
 .legend-object {
     height: 30px;
     width: 150px;
@@ -777,10 +804,10 @@ input[type=text], select {
 
 .help-session-box{
     background-color: #0D598E;
-    margin-left: 40px;
-    margin-top: 40px;
+    margin-left: 20px;
+    margin-top: 20px;
     padding: 4px;
-    width: 55vw;
+    width: 90%;
     filter: drop-shadow(3px 3px 1px rgb(0,0,0, .2));
 }
 
@@ -799,7 +826,7 @@ input[type=text], select {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-gap: 4px;
-    width: 80%;
+    width: 100%;
     margin-top: 4px;
 }
 
@@ -828,3 +855,43 @@ input[type=text], select {
     border-radius: none !important;
     height: fit-content !important;
 }
+
+#selectFilter {
+    display: inline-block;
+    background-color: #1D2E3F;
+    border: none;
+    color: #FFFFFF;
+    padding: 7px;
+    width: fit-content;
+    border-radius: none !important;
+    height: fit-content !important;
+}
+
+#inline{
+    display: inline !important;
+}
+
+.scroll-content{
+    overflow-y: auto; 
+    max-height: 600px;
+    margin: 10px;
+}
+
+.scroll-content::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+.scroll-content::-webkit-scrollbar-track {
+    background:#0a3c5f; 
+  }
+   
+  /* Handle */
+.scroll-content::-webkit-scrollbar-thumb {
+    background:#0f1922; 
+  }
+  
+  /* Handle on hover */
+.scroll-content::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

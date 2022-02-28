@@ -6,11 +6,10 @@
   <div class="center-content">
     <div class="center-content-tab-container">
       <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
-      <a href="/helpsessions" class="center-content-closed-tab unselectable">Help Sessions</a>
+      <a href="/helpsessions" class="center-content-closed-tab unselectable" style="margin-left: 0">Help Sessions</a>
       {% if user.is_helper or user.is_admin %}
-      <div class="center-content-open-tab unselectable" style="margin-left: 0">Manage Help Sessions</div>
+      <div class="center-content-open-tab unselectable" style="margin-left: 0">Manage</div>
       {% endif %}
-      <div class="help_session_filter_btn">Filter</div>
       <div class="center-content-blank-tab"></div>
     </div>
     <div class="center-content-tab-content-container">
@@ -18,67 +17,80 @@
       <div class="center-content-tab-content">
 
 
-        <!-- PAGE CONTENT GOES HERE -->
-          {% if created_new %}
+      <!-- PAGE CONTENT GOES HERE -->
+      <div class="manage-content-strip">
+        <!-- CHECK IF NEW HELP SESSION WAS CREATED -->
+        {% if created_new %}
           <p> New Help Session Successfully Created</p>
           {% endif %}
         {% if user.is_helper %}
-        <form action="/createHelpSession/" class="form-custom">
-          <input type="submit" id="small-button" value="Create new help session"></input>
-        </form>
-        {% endif %}
-
-         <p> Hello Test
-          <form method="post">
-                {% csrf_token %}
-                {{filter_month}}
-                <input type="submit" id="small-button" value="Filter by Month"></input>
-            </form>
-          </p>
-
-        <div style = "overflow-y: scroll; max-height: 600px;">
-        {% for helpSession in helpSessions %}
-<div class="help-session-box" style="padding: 10px">
-    <div class="help-session-title">{{ helpSession.date }}</div>
-    <div class="help-session-info-row">
-        <div class="help-session-label">Time</div>
-        <div class="help-session-info">{% time_format helpSession.time %}- {% add_minutes helpSession.date helpSession.time helpSession.duration %}</div>
       </div>
-    <div class="help-session-info-row">
-      <div class="help-session-label">Helper</div>
-      <div class="help-session-info">{{helpSession.helper.first_name}} {{helpSession.helper.last_name}}</div>
-    </div>
-    <div class="help-session-info-row">
-      <div class="help-session-label">Topic</div>
-      <div class="help-session-info">{{helpSession.topic}}</div>
-    </div>
-    <div class="help-session-info-row">
-      <div class="help-session-label">Duration</div>
-      <div class="help-session-info">{{helpSession.duration}} minutes</div>
-    </div>
 
-    <div class="help-session-info-fullrow">
-      {% if user.is_helper and helpSession.helper == user %}
-      <form action="/calendarMonth/0/0/0/" class="form-button">
-          <input type="submit" class="ultrablue darktext" id="small-button" value="Edit Help Session"></input>
-      </form>
-      {% endif %}
+      <!-- BEGIN MANAGE MENU -->
+      <div class="manage-content-strip">
 
-      {% if user.is_helper and helpSession.helper == user %}
-      <form action="" method="post" class="form-button">
-        {% csrf_token %}
-        <input type="none" value='delete' name="delete" style="display: none;"></input>
-        <input type="none" value={{helpSession.pk}} name="helpSession" style="display: none;"></input>
-        <input type="none" value={{user.pk}} name="user" style="display: none;"></input>
-        <input type="submit" class="red" id="small-button" value="Remove"></input>
-      </form>
-      {% endif %}
+        <form action="/createHelpSession/" class="form-custom">
+          <input type="submit" id="create-button" value="Create new help session"></input>
+        </form>
+      </div>
 
-    </div>
+      <div class="manage-content-strip">
+          <form method="post" id="inline">
+                {% csrf_token %}
+                {{FormFilterDate.month}}
+                {{FormFilterDate.year}}
+                <input type="submit" id="small-button" value="Filter"></input>
+            </form>
+      </div>
+      <!-- END MANAGE MENU -->
+      
+      <!-- BEGIN SCROLLABLE CONTENT -->
+      <div class="scroll-content">
 
-  </div>
-{% endfor %}
-</div>
+        {% for helpSession in helpSessions %}
+        <div class="help-session-box" style="padding: 10px">
+          <div class="help-session-title">{{ helpSession.date }}</div>
+          <div class="help-session-info-row">
+              <div class="help-session-label">Time</div>
+              <div class="help-session-info">{% time_format helpSession.time %}- {% add_minutes helpSession.date helpSession.time helpSession.duration %}</div>
+          </div>
+          <div class="help-session-info-row">
+            <div class="help-session-label">Helper</div>
+            <div class="help-session-info">{{helpSession.helper.first_name}} {{helpSession.helper.last_name}}</div>
+          </div>
+          <div class="help-session-info-row">
+            <div class="help-session-label">Topic</div>
+            <div class="help-session-info">{{helpSession.topic}}</div>
+          </div>
+          <div class="help-session-info-row">
+            <div class="help-session-label">Duration</div>
+            <div class="help-session-info">{{helpSession.duration}} minutes</div>
+          </div>
+
+          <div class="help-session-info-fullrow">
+
+          {% if user.is_helper and helpSession.helper == user %}
+            <form action="/calendarMonth/0/0/0/" class="form-button">
+                <input type="submit" class="ultrablue darktext" id="small-button" value="Edit Help Session"></input>
+            </form>
+          {% endif %}
+
+          {% if user.is_helper and helpSession.helper == user %}
+            <form action="" method="post" class="form-button">
+              {% csrf_token %}
+              <input type="none" value='delete' name="delete" style="display: none;"></input>
+              <input type="none" value={{helpSession.pk}} name="helpSession" style="display: none;"></input>
+              <input type="none" value={{user.pk}} name="user" style="display: none;"></input>
+              <input type="submit" class="red" id="small-button" value="Remove"></input>
+            </form>
+          {% endif %}
+
+          </div>
+
+        </div>
+      {% endfor %}
+
+      </div> <!-- END SCROLLABLE CONTENT -->
 
       </div>
     </div>

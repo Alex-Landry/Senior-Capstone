@@ -8,9 +8,8 @@
       <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
       <div class="center-content-open-tab unselectable" style="margin-left: 0">My Help Sessions</div>
         {% if user.is_helper or user.is_admin %}
-      <a href="/manageHelpSessions" class="center-content-closed-tab unselectable">Manage Help Sessions</a>
+      <a href="/manageHelpSessions" class="center-content-closed-tab unselectable">Manage</a>
       {% endif %}
-      <div class="help_session_filter_btn">Filter</div>
       <div class="center-content-blank-tab"></div>
     </div>
     <div class="center-content-tab-content-container">
@@ -21,11 +20,15 @@
         <!-- PAGE CONTENT GOES HERE -->
 
 
-        {% if created_new %}
-        <p> New Help Session Successfully Created</p>
+        {% if already_attending %}
+            <p class="successful-booking-label">You are already booked for this help session.</p>
         {% endif %}
 
+        {% if new_reservation %}
+            <p class="successful-booking-label">Appointment Successfully Booked!</p>
+        {% endif %}
 
+        <div class="scroll-content">
         {% for reservation in reservations %}
         <div class="help-session-box" style="padding: 10px">
             <div class="help-session-title">{{reservation.helpSession.date}}</div>
@@ -55,6 +58,7 @@
         
           </div>
         {% endfor %}
+        </div>
 
 
 
