@@ -28,7 +28,7 @@
             <p class="successful-booking-label">Appointment Successfully Booked!</p>
         {% endif %}
 
-
+        <!-- Filter -->
         <div class="manage-content-strip">
           <form method="post" id="inline">
                 {% csrf_token %}
@@ -36,6 +36,11 @@
                 {{FormFilterDate.year}}
                 <input type="submit" id="small-button" value="Filter"></input>
             </form>
+          {% if filterbool %}
+          <form action="/helpsessions/" id="inline">
+            <button type="submit" id="small-button" class="red">Remove Filter</button>
+          </form>
+          {% endif %}
         </div>
 
         <div class="scroll-content">
