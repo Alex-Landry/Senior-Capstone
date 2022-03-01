@@ -8,7 +8,7 @@ from datetime import datetime
 from .models import helpSession
 from reservations.models import Reservation
 from users.models import User, Topic
-from .forms import FormFilterDate, FormCreateHelpSession, FormDeleteHelpSession
+from .forms import FormFilterDate, FormCreateHelpSession, FormDeleteHelpSession, FormEditHelpSession
 import calendar
 cal = calendar.Calendar()
 cal.setfirstweekday(calendar.SUNDAY)
@@ -121,6 +121,27 @@ def managehelpsessions(request):
             res_HelpSession.delete()
 
     # editing help sessions
+    if request.method == 'POST':
+        editform = FormEditHelpSession(request.POST)
+        if editform.is_valid():
+            key = editform.cleaned_data['helpSessionID']
+            res_HelpSession = helpSession.objects.get(pk=key)
+            date = editform.cleaned_data['date']
+            time = editform.cleaned_data['time']
+            duration = editform.cleaned_data['duration']
+            topic_pk = editform.cleaned_data['topic']
+            topic = Topic.objects.get(pk=topic_pk)
+            user = request.user
+            res_HelpSession.update(helper=user, topic=topic, date=date, time=time, duration=duration)
+            res_HelpSession.save()
+            context={
+                "helpSessions": helpsessions,
+                "created_new": True,
+                "FormFilterDate": FormFilterDate(),
+                "FormDeleteHelpSession": FormDeleteHelpSession(),
+            }
+            return render(request, "manageHelpSessions.html", context)
+            
     context = {
         "helpSessions": helpsessions,
         "created_new": False,
