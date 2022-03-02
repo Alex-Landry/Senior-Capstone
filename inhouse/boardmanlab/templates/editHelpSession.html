@@ -50,10 +50,8 @@
           <div class="help-session-info-row">
             <div class="help-session-label">Duration</div>
             <div class="help-session-info">
-              
               {{FormEditHelpSession.duration}}
               {{FormEditHelpSession.errors}}
-            
             </div>
           </div>
           
@@ -67,10 +65,11 @@
 
             </div>
           </div>
-            <input type="submit" id="small-button" value="Save Changes" class="ultrablue"></input>
+            <input type="submit" name="save" id="small-button" value="Save Changes" class="ultrablue"></input>
             
         </div>
         {{FormEditHelpSession.errors}}
+        {{ FormEditHelpSession.non_field_errors }}
             
 
       </form>

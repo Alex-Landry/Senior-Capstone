@@ -1,6 +1,7 @@
 from django import forms
 from datetime import datetime
 from users.models import User, Topic
+from .models import helpSession
 
 today = datetime.now()
 
@@ -56,10 +57,13 @@ class FormCreateHelpSession(forms.Form):
         )
 
 
-class FormEditHelpSession(forms.Form):
+class FormEditHelpSession(forms.ModelForm):
+    class Meta:
+        model = helpSession
+        exclude = ['helper', 'attendance']
+
     date = forms.DateField(
         label='date', 
-        initial=today.date,
         widget=forms.DateInput(
             attrs={'type': 'date'}
             ),
@@ -78,7 +82,7 @@ class FormEditHelpSession(forms.Form):
             ),
         )
     topic = forms.ChoiceField(
-        choices=[(topic.pk, topic) for topic in Topic.objects.all()],
+        choices=[(topic.topic, topic.topic) for topic in Topic.objects.all()],
         widget=forms.Select(
             attrs={'id': 'selectFilter'}
             ),
