@@ -86,6 +86,12 @@ class FormEditHelpSession(forms.Form):
             attrs={'id': 'selectFilter'}
             ),
         )
+
+class FormEditButton(forms.Form):
+        helpSessionID = forms.IntegerField(
+            widget=forms.NumberInput()
+        )
+        
     
 # Form for filtering by month, year
 class FormFilterDate(forms.Form):

@@ -74,7 +74,7 @@
           {% if user.is_helper and helpSession.helper == user %}
             <form method="post" class="form-button">
                 {% csrf_token %}
-                <input id="id_{{FormEditHelpSession.helpSessionID.html_name}}" name="{{FormEditHelpSession.helpSessionID.html_name}}" type="hidden" value="{{helpsession.pk}}"></input>
+                <input id="id_{{FormEditButton.helpSessionID.html_name}}" name="{{FormEditButton.helpSessionID.html_name}}" type="hidden" value="{{helpsession.pk}}"></input>
                 <input type="submit" name="edit" class="ultrablue darktext" id="small-button" value="Edit Help Session"></input>
             </form>
           {% endif %}
