@@ -40,7 +40,7 @@
         {% csrf_token %}
         <input type="none" value={{helpSession.pk}} name="helpSession" style="display: none;"></input>
         <input type="none" value={{user.pk}} name="user" style="display: none;"></input>
-        <input type="submit" class="green" id="small-button" value="Attend Help Session"></input>
+        <input type="submit" name="attend" class="green" id="small-button" value="Attend Help Session"></input>
       </form>
 
       {% if user.is_helper and helpSession.helper == user %}
@@ -52,10 +52,9 @@
       {% if user.is_helper and helpSession.helper == user %}
       <form action="" method="post" class="form-button">
         {% csrf_token %}
-        <input type="none" value='delete' name="delete" style="display: none;"></input>
         <input type="none" value={{helpSession.pk}} name="helpSession" style="display: none;"></input>
         <input type="none" value={{user.pk}} name="user" style="display: none;"></input>
-        <input type="submit" class="red" id="small-button" value="Remove"></input>
+        <input type="submit" name="delete" class="red" id="small-button" value="Remove"></input>
       </form>
       {% endif %}
       

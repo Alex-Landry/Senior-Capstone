@@ -18,18 +18,13 @@
 
 
       <!-- PAGE CONTENT GOES HERE -->
-      <div class="manage-content-strip">
-        <!-- CHECK IF NEW HELP SESSION WAS CREATED -->
-        {% if created_new %}
-          <p> New Help Session Successfully Created</p>
-          {% endif %}
-      </div>
+      
 
       <!-- BEGIN MANAGE MENU -->
 
       {% if user.is_helper %}
       <div class="manage-content-strip">
-        <a href="/createHelpSession/" id="create-button" >Create Help Session</a>
+        <a href="/createHelpSession/" id="create-button">Create Help Session</a>
       </div>
 
         <!-- Filter -->
@@ -76,7 +71,7 @@
           <div class="help-session-info-fullrow">
 
           {% if user.is_helper and helpSession.helper == user %}
-            <form method="post" class="form-button">
+            <form method="post" class="form-button" action="/editHelpSession">
                 {% csrf_token %}
                 <input id="id_{{FormEditButton.helpSessionID.html_name}}" name="{{FormEditButton.helpSessionID.html_name}}" type="hidden" value="{{helpSession.pk}}"></input>
                 <input type="submit" name="edit" class="ultrablue darktext" id="small-button" value="Edit Help Session"></input>

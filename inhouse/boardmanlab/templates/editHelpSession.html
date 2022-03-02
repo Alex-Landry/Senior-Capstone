@@ -57,20 +57,18 @@
           
           <div class="help-session-info-row">
             <div class="help-session-label">Topic</div>
-
             <div class="help-session-info">
-
               {{FormEditHelpSession.topic}}
               {{FormEditHelpSession.errors}}
-
             </div>
           </div>
+          
+            <input id="pk" name="pk" type="hidden" value="{{helpSession.pk}}"></input>
             <input type="submit" name="save" id="small-button" value="Save Changes" class="ultrablue"></input>
             
         </div>
         {{FormEditHelpSession.errors}}
         {{ FormEditHelpSession.non_field_errors }}
-            
 
       </form>
 

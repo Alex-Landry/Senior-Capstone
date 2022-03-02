@@ -1,0 +1,62 @@
+{% extends 'main/base.html' %}
+{% load socialaccount %}
+
+
+{% block content %}
+<!-- Center Flex Box -->
+<div class="center-content">
+    <div class="center-content-tab-container">
+      <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
+       <a href="/helpsessions" class="center-content-closed-tab unselectable" style="margin-left: 0">Sessions</a>
+      {% if user.is_helper or user.is_admin %}
+      <a href="/manageHelpSessions" class="center-content-closed-tab unselectable" style="margin-left: 0">Manage</a>
+      {% endif %}
+      <div class="center-content-blank-tab"></div>
+    </div>
+    <div class="center-content-tab-content-container">
+
+      <div class="center-content-tab-content">
+
+
+        <!-- PAGE CONTENT GOES HERE -->
+
+        <!-- CHECK IF NEW HELP SESSION WAS CREATED -->
+        <div class="manage-content-strip">
+            {% if created_new %}
+              <p> New Help Session Successfully Created</p>
+              {% endif %}
+        </div>
+
+        <!-- CHECK IF ALREADY ATTENDING -->
+        <div class="manage-content-strip">
+        {% if already_attending %}
+            <p class="successful-booking-label">You are already booked for this help session.</p>
+        {% endif %}
+        </div>
+
+        <!-- CHECK IF SUCCESSFUL BOOKING -->
+        <div class="manage-content-strip">
+        {% if new_reservation %}
+            <p class="successful-booking-label">Appointment Successfully Booked!</p>
+        {% endif %}
+        </div>
+
+        <!-- CHECK IF EDITED HELPSESSION -->
+        <div class="manage-content-strip">
+            {% if editedHelpSession %}
+                <p class="successful-booking-label">Help Session Successfully Edited!</p>
+            {% endif %}
+            </div>
+
+        <!-- END CONTENT -->
+
+
+      </div>
+    </div>
+  </div>
+<!-- End Center Flex Box -->
+
+
+
+
+{% endblock %}

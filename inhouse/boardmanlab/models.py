@@ -9,5 +9,6 @@ class helpSession(models.Model):
     time = models.TimeField(null=True, blank=True)
     duration = models.IntegerField(default=30)
     attendance = models.IntegerField(default=0, blank=True, null=True)
+
     class Meta:
         ordering = ["time"]

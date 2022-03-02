@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import include, path
-from boardmanlab.views import index, login, helpsessions, managehelpsessions, calendarMonth, error, calendarDay, createHelpSession, editHelpSession
+from boardmanlab.views import index, login, helpsessions, managehelpsessions, calendarMonth, error, calendarDay, createHelpSession, editHelpSession, success
 from reservations.views import new_help_session
 import oauth2_provider.views as oauth2_views
 from django.conf import settings
@@ -32,7 +32,6 @@ if settings.DEBUG:
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('home/', index),
     path('helpsessions/', helpsessions),
     path('createHelpSession/', createHelpSession, name='createHelpSession'),
@@ -42,6 +41,7 @@ urlpatterns = [
     path('calendarMonth', calendarMonth, name='calendarMonth'),
     path('calendarMonth/<int:year>/<int:month>/<int:day>/', calendarMonth),
     path('calendarDay/<int:year>/<int:month>/<int:day>/', calendarDay, name='calendarDay'),
+    path('success', success, name='success'),
     path('error/', error),
     path('', login),
     path('allauth', Home.as_view(), name='home'), # new
