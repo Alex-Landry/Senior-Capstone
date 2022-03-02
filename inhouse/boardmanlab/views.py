@@ -115,20 +115,23 @@ def managehelpsessions(request):
     # removing help sessions
     if request.method == 'POST':
         #DELETE
-        deleteform = FormDeleteHelpSession(request.POST)
-        if deleteform.is_valid():
-            key = deleteform.cleaned_data['helpSessionID']
-            res_HelpSession = helpSession.objects.get(pk=key)
-            res_HelpSession.delete()
+        if "delete" in request.POST:
+            deleteform = FormDeleteHelpSession(request.POST)
+            if deleteform.is_valid():
+                key = deleteform.cleaned_data['helpSessionID']
+                res_HelpSession = helpSession.objects.get(pk=key)
+                res_HelpSession.delete()
         #EDIT
-        editformbutton = FormEditButton(request.POST)
-        if editformbutton.is_valid():
-            pk = editformbutton.cleaned_data['helpSessionID']
-            context = {
-                "helpSessionID": pk,
-                "FormEditButton": FormEditButton(),
-            }
-            return render(request, "editHelpSession.html", context)
+        if "edit" in request.POST:
+            editformbutton = FormEditButton(request.POST)
+            if editformbutton.is_valid():
+                pk = editformbutton.cleaned_data['helpSessionID']
+                context = {
+                    "helpSession": helpSession.objects.get(pk=pk),
+                    "FormEditButton": FormEditButton(),
+                    "FormEditHelpSession": FormEditHelpSession(),
+                }
+                return render(request, "editHelpSession.html", context)
 
             
         context = {
@@ -155,19 +158,18 @@ def managehelpsessions(request):
 
 @login_required
 def editHelpSession(request):
-    key = request.POST["helpSessionID"]
+    editform = FormEditHelpSession(request.POST)
+    helpSessionTemp = request.REQUEST["helpSession"]
     if request.method == 'POST':
-        editform = FormEditHelpSession(request.POST)
         if editform.is_valid():
-            cur_HelpSession = helpSession.objects.get(pk=key)
             date = editform.cleaned_data['date']
             time = editform.cleaned_data['time']
             duration = editform.cleaned_data['duration']
             topic_pk = editform.cleaned_data['topic']
             topic = Topic.objects.get(pk=topic_pk)
             user = request.user
-            cur_HelpSession.update(helper=user, topic=topic, date=date, time=time, duration=duration)
-            cur_HelpSession.save()
+            helpSession.objects.get(pk=helpSessionTemp.pk).update(topic=topic, date=date, time=time, duration=duration)
+            helpSession.refresh_from_db()
             context={
                 "helpSessions": helpsessions,
                 "created_new": True,
@@ -176,7 +178,8 @@ def editHelpSession(request):
             }
             return render(request, 'manageHelpSessions.html', context)
     context = {
-        "helpSession": helpSession.objects.get(pk=key)
+        "helpSession": helpSession.objects.get(pk=key),
+        "FormEditHelpSession": FormEditHelpSession(),
     }
     return render(request, 'editHelpSession.html', context)
 

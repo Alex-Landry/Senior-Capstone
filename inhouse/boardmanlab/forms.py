@@ -57,9 +57,6 @@ class FormCreateHelpSession(forms.Form):
 
 
 class FormEditHelpSession(forms.Form):
-    helpSessionID = forms.IntegerField(
-        widget=forms.NumberInput()
-    )
     date = forms.DateField(
         label='date', 
         initial=today.date,
