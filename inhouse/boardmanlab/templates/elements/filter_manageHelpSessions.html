@@ -1,0 +1,16 @@
+
+{% load calendar_tags %}
+
+<div class="manage-content-strip">
+    <form method="post" id="inline">
+          {% csrf_token %}
+          {{FormFilterDate.month}}
+          {{FormFilterDate.year}}
+          <input type="submit" name="filter" id="small-button" value="Filter"></input>
+      </form>
+    {% if filterbool %}
+    <form action="/manageHelpSessions" id="inline">
+      <button type="submit" id="small-button" class="red">Remove Filter</button>
+    </form>
+    {% endif %}
+  </div>
