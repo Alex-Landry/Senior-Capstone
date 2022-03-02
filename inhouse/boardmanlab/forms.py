@@ -1,3 +1,4 @@
+from dataclasses import fields
 from django import forms
 from datetime import datetime
 from users.models import User, Topic
@@ -27,7 +28,9 @@ YEARS = (
 )
 
 class FormCreateHelpSession(forms.Form):
-
+    class Meta:
+        fields= ['date', 'time', 'duration', 'topic']
+    
     date = forms.DateField(
         label='date', 
         initial=today.date,
