@@ -55,6 +55,40 @@ class FormCreateHelpSession(forms.Form):
             ),
         )
 
+
+class FormEditHelpSession(forms.Form):
+    date = forms.DateField(
+        label='date', 
+        initial=today.date,
+        widget=forms.DateInput(
+            attrs={'type': 'date'}
+            ),
+        )
+    time = forms.TimeField(
+        label='time', 
+        widget=forms.TimeInput(
+            attrs={'type': 'time'}
+            ),
+        )
+    duration = forms.ChoiceField(
+        choices=[(i, i) for i in range(15, 130, 15)],
+        label='duration',
+        widget=forms.Select(
+            attrs={'id': 'selectFilter'}
+            ),
+        )
+    topic = forms.ChoiceField(
+        choices=[(topic.pk, topic) for topic in Topic.objects.all()],
+        widget=forms.Select(
+            attrs={'id': 'selectFilter'}
+            ),
+        )
+
+class FormEditButton(forms.Form):
+        helpSessionID = forms.IntegerField(
+            widget=forms.NumberInput()
+        )
+        
     
 # Form for filtering by month, year
 class FormFilterDate(forms.Form):

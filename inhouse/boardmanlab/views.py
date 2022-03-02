@@ -8,7 +8,7 @@ from datetime import datetime
 from .models import helpSession
 from reservations.models import Reservation
 from users.models import User, Topic
-from .forms import FormFilterDate, FormCreateHelpSession, FormDeleteHelpSession
+from .forms import FormFilterDate, FormCreateHelpSession, FormDeleteHelpSession, FormEditHelpSession, FormEditButton
 import calendar
 cal = calendar.Calendar()
 cal.setfirstweekday(calendar.SUNDAY)
@@ -136,41 +136,74 @@ def managehelpsessions(request):
     helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
     # Post requests
     if request.method == 'POST':
-        # Deleting Help Sessions
-        deleteform = FormDeleteHelpSession(request.POST)
-        if deleteform.is_valid():
-            key = deleteform.cleaned_data['helpSessionID']
-            res_HelpSession = helpSession.objects.get(pk=key)
-            res_HelpSession.delete()
-        # Filtering Help Sessions    
-        filterform = FormFilterDate(request.POST)
-        if filterform.is_valid():
-            month = filterform.cleaned_data['month']
-            year = filterform.cleaned_data['year']
-            helpsessions = helpSession.objects.filter(helper=request.user,
-                                                    date__year=year,
-                                                    date__month=month).order_by("-date")
-            # Filter Context
-            context = {
-                "filterbool": True,
-                "helpSessions": helpsessions,
-                "created_new": False,
-                "FormFilterDate": FormFilterDate(initial={'month': month}),
-                "FormDeleteHelpSession": FormDeleteHelpSession(),
+        #DELETE
+        if "delete" in request.POST:
+            deleteform = FormDeleteHelpSession(request.POST)
+            if deleteform.is_valid():
+                key = deleteform.cleaned_data['helpSessionID']
+                res_HelpSession = helpSession.objects.get(pk=key)
+                res_HelpSession.delete()
+        #EDIT
+        if "edit" in request.POST:
+            editformbutton = FormEditButton(request.POST)
+            if editformbutton.is_valid():
+                pk = editformbutton.cleaned_data['helpSessionID']
+                context = {
+                    "helpSession": helpSession.objects.get(pk=pk),
+                    "FormEditButton": FormEditButton(),
+                    "FormEditHelpSession": FormEditHelpSession(),
                 }
-            # Return Filtered Help Sessions
-            return render(request, 'manageHelpSessions.html', context)
+                return render(request, "editHelpSession.html", context)
 
-    # editing help sessions
+            
+        context = {
+        "helpSessions": helpsessions,
+        "created_new": False,
+        "FormFilterDate": FormFilterDate(),
+        "FormDeleteHelpSession": FormDeleteHelpSession(),
+        "FormEditButton": FormEditButton(),
+        }
+        return render(request, 'manageHelpSessions.html', context)    
+
+    # Base
     context = {
         "filterbool": False,
         "helpSessions": helpsessions,
         "created_new": False,
         "FormFilterDate": FormFilterDate(),
         "FormDeleteHelpSession": FormDeleteHelpSession(),
+        "FormEditButton":FormEditButton(),
         }
 
     return render(request, 'manageHelpSessions.html', context)
+
+
+@login_required
+def editHelpSession(request):
+    editform = FormEditHelpSession(request.POST)
+    helpSessionTemp = request.REQUEST["helpSession"]
+    if request.method == 'POST':
+        if editform.is_valid():
+            date = editform.cleaned_data['date']
+            time = editform.cleaned_data['time']
+            duration = editform.cleaned_data['duration']
+            topic_pk = editform.cleaned_data['topic']
+            topic = Topic.objects.get(pk=topic_pk)
+            user = request.user
+            helpSession.objects.get(pk=helpSessionTemp.pk).update(topic=topic, date=date, time=time, duration=duration)
+            helpSession.refresh_from_db()
+            context={
+                "helpSessions": helpsessions,
+                "created_new": True,
+                "FormFilterDate": FormFilterDate(),
+                "FormDeleteHelpSession": FormDeleteHelpSession(),
+            }
+            return render(request, 'manageHelpSessions.html', context)
+    context = {
+        "helpSession": helpSession.objects.get(pk=key),
+        "FormEditHelpSession": FormEditHelpSession(),
+    }
+    return render(request, 'editHelpSession.html', context)
 
 @login_required()
 def createHelpSession(request):

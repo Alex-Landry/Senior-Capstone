@@ -78,8 +78,10 @@
           <div class="help-session-info-fullrow">
 
           {% if user.is_helper and helpSession.helper == user %}
-            <form action="/calendarMonth/0/0/0/" class="form-button">
-                <input type="submit" class="ultrablue darktext" id="small-button" value="Edit Help Session"></input>
+            <form method="post" class="form-button">
+                {% csrf_token %}
+                <input id="id_{{FormEditButton.helpSessionID.html_name}}" name="{{FormEditButton.helpSessionID.html_name}}" type="hidden" value="{{helpSession.pk}}"></input>
+                <input type="submit" name="edit" class="ultrablue darktext" id="small-button" value="Edit Help Session"></input>
             </form>
           {% endif %}
 
