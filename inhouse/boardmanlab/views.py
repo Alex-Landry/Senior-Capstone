@@ -99,8 +99,30 @@ def calendarDay(request, year, month, day):
 @login_required()
 def helpsessions(request):
     user = request.user
-    reservations = Reservation.objects.filter(user = user)
+    # this is for the filter (changes context)
+    if request.method == 'POST':
+        filterform = FormFilterDate(request.POST)
+        if filterform.is_valid():
+            month = filterform.cleaned_data['month']
+            year = filterform.cleaned_data['year']
+            reservations = Reservation.objects.filter(user=user,
+                                                    helpSession__date__year=year,
+                                                   helpSession__date__month=month).order_by("-helpSession__date")
+    # filter context
+            context = {
+                "filterbool": True,
+                "reservations": reservations,
+                "already_attending": False,
+                "new_reservation": False,
+                "FormFilterDate": FormFilterDate(initial={'month': month}),
+                }
+            # return filtered results
+            return render(request, 'helpSessions.html', context)
+    
+    # just render the page normally
+    reservations = Reservation.objects.filter(user = user).order_by("-helpSession__date")
     context = {
+        "filterbool": False,
         "reservations": reservations,
         "already_attending": False,
         "new_reservation": False,
@@ -112,7 +134,7 @@ def helpsessions(request):
 @login_required()
 def managehelpsessions(request):
     helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
-    # removing help sessions
+    # Post requests
     if request.method == 'POST':
         #DELETE
         if "delete" in request.POST:
@@ -143,9 +165,9 @@ def managehelpsessions(request):
         }
         return render(request, 'manageHelpSessions.html', context)    
 
-    # editing help sessions
-            
+    # Base
     context = {
+        "filterbool": False,
         "helpSessions": helpsessions,
         "created_new": False,
         "FormFilterDate": FormFilterDate(),

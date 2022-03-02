@@ -482,6 +482,7 @@ input[type=text], select {
   }
 
 #small-button {
+    font-weight: 400 !important;
     display: inline-block;
     color: #FFFFFF;
     text-align: center;
@@ -663,6 +664,7 @@ input[type=text], select {
 
 .manage-content-strip{
     padding-left: 4px;
+    margin-left: 10px;
     width: 100%;
     height: fit-content;
     font-size: 16px;
@@ -805,7 +807,7 @@ input[type=text], select {
 
 .help-session-box{
     background-color: #0D598E;
-    margin-left: 20px;
+    margin-left: 0px;
     margin-top: 20px;
     padding: 4px;
     width: 90%;
