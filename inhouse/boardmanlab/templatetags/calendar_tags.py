@@ -106,3 +106,7 @@ def set_pk(aform, helpSessionpk):
     aform = helpSessionpk
     return aform
 
+@register.simple_tag
+def get_day_string(datetimeobj):
+    return datetimeobj.strftime('%A')
+

@@ -1,5 +1,5 @@
 {% extends 'main/base.html' %}
-
+{% load calendar_tags %}
 
 {% block content %}
 <!-- Center Flex Box -->
@@ -37,7 +37,7 @@
         <div class="scroll-content">
         {% for reservation in reservations %}
         <div class="help-session-box" style="padding: 10px">
-            <div class="help-session-title">{{reservation.helpSession.date}}</div>
+            <div class="help-session-title">{% get_day_string reservation.helpSession.date %} {{reservation.helpSession.date}}</div>
             <div class="help-session-info-row">
                 <div class="help-session-label">Time</div>
                 <div class="help-session-info">{{reservation.helpSession.time}}</div>
