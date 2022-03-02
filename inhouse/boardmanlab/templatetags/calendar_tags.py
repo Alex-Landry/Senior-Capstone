@@ -27,6 +27,7 @@ def gen_day_string(value):
     return calendar.day_name[value]  #'Wednesday'
 
 # This is used for the day view (generated day string)
+# parameters = int, int, int
 @register.simple_tag
 def get_day_string(year, month, day):
     day = datetime(year, month, day).weekday()
