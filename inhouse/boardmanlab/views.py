@@ -114,19 +114,23 @@ def managehelpsessions(request):
     helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
     # removing help sessions
     if request.method == 'POST':
+        #DELETE
         deleteform = FormDeleteHelpSession(request.POST)
-        editformbutton = FormEditButton(request.POST)
         if deleteform.is_valid():
             key = deleteform.cleaned_data['helpSessionID']
             res_HelpSession = helpSession.objects.get(pk=key)
             res_HelpSession.delete()
-        elif editformbutton.is_valid():
+        #EDIT
+        editformbutton = FormEditButton(request.POST)
+        if editformbutton.is_valid():
             pk = editformbutton.cleaned_data['helpSessionID']
             context = {
                 "helpSessionID": pk,
                 "FormEditButton": FormEditButton(),
             }
             return render(request, "editHelpSession.html", context)
+
+            
         context = {
         "helpSessions": helpsessions,
         "created_new": False,
