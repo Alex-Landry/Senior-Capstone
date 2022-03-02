@@ -46,13 +46,13 @@ class FormCreateHelpSession(forms.Form):
         label='duration', 
         initial=30,
         widget=forms.Select(
-            attrs={'id': 'selectFilter'}
+            attrs={'id': 'selectForm'}
             ),
         )
     topic = forms.ChoiceField(
         choices=[(topic.pk, topic) for topic in Topic.objects.all()],
         widget=forms.Select(
-            attrs={'id': 'selectFilter'}
+            attrs={'id': 'selectForm'}
             ),
         )
 
@@ -78,13 +78,13 @@ class FormEditHelpSession(forms.ModelForm):
         choices=[(i, i) for i in range(15, 130, 15)],
         label='duration',
         widget=forms.Select(
-            attrs={'id': 'selectFilter'}
+            attrs={'id': 'selectForm'}
             ),
         )
     topic = forms.ChoiceField(
         choices=[(topic.topic, topic.topic) for topic in Topic.objects.all()],
         widget=forms.Select(
-            attrs={'id': 'selectFilter'}
+            attrs={'id': 'selectForm'}
             ),
         )
 

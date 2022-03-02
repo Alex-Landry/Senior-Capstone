@@ -64,12 +64,12 @@ def calendarDay(request, year, month, day):
                 new_reservation = True
                 ins = Reservation(user=user, helpSession=res_HelpSession)
                 ins.save()
-                context={
-                    "already_attending": already_attending,
-                    "new_reservation": new_reservation,
-                    }
+            context={
+                "already_attending": already_attending,
+                "new_reservation": new_reservation,
+                }
 
-                return render(request, "success.html", context)
+            return render(request, "success.html", context)
 
     if year == 0 and month == 0:
         year = datetime.now().year

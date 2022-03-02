@@ -435,7 +435,7 @@ a:hover{
 input[type=text], select {
     width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 0px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -858,6 +858,8 @@ input[type=text], select {
     color: #FFFFFF;
     border-radius: none !important;
     height: fit-content !important;
+    margin: 0px !important;
+    padding: 0px !important;
 }
 
 #selectFilter {
@@ -866,6 +868,17 @@ input[type=text], select {
     border: none;
     color: #FFFFFF;
     padding: 7px;
+    width: fit-content;
+    border-radius: none !important;
+    height: fit-content !important;
+}
+
+#selectForm {
+    display: inline-block;
+    background-color: #1D2E3F;
+    border: none;
+    color: #FFFFFF;
+    padding: 3px;
     width: fit-content;
     border-radius: none !important;
     height: fit-content !important;
