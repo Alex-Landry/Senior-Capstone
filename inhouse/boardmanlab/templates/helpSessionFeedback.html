@@ -25,7 +25,7 @@
 
 
         <div class="scroll-content">
-        /* Where is reservations coming from? */
+        /* Something isn't right here, we need to be looking at one specific reservation */
         {% for reservation in reservations %}
         <div class="help-session-box" style="padding: 10px">
             <div class="help-session-title">{% get_day_string_from_datetime reservation.helpSession.date %} {{reservation.helpSession.date}}</div>
@@ -45,14 +45,17 @@
               <div class="help-session-label">Duration</div>
               <div class="help-session-info">{{reservation.helpSession.duration}} minutes</div>
             </div>
-        
+            /* Added this but I don't think it will work as is */
+            <div class="help-session-info-row">
+                <div class="help-session-label">Feedback</div>
+                <div class="help-session-info">{{reservation.feedback}}</div>
+            </div>
+            
             <div class="help-session-info-fullrow">
                 
                 <form action="/calendarMonth/0/0/0/" class="form-button">
-                    {% csrf_token %}
-                    /* Something isn't right here */
-                    <input id="id_{{FormFeedbackButton.helpSessionID.html_name}}" name="{{FormFeedbackButton.helpSessionID.html_name}}" type="hidden" value="{{helpSession.pk}}"></input>
-                    <input type="submit" name="feedback" class="ultrablue darktext" id="small-button" value="Provide Feedback"></input>
+                    <input id="pk" name="pk" type="hidden" value="{{helpSession.pk}}"></input>
+                    <input type="submit" name="save" id="small-button" value="Save Changes" class="ultrablue"></input>
                 </form>
             </div>
         
