@@ -31,11 +31,17 @@
             {% if date != day %}
                 <a href="/calendarDay/{{year}}/{{month}}/{{date}}/" class="calendar-content-day blue">
                     <div class="calendar-content-date-container">{{date}}</div>
+                    {% if sessionflag|index:date > 0 %}
+                        <div class="calendar-content-session-available-icon"></div>
+                    {% endif %}
                     <div class="calendar-content-day-big-number">{{date}}</div>
                 </a>
             {% else %} 
                 <a href="/calendarDay/{{year}}/{{month}}/{{date}}/" class="calendar-content-day lightblue">
                     <div class="calendar-content-date-container ultrablue darktext">{{date}}</div>
+                    {% if sessionflag|index:date > 0 %}
+                        <div class="calendar-content-session-available-icon"></div>
+                    {% endif %}
                     <div class="calendar-content-day-big-number">{{date}}</div>
                 </a>
             {% endif %}

@@ -25,18 +25,26 @@ def login(request):
 
 @login_required()
 def calendarMonth(request, year, month, day):
+    sessionflag=[0]
     if year == 0 and month == 0:
         year = datetime.now().year
         month = datetime.now().month
         day = datetime.now().day
     if day == 0 and month == datetime.now().month:
         day = datetime.now().day
+    for week in cal.monthdayscalendar(year, month):
+        for dayz in week:
+            if dayz != 0:
+                sessionflag.append(helpSession.objects.filter(date__day=dayz, date__month=month).count())
+            else:
+                continue
     context = {
         "day_string_list": [6,0,1,2,3,4,5],
         "day": day,
         "month": month,
         "year": year,
         "month_obj": cal.monthdayscalendar(year, month),
+        "sessionflag": sessionflag,
     }
     return render(request, 'calendarMonth.html', context)
 

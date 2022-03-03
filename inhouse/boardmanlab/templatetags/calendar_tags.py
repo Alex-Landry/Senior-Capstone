@@ -111,3 +111,6 @@ def set_pk(aform, helpSessionpk):
 def get_day_string_from_datetime(datetimeobj):
     return datetimeobj.strftime('%A')
 
+@register.filter
+def index(indexable, i):
+    return indexable[i]

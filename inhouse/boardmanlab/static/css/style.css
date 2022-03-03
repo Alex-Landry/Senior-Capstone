@@ -45,6 +45,19 @@
     }
 }
 
+    .calendar-content-session-available-icon{
+        background-color: #29DF25;
+        width: .07vw;
+        height: .07vw;
+        top: 0px;
+        right: 0px;
+        position: absolute;
+        padding: 4px;
+        margin: .5vw;
+        border-radius: 50%;
+
+    }
+
 
 body {
     background-color: #111111;
