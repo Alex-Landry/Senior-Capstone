@@ -24,11 +24,10 @@
         <!-- End of Filter -->
 
 
-        <div class="scroll-content">
-        <!-- reservations comes from the view context,
-            is a list of relevant reservations according to user
-            and filter preferences -->
-        {% for reservation in reservations %}
+    <div class="scroll-content">
+        <!-- Something isn't right here, we need to be looking at one specific reservation -->
+        <form action="" method="post" class="form-custom" style="width:90%">
+            {% csrf_token %}
         <div class="help-session-box" style="padding: 10px">
             <div class="help-session-title">{% get_day_string_from_datetime reservation.helpSession.date %} {{reservation.helpSession.date}}</div>
             <div class="help-session-info-row">
@@ -47,25 +46,30 @@
               <div class="help-session-label">Duration</div>
               <div class="help-session-info">{{reservation.helpSession.duration}} minutes</div>
             </div>
-        
+            <!-- Added this wont work as is -->
+            <div class="help-session-info-row">
+                <div class="help-session-label">Feedback</div>
+                <div class="help-session-info">{{FormEditHelpSessionFeedback.feedback}}</div>
+            </div>
+            
             <div class="help-session-info-fullrow">
-                
-                <form method="post" class="form-button" action="/helpSessionFeedback">
+                <!--This needs to be changed as well I think -->
+                <form action="/success" class="form-button">
                     {% csrf_token %}
-                    <!-- Testing -->
-                    <input id="id_{{FormFeedbackButton.helpSessionID.html_name}}" name="{{FormFeedbackButton.helpSessionID.html_name}}" type="hidden" value="{{reservation.pk}}"></input>
-                    <input type="submit" name="feedback" class="ultrablue darktext" id="small-button" value="Provide Feedback"></input>
+                    <input id="pk" name="pk" type="hidden" value="{{reservation.pk}}"></input>
+                    <input type="submit" name="save" id="small-button" value="Save Changes" class="ultrablue"></input>
                 </form>
             </div>
         
           </div>
-        {% endfor %}
+        
         </div>
 
 
 
-        
-      </div>
+    </form>  
+      </div> <!-- End of Scroll Content -->
+      
     </div>
   </div>
 <!-- End Center Flex Box -->

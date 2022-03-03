@@ -8,7 +8,7 @@ from datetime import datetime
 from .models import helpSession
 from reservations.models import Reservation
 from users.models import User, Topic
-from .forms import FormFilterDate, FormCreateHelpSession, FormDeleteHelpSession, FormEditHelpSession, FormEditButton
+from .forms import FormEditHelpSessionFeedback, FormFeedbackButton, FormFilterDate, FormCreateHelpSession, FormDeleteHelpSession, FormEditHelpSession, FormEditButton
 import calendar
 cal = calendar.Calendar()
 cal.setfirstweekday(calendar.SUNDAY)
@@ -103,25 +103,42 @@ def helpsessions(request):
     user = request.user
     # this is for the filter (changes context)
     if request.method == 'POST':
-        filterform = FormFilterDate(request.POST)
-        if filterform.is_valid():
-            month = filterform.cleaned_data['month']
-            year = filterform.cleaned_data['year']
-            reservations = Reservation.objects.filter(user=user,
-                                                    helpSession__date__year=year,
-                                                   helpSession__date__month=month).order_by("-helpSession__date")
-    # filter context
-            context = {
-                "filterbool": True,
-                "reservations": reservations,
-                "already_attending": False,
-                "new_reservation": False,
-                "FormFilterDate": FormFilterDate(initial={'month': month}),
+        # FILTER
+        if 'filter' in request.POST:
+            filterform = FormFilterDate(request.POST)
+            if filterform.is_valid():
+                month = filterform.cleaned_data['month']
+                year = filterform.cleaned_data['year']
+                # list of reservations that match user, filtered by month/year
+                reservations = Reservation.objects.filter(user=user,
+                                                        helpSession__date__year=year,
+                                                    helpSession__date__month=month).order_by("-helpSession__date")
+                # filter context
+                context = {
+                    "filterbool": True,
+                    "reservations": reservations,
+                    "already_attending": False,
+                    "new_reservation": False,
+                    "FormFilterDate": FormFilterDate(initial={'month': month}),
+                    "FormFeedbackButton": FormFeedbackButton()
+                    }
+                # return filtered results
+                return render(request, 'helpSessions.html', context)
+        # FEEDBACK
+        if 'feedback' in request.POST:
+            # TODO
+            feedbackform = FormFeedbackButton(request.POST)
+            if feedbackform.is_valid():
+                key = feedbackform.cleaned_data['helpSessionID']
+                reservation = Reservation.objects.filter(pk=key, user=request.user)
+                context = {
+                    "reservation": reservation,
+                    "FormEditHelpSessionFeedback": FormEditHelpSessionFeedback(instance=reservation),
                 }
-            # return filtered results
-            return render(request, 'helpSessions.html', context)
+                return render(request, 'helpSessionFeedback.html', context)
     
     # just render the page normally
+    # list of reservations that match the user
     reservations = Reservation.objects.filter(user = user).order_by("-helpSession__date")
     context = {
         "filterbool": False,
@@ -129,6 +146,7 @@ def helpsessions(request):
         "already_attending": False,
         "new_reservation": False,
         "FormFilterDate": FormFilterDate(),
+        "FormFeedbackButton": FormFeedbackButton()
     }
 
     return render(request, 'helpSessions.html', context)
@@ -201,6 +219,33 @@ def managehelpsessions(request):
 
 
 @login_required
+def helpSessionFeedback(request):
+    # TODO
+    if request.method == 'POST':
+        if 'save' in request.POST:
+            # get the primary key of the reservation
+            pk = request.POST.get("pk")
+            # get the reservation
+            helpSessionFeedbackEdit = Reservation.objects.get(pk=pk)
+            editFeedbackForm = FormEditHelpSessionFeedback(data=request.POST, instance=helpSessionFeedbackEdit)
+            if editFeedbackForm.is_valid():
+                editFeedbackForm.save()
+                context = {
+                    "editedHelpSessionFeedback": True,
+                }
+            return render(request, 'success.html', context)
+    # Where does this 'helpSessionID' come from and what is it?
+    key = request.POST.get('helpSessionID')
+    helpSessionFeedbackEdit = Reservation.objects.get(pk=key, user=request.user)
+    context = {
+        "reservation": helpSessionFeedbackEdit,
+        "FormEditHelpSessionFeedback": FormEditHelpSessionFeedback(instance=helpSessionFeedbackEdit)
+    }
+    return render(request, 'helpSessionFeedback.html', context)
+
+    
+
+@login_required
 def editHelpSession(request):
     if request.method == 'POST':
         if 'save' in request.POST:
@@ -214,7 +259,7 @@ def editHelpSession(request):
                     "editedHelpSession": True,
                 }
             return render(request, 'success.html', context)
-
+    # If request method isn't POST, try again?
     helpSessionID = request.POST.get('helpSessionID')
     helpSessionEdit = helpSession.objects.get(pk=helpSessionID)
     context = {

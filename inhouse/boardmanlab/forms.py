@@ -2,6 +2,7 @@ from django import forms
 from datetime import datetime
 from users.models import User, Topic
 from .models import helpSession
+from reservations.models import Reservation
 
 today = datetime.now()
 
@@ -88,7 +89,24 @@ class FormEditHelpSession(forms.ModelForm):
             ),
         )
 
+
+class FormEditHelpSessionFeedback(forms.ModelForm):
+    class Meta:
+        model = Reservation
+        exclude = ['helpSession', 'user']
+
+    feedback = forms.CharField(
+        label='Feedback',
+        max_length=1000
+        )
+
+
 class FormEditButton(forms.Form):
+        helpSessionID = forms.IntegerField(
+            widget=forms.NumberInput()
+        )
+
+class FormFeedbackButton(forms.Form):
         helpSessionID = forms.IntegerField(
             widget=forms.NumberInput()
         )

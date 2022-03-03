@@ -6,7 +6,7 @@
           {% csrf_token %}
           {{FormFilterDate.month}}
           {{FormFilterDate.year}}
-          <input type="submit" id="small-button" value="Filter"></input>
+          <input type="submit" name="filter" id="small-button" value="Filter"></input>
       </form>
     {% if filterbool %}
     <form action="/helpsessions/" id="inline">
