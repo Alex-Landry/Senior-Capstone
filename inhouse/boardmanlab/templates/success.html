@@ -17,28 +17,29 @@
 
       <div class="center-content-tab-content">
 
+        
 
         <!-- PAGE CONTENT GOES HERE -->
 
         <!-- CHECK IF NEW HELP SESSION WAS CREATED -->
         <div class="manage-content-strip">
             {% if created_new %}
-              <p> New Help Session Successfully Created</p>
-              {% endif %}
+                <p> New Help Session Successfully Created</p>
+            {% endif %}
         </div>
 
         <!-- CHECK IF ALREADY ATTENDING -->
         <div class="manage-content-strip">
-        {% if already_attending %}
-            <p class="successful-booking-label">You are already booked for this help session.</p>
-        {% endif %}
+            {% if already_attending %}
+                <p class="successful-booking-label">You are already booked for this help session.</p>
+            {% endif %}
         </div>
 
         <!-- CHECK IF SUCCESSFUL BOOKING -->
         <div class="manage-content-strip">
-        {% if new_reservation %}
-            <p class="successful-booking-label">Appointment Successfully Booked!</p>
-        {% endif %}
+            {% if new_reservation %}
+                <p class="successful-booking-label">Appointment Successfully Booked!</p>
+            {% endif %}
         </div>
 
         <!-- CHECK IF EDITED HELPSESSION -->
