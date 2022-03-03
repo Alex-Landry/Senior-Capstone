@@ -12,6 +12,9 @@
     .calendar-content-date-container{
         display: none !important;
     }
+    .calendar-content-session-text{
+        display: none !important;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -43,13 +46,16 @@
         font-size: 6vw !important;
         color:#0f1922 !important;
     }
+    .calendar-content-session-text{
+        display: none !important;
+    }
 }
 
     .calendar-content-session-available-icon{
         background-color: #29DF25;
         width: .07vw;
         height: .07vw;
-        top: 0px;
+        top: .1vw;
         right: 0px;
         position: absolute;
         padding: 4px;
@@ -58,6 +64,13 @@
 
     }
 
+    .calendar-content-session-text {
+        font-size: .8vw;
+        color: #29DF25;
+        top: 5px;
+        right: 20px;
+        position: absolute;
+    }
 
 body {
     background-color: #111111;
