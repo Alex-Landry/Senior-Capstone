@@ -2,6 +2,7 @@ from django import forms
 from datetime import datetime
 from users.models import User, Topic
 from .models import helpSession
+from reservations.models import Reservation
 
 today = datetime.now()
 
@@ -88,36 +89,17 @@ class FormEditHelpSession(forms.ModelForm):
             ),
         )
 
+
 class FormEditHelpSessionFeedback(forms.ModelForm):
     class Meta:
-        model = helpSession
-        exclude = ['helper', 'attendance']
+        model = Reservation
+        exclude = ['helpSession', 'user']
 
-    date = forms.DateField(
-        label='date', 
-        widget=forms.DateInput(
-            attrs={'type': 'date'}
-            ),
+    feedback = forms.CharField(
+        label='Feedback',
+        max_length=1000
         )
-    time = forms.TimeField(
-        label='time', 
-        widget=forms.TimeInput(
-            attrs={'type': 'time'}
-            ),
-        )
-    duration = forms.ChoiceField(
-        choices=[(i, i) for i in range(15, 130, 15)],
-        label='duration',
-        widget=forms.Select(
-            attrs={'id': 'selectForm'}
-            ),
-        )
-    topic = forms.ChoiceField(
-        choices=[(topic.topic, topic.topic) for topic in Topic.objects.all()],
-        widget=forms.Select(
-            attrs={'id': 'selectForm'}
-            ),
-        )
+
 
 class FormEditButton(forms.Form):
         helpSessionID = forms.IntegerField(

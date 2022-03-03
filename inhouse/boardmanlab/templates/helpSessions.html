@@ -25,7 +25,9 @@
 
 
         <div class="scroll-content">
-        /* Where is reservations coming from? */
+        <!-- reservations comes from the view context,
+            is a list of relevant reservations according to user
+            and filter preferences -->
         {% for reservation in reservations %}
         <div class="help-session-box" style="padding: 10px">
             <div class="help-session-title">{% get_day_string_from_datetime reservation.helpSession.date %} {{reservation.helpSession.date}}</div>
@@ -48,10 +50,10 @@
         
             <div class="help-session-info-fullrow">
                 
-                <form action="/calendarMonth/0/0/0/" class="form-button">
+                <form method="post" class="form-button" action="/helpSessionFeedback">
                     {% csrf_token %}
-                    /* Something isn't right here */
-                    <input id="id_{{FormFeedbackButton.helpSessionID.html_name}}" name="{{FormFeedbackButton.helpSessionID.html_name}}" type="hidden" value="{{helpSession.pk}}"></input>
+                    <!-- Testing -->
+                    <input id="id_{{FormFeedbackButton.helpSessionID.html_name}}" name="{{FormFeedbackButton.helpSessionID.html_name}}" type="hidden" value="{{reservation.helpSession.pk}}"></input>
                     <input type="submit" name="feedback" class="ultrablue darktext" id="small-button" value="Provide Feedback"></input>
                 </form>
             </div>
