@@ -112,6 +112,7 @@ def helpsessions(request):
                     "already_attending": False,
                     "new_reservation": False,
                     "FormFilterDate": FormFilterDate(initial={'month': month}),
+                    "FormFeedbackButton": FormFeedbackButton()
                     }
                 # return filtered results
                 return render(request, 'helpSessions.html', context)
@@ -121,10 +122,10 @@ def helpsessions(request):
             feedbackform = FormFeedbackButton(request.POST)
             if feedbackform.is_valid():
                 key = feedbackform.cleaned_data['helpSessionID']
-                reservation = Reservation.objects.filter(helpSession=key, user=request.user)
+                reservation = Reservation.objects.filter(pk=key, user=request.user)
                 context = {
                     "reservation": reservation,
-                    "FormEditHelpSessionFeedback": FormEditHelpSessionFeedback(reservation=reservation)
+                    "FormEditHelpSessionFeedback": FormEditHelpSessionFeedback(instance=reservation),
                 }
                 return render(request, 'helpSessionFeedback.html', context)
     
@@ -137,6 +138,7 @@ def helpsessions(request):
         "already_attending": False,
         "new_reservation": False,
         "FormFilterDate": FormFilterDate(),
+        "FormFeedbackButton": FormFeedbackButton()
     }
 
     return render(request, 'helpSessions.html', context)
@@ -213,8 +215,9 @@ def helpSessionFeedback(request):
     # TODO
     if request.method == 'POST':
         if 'save' in request.POST:
-            # need to make sure the primary key of the reservation is saved somewhere (in button?)
+            # get the primary key of the reservation
             pk = request.POST.get("pk")
+            # get the reservation
             helpSessionFeedbackEdit = Reservation.objects.get(pk=pk)
             editFeedbackForm = FormEditHelpSessionFeedback(data=request.POST, instance=helpSessionFeedbackEdit)
             if editFeedbackForm.is_valid():
@@ -225,12 +228,12 @@ def helpSessionFeedback(request):
             return render(request, 'success.html', context)
     # Where does this 'helpSessionID' come from and what is it?
     key = request.POST.get('helpSessionID')
-    # This is the problem line, we arent finding a matching reservation
-    helpSessionFeedbackEdit = Reservation.objects.get(helpSession=key, user=request.user)
+    helpSessionFeedbackEdit = Reservation.objects.get(pk=key, user=request.user)
     context = {
-        "helpSessionFeedback": helpSessionFeedbackEdit,
+        "reservation": helpSessionFeedbackEdit,
         "FormEditHelpSessionFeedback": FormEditHelpSessionFeedback(instance=helpSessionFeedbackEdit)
     }
+    return render(request, 'helpSessionFeedback.html', context)
 
     
 

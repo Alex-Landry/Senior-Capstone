@@ -53,7 +53,7 @@
                 <form method="post" class="form-button" action="/helpSessionFeedback">
                     {% csrf_token %}
                     <!-- Testing -->
-                    <input id="id_{{FormFeedbackButton.helpSessionID.html_name}}" name="{{FormFeedbackButton.helpSessionID.html_name}}" type="hidden" value="{{reservation.helpSession.pk}}"></input>
+                    <input id="id_{{FormFeedbackButton.helpSessionID.html_name}}" name="{{FormFeedbackButton.helpSessionID.html_name}}" type="hidden" value="{{reservation.pk}}"></input>
                     <input type="submit" name="feedback" class="ultrablue darktext" id="small-button" value="Provide Feedback"></input>
                 </form>
             </div>
