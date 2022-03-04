@@ -28,8 +28,7 @@ YEARS = (
 )
 
 class FormCreateHelpSession(forms.Form):
-    class Meta:
-        fields= ['date', 'time', 'duration', 'topic']
+  
     
     date = forms.DateField(
         label='date', 
