@@ -937,12 +937,14 @@ input[type=text], select {
 
 #textAreaForm {
     display: relative;
+    font: inherit !important;
     background-color: #2f5172;
     border: none;
     color: #FFFFFF;
-    padding: 3px;
-    width: 98%;
-    max-width: 98%;
+    padding: 0px !important;
+    margin: 0;
+    width: 100%;
+    height: 100%;
     border-radius: none !important;
     resize: vertical !important;
 }
