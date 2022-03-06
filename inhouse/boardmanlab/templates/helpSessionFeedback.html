@@ -19,13 +19,8 @@
 
         <!-- PAGE CONTENT GOES HERE -->
 
-        <!-- Filter -->
-        {% include 'elements/filter_helpSessions.html' %}
-        <!-- End of Filter -->
-
-
     <div class="scroll-content">
-        <!-- Something isn't right here, we need to be looking at one specific reservation -->
+        <!-- Beginning of form -->
         <form action="" method="post" class="form-custom" style="width:90%">
             {% csrf_token %}
         <div class="help-session-box" style="padding: 10px">
@@ -52,8 +47,9 @@
                 <div class="help-session-info">{{FormEditHelpSessionFeedback.feedback}}</div>
             </div>
             
-            <div class="help-session-info-fullrow">
+            <div class="help-session-buttons-fullrow">
                 <!--This needs to be changed as well I think -->
+                <div>&nbsp;</div>
                 <form action="/success" class="form-button">
                     {% csrf_token %}
                     <input id="pk" name="pk" type="hidden" value="{{reservation.pk}}"></input>

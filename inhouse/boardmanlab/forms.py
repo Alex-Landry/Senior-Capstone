@@ -33,13 +33,17 @@ class FormCreateHelpSession(forms.Form):
         label='date', 
         initial=today.date,
         widget=forms.DateInput(
-            attrs={'type': 'date'}
+            attrs={'type': 'date',
+                   'id' : 'form-picker-input'
+                   }
             ),
         )
     time = forms.TimeField(
         label='time', 
         widget=forms.TimeInput(
-            attrs={'type': 'time'}
+            attrs={'type': 'time',
+                   'id' : 'form-picker-input'
+                   }
             ),
         )
     duration = forms.ChoiceField(
@@ -66,13 +70,15 @@ class FormEditHelpSession(forms.ModelForm):
     date = forms.DateField(
         label='date', 
         widget=forms.DateInput(
-            attrs={'type': 'date'}
+            attrs={'type': 'date',
+                   'id' : 'form-picker-input'}
             ),
         )
     time = forms.TimeField(
         label='time', 
         widget=forms.TimeInput(
-            attrs={'type': 'time'}
+            attrs={'type': 'time',
+                   'id' : 'form-picker-input'}
             ),
         )
     duration = forms.ChoiceField(
@@ -97,7 +103,10 @@ class FormEditHelpSessionFeedback(forms.ModelForm):
 
     feedback = forms.CharField(
         label='Feedback',
-        max_length=1000
+        max_length=1000,
+        widget=forms.Textarea(
+            attrs={'id': 'textAreaForm'}
+            ),
         )
 
 

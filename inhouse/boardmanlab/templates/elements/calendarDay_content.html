@@ -39,7 +39,6 @@
       <form action="" method="post" class="form-button">
         {% csrf_token %}
         <input type="none" value={{helpSession.pk}} name="helpSession" style="display: none;"></input>
-        <input type="none" value={{user.pk}} name="user" style="display: none;"></input>
         <input type="submit" name="attend" class="green" id="small-button" value="Attend Help Session"></input>
       </form>
 
@@ -53,7 +52,6 @@
       <form action="" method="post" class="form-button">
         {% csrf_token %}
         <input type="none" value={{helpSession.pk}} name="helpSession" style="display: none;"></input>
-        <input type="none" value={{user.pk}} name="user" style="display: none;"></input>
         <input type="submit" name="delete" class="red" id="small-button" value="Remove"></input>
       </form>
       {% endif %}

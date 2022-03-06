@@ -43,6 +43,9 @@
         font-size: 6vw !important;
         color:#0f1922 !important;
     }
+    #form-picker-input{
+        width: 100% !important;
+    }
 }
 
     .calendar-content-session-available-icon{
@@ -723,6 +726,18 @@ input[type=text], select {
     display: inline-block;
 }
 
+#form-picker-input{
+    padding: 0px !important;
+    margin: 0px !important;
+    background-color: #1D2E3F !important;
+    font-family: inherit !important;
+    color: #FFFFFF;
+    width: 50%;
+    border: none !important;
+}
+
+::-webkit-calendar-picker-indicator { filter:invert(100%); }
+
 .gray {
     background-color: #333333 !important;
 }
@@ -849,15 +864,22 @@ input[type=text], select {
 
 .help-session-info-fullrow{
     display: inline-block;
-
     grid-gap: 4px;
     width: 80%;
+    margin-top: 4px;
+}
+
+.help-session-buttons-fullrow{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     margin-top: 4px;
 }
 
 .help-session-label{
     background-color: #444444;
     padding: 4px;
+    height: fit-content;
 }
 
 .help-session-info{
@@ -891,14 +913,33 @@ input[type=text], select {
     background-color: #1D2E3F;
     border: none;
     color: #FFFFFF;
-    padding: 3px;
-    width: fit-content;
+    padding: 0px !important;
+    margin: 0px !important;
+    width: 50%;
+    min-width: fit-content;
     border-radius: none !important;
     height: fit-content !important;
 }
 
+#textAreaForm {
+    display: relative;
+    background-color: #2f5172;
+    border: none;
+    color: #FFFFFF;
+    padding: 3px;
+    width: 98%;
+    max-width: 98%;
+    border-radius: none !important;
+    resize: vertical !important;
+}
+
 #inline{
     display: inline !important;
+}
+
+.inline-right{
+    display: inline-block;
+    inline
 }
 
 .scroll-content{

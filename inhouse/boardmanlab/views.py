@@ -54,8 +54,6 @@ def calendarDay(request, year, month, day):
         
         key = request.POST['helpSession']
         res_HelpSession = helpSession.objects.get(pk=key)
-        key = request.POST['user']
-        user = User.objects.get(pk=key)
 
         #DELETE
         if 'delete' in request.POST and res_HelpSession.helper.pk is request.user.pk:
@@ -64,19 +62,19 @@ def calendarDay(request, year, month, day):
         #ATTEND
         if 'attend' in request.POST:
             # Check to see if user is already signed up for helpSession
-            if Reservation.objects.filter(user=user, helpSession=res_HelpSession):
+            if Reservation.objects.filter(user=request.user, helpSession=res_HelpSession):
                 already_attending = True
                 new_reservation = False
             else:
                 already_attending = False
                 new_reservation = True
-                ins = Reservation(user=user, helpSession=res_HelpSession)
+                ins = Reservation(user=request.user, helpSession=res_HelpSession)
                 ins.save()
+            # Set context for success page... if/else dependent
             context={
                 "already_attending": already_attending,
                 "new_reservation": new_reservation,
                 }
-
             return render(request, "success.html", context)
 
     if year == 0 and month == 0:
