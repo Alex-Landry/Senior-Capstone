@@ -276,24 +276,16 @@ def createHelpSession(request):
         "day": day,
         "month": month,
         "year": year,
-        "FormCreateHelpSession": FormCreateHelpSession()
+        "FormCreateHelpSession": FormCreateHelpSession(user=request.user)
     }
 
     if request.method=="POST":
-        createform = FormCreateHelpSession(request.POST)
+        createform = FormCreateHelpSession(data=request.POST, user=request.user)
         if createform.is_valid():
-            date = createform.cleaned_data['date']
-            time = createform.cleaned_data['time']
-            duration = createform.cleaned_data['duration']
-            topic_pk = createform.cleaned_data['topic']
-            topic = Topic.objects.get(pk=topic_pk)
-
+            createform.save()
             context={
                 "created_new": True,
             }
-            user = request.user
-            ins = helpSession(helper=user, topic=topic, date=date, time=time, duration=duration)
-            ins.save()
             return render(request, "success.html", context)
 
     return render(request, 'createHelpSession.html', context)

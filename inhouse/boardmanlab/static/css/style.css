@@ -243,7 +243,6 @@ body {
     -ms-flex: 2;
     flex: 2;
     margin-left: 7px;
-    margin-right: 7px;
     margin-top: 7px;
     text-align: center;
     padding: 10px;
@@ -746,7 +745,7 @@ input[type=text], select {
     background-color: #1D2E3F !important;
     font-family: inherit !important;
     color: #FFFFFF;
-    width: 50%;
+    width: 100%;
     border: none !important;
 }
 
@@ -890,6 +889,32 @@ input[type=text], select {
     margin-top: 4px;
 }
 
+.help-session-title-fullrow{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0em;
+    text-align: left;
+    align-items: center;
+}
+
+.help-session-mode{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    vertical-align: middle;
+}
+
 .help-session-label{
     background-color: #444444;
     padding: 4px;
@@ -929,7 +954,20 @@ input[type=text], select {
     color: #FFFFFF;
     padding: 0px !important;
     margin: 0px !important;
-    width: 50%;
+    width: 100%;
+    min-width: fit-content;
+    border-radius: none !important;
+    height: fit-content !important;
+}
+
+#checkboxForm {
+    display: inline-block;
+    background-color: #1D2E3F;
+    border: none;
+    color: #FFFFFF;
+    padding: 0px !important;
+    margin: 0px !important;
+    width: 25px;
     min-width: fit-content;
     border-radius: none !important;
     height: fit-content !important;
@@ -945,6 +983,7 @@ input[type=text], select {
     margin: 0;
     width: 100%;
     height: 100%;
+    border: none !important;
     border-radius: none !important;
     resize: vertical !important;
 }
