@@ -32,6 +32,11 @@
                 <a href="/calendarDay/{{year}}/{{month}}/{{date}}/" class="calendar-content-day blue">
                     <div class="calendar-content-date-container">{{date}}</div>
                     {% if sessionflag|index:date > 0 %}
+                        {% if sessionflag|index:date > 9 %}
+                            <div class="calendar-content-session-text">9+</div>
+                        {% else %}
+                            <div class="calendar-content-session-text">{{sessionflag|index:date}}</div>
+                        {% endif %}
                         <div class="calendar-content-session-available-icon"></div>
                     {% endif %}
                     <div class="calendar-content-day-big-number">{{date}}</div>
@@ -40,6 +45,11 @@
                 <a href="/calendarDay/{{year}}/{{month}}/{{date}}/" class="calendar-content-day lightblue">
                     <div class="calendar-content-date-container ultrablue darktext">{{date}}</div>
                     {% if sessionflag|index:date > 0 %}
+                        {% if sessionflag|index:date > 9 %}
+                            <div class="calendar-content-session-text">9+</div>
+                        {% else %}
+                            <div class="calendar-content-session-text">{{sessionflag|index:date}}</div>
+                        {% endif %}
                         <div class="calendar-content-session-available-icon"></div>
                     {% endif %}
                     <div class="calendar-content-day-big-number">{{date}}</div>
