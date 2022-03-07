@@ -234,9 +234,39 @@ class FormDeleteHelpSession(forms.Form):
     helpSessionID = forms.IntegerField(
         widget=forms.NumberInput()
     )
-    pass
 
+class FormRecur(forms.Form):
+    recur = forms.ChoiceField(
+        label = 'kindof',
+        choices=[('daily', 'daily'), ('weekly', 'weekly'), ('monthly', 'monthly')],
+        widget=forms.Select(
+            attrs={'id': 'selectForm'}
+            ),
+        )
 
+    DAYS = [
+            ("0", "Sunday"),
+            ("1", "Monday"),
+            ("2", "Tuesday"),
+            ("3", "Wednesday"),
+            ("4", "Thursday"),
+            ("5", "Friday"),
+            ("6", "Saturday")
+            ]
+    days = forms.MultipleChoiceField(
+            label = 'days',
+            choices=DAYS,
+            widget=forms.CheckboxSelectMultiple(
+                attrs={'id': 'checkboxForm'})
+            )
+    
+    num_of_recurrences = forms.IntegerField(
+        required = True,
+        label='num_of_recurrences',
+        widget=forms.NumberInput(
+            attrs={'id': 'textAreaForm'}
+            ),
+        )
 
 class ProfileEdit(forms.Form):
     pass

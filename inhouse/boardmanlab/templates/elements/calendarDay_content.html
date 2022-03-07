@@ -20,7 +20,14 @@
 <div class="help-session-box" style="padding: 10px">
   <div class="help-session-title-fullrow">
     <div>{% time_format helpSession.time %} - {% add_minutes helpSession.date helpSession.time helpSession.duration %}</div>
-    <div class="help-session-mode"><img src="{% static 'images/remote_icon.png' %}" /> or <img src="{% static 'images/inperson_icon.png' %}" /></div>
+    <div class="help-session-mode">
+      {% if helpSession.is_remote %}
+      <div class="mode-container"><img src="{% static 'images/remote_icon.png' %}" alt="remote"/></div>
+      {% endif %}
+      {% if helpSession.is_inperson %}
+      <div class="mode-container"><img src="{% static 'images/inperson_icon.png' %}" alt="In Person" /></div>
+      {% endif %}
+    </div>
   </div>
     <div class="help-session-info-row">
         <div class="help-session-label">Time</div>
@@ -41,7 +48,7 @@
     {% if helpSession.is_remote %}
     <div class="help-session-info-row">
       <div class="help-session-label">Remote Link</div>
-      <div class="help-session-info"><a href={{helpSession.remote_link}} class="ultrablue">{{helpSession.remote_link}}</a></link></div>
+      <div class="help-session-info" style="padding:0px" ><a href={{helpSession.remote_link}} class="blue" id="remote-button"> Go To Remote Session</a></div>
     </div>
     {% endif %}
 
