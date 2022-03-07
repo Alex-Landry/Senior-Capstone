@@ -122,3 +122,7 @@ def index(indexable, i):
 def get_student_sign_up(cur_helpsession):
     return Reservation.objects.filter(helpSession=cur_helpsession).count()
     
+@register.simple_tag
+def get_freq(freq):
+    if freq == 'days':
+        return True

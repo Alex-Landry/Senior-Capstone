@@ -5,6 +5,15 @@ from .models import helpSession
 from reservations.models import Reservation
 
 today = datetime.now()
+DAYS = (
+    ("0", "Sunday"),
+    ("1", "Monday"),
+    ("2", "Tuesday"),
+    ("3", "Wednesday"),
+    ("4", "Thursday"),
+    ("5", "Friday"),
+    ("6", "Saturday")
+)
 
 MONTHS = (
     ("1", "January"),
@@ -236,37 +245,43 @@ class FormDeleteHelpSession(forms.Form):
     )
 
 class FormRecur(forms.Form):
-    recur = forms.ChoiceField(
+    frequency = forms.ChoiceField(
+        required = True,
         label = 'kindof',
-        choices=[('daily', 'daily'), ('weekly', 'weekly'), ('monthly', 'monthly')],
+        choices=[('daily', 'Daily'), ('weekly', 'Weekly'), ('monthly', 'Monthly')],
         widget=forms.Select(
-            attrs={'id': 'selectForm'}
+            attrs={'id': 'selectForm',
+            }
             ),
         )
 
-    DAYS = [
-            ("0", "Sunday"),
-            ("1", "Monday"),
-            ("2", "Tuesday"),
-            ("3", "Wednesday"),
-            ("4", "Thursday"),
-            ("5", "Friday"),
-            ("6", "Saturday")
-            ]
     days = forms.MultipleChoiceField(
+            required = False,
             label = 'days',
             choices=DAYS,
             widget=forms.CheckboxSelectMultiple(
                 attrs={'id': 'checkboxForm'})
             )
     
-    num_of_recurrences = forms.IntegerField(
+    end_date = forms.DateField(
         required = True,
-        label='num_of_recurrences',
-        widget=forms.NumberInput(
-            attrs={'id': 'textAreaForm'}
+        label='date', 
+        widget=forms.DateInput(
+            attrs={'type': 'date',
+                   'id' : 'form-picker-input'}
             ),
         )
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        frequency = cleaned_data.get("frequency")
+        days = cleaned_data.get("days")
+
+        if frequency == 'days' and not days:
+            raise ValidationError(
+                "Need to specify which days to recur on"
+                "if frequency is days."
+                )
 
 class ProfileEdit(forms.Form):
     pass

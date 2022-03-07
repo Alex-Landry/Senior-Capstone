@@ -8,6 +8,7 @@ urlpatterns = [
     path('/helpsessions', views.helpsessions, name='helpsessions'),
     path('/manageHelpSessions', views.managehelpsessions, name='manageHelpSessions'),
     path('/createHelpSession', views.createHelpSession, name='createHelpSession'),
+    path('/recurHelpSession', views.recurHelpSession, name='recurHelpSession'),
     path('/editHelpSession', views.editHelpSession, name='editHelpSession'),
     path('/helpSessionFeedback', views.helpSessionFeedback, name='helpSessionFeedback'),
     path('calendar', views.calendar, name='calendar'),

@@ -8,7 +8,7 @@ from datetime import datetime
 from .models import helpSession
 from reservations.models import Reservation
 from users.models import User, Topic
-from .forms import FormEditHelpSessionFeedback, FormFeedbackButton, FormFilterDate, FormCreateHelpSession, FormDeleteHelpSession, FormEditHelpSession, FormEditButton
+from .forms import FormEditHelpSessionFeedback, FormFeedbackButton, FormFilterDate, FormCreateHelpSession, FormDeleteHelpSession, FormEditHelpSession, FormEditButton, FormRecur
 import calendar
 cal = calendar.Calendar()
 cal.setfirstweekday(calendar.SUNDAY)
@@ -280,15 +280,44 @@ def createHelpSession(request):
     }
 
     if request.method=="POST":
-        createform = FormCreateHelpSession(data=request.POST, user=request.user)
-        if createform.is_valid():
-            createform.save()
-            context={
-                "created_new": True,
-            }
-            return render(request, "success.html", context)
+        # If user clicks 'create' save the helpsession and send them to success
+        if 'create' in request.POST:
+            createform = FormCreateHelpSession(data=request.POST, user=request.user)
+            if createform.is_valid():
+                createform.save()
+                context={
+                    "created_new": True,
+                }
+                return render(request, "success.html", context)
+        # If user clicks 'recur' save the base helpsession and send them to recur page
+        if 'recur' in request.POST:
+            createform = FormCreateHelpSession(data=request.POST, user=request.user)
+            if createform.is_valid():
+                base_hs = createform.save(commit=False)
+                context={
+                    "created_new": True,
+                    "Form_Recur": FormRecur(),
+                    "base_hs": base_hs
+                }
+                return render(request, "recurHelpSession.html", context)
+
+        if 'setrecur' in request.POST:
+            createform = FormCreateHelpSession(data=request.POST, user=request.user)
+            if createform.is_valid():
+                base_hs = createform.save(commit=False)
+                context={
+                    "created_new": True,
+                    "Form_Recur": FormRecur(),
+                    "base_hs": base_hs
+                }
+                return render(request, "success.html", context)
+        
 
     return render(request, 'createHelpSession.html', context)
+
+@login_required()
+def recurHelpSession(request):
+    return render(request, 'recurHelpSession.html')
 
 
 def success(request):

@@ -755,6 +755,7 @@ input[type=text], select {
 .form-custom{
     display: inline-block;
     padding-left: 10px;
+    width: min(100%, 800px);
 }
 
 .form-button{
@@ -1021,7 +1022,7 @@ input[type=text], select {
 }
 
 .scroll-content{
-    overflow-y: auto; 
+    overflow-y: auto;
     max-height: 600px;
     margin: 10px;
 }
