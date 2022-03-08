@@ -46,3 +46,23 @@ def helper_freq_csv(request):
         item['helpSession__helper__last_name'], item['total']])
     
     return response
+
+@login_required()
+def time_freq_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=time_freq.csv'
+
+    # Create a csv writer
+    writer = csv.writer(response)
+
+    # Designate the Model
+    time_freq = Reservation.objects.values('helpSession__time').annotate(total=Count('id'))
+
+    # Add column headings to the csv file
+    writer.writerow(['Time', 'Signed Up'])
+
+    # Loop Through and output
+    for item in time_freq:
+        writer.writerow([item['helpSession__time'], item['total']])
+    
+    return response

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 from boardmanlab.views import index, login, helpsessions, managehelpsessions, calendarMonth, error, calendarDay, createHelpSession, editHelpSession, success, helpSessionFeedback, recurHelpSession
 from reservations.views import new_help_session
-from reports.views import course_freq_csv, helper_freq_csv
+from reports.views import course_freq_csv, helper_freq_csv, time_freq_csv
 import oauth2_provider.views as oauth2_views
 from django.conf import settings
 from boardmanlab.views import ApiEndpoint, Home
@@ -37,6 +37,7 @@ urlpatterns = [
     path('helpsessions/', helpsessions),
     path('course_freq_csv/', course_freq_csv),
     path('helper_freq_csv/', helper_freq_csv),
+    path('time_freq_csv/', time_freq_csv),
     path('createHelpSession/', createHelpSession, name='createHelpSession'),
     path('recurHelpSession/', recurHelpSession, name='recurHelpSession'),
     path('manageHelpSessions/', managehelpsessions, name='manageHelpSessions'),
