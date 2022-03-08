@@ -8,3 +8,4 @@
 # ignore the pycache files
 __pycache__/
 
+*.pyc
