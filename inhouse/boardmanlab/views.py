@@ -13,6 +13,7 @@ from reservations.models import Reservation
 from users.models import User, Topic
 from .forms import FormEditHelpSessionFeedback, FormFeedbackButton, FormFilterDate, FormCreateHelpSession, FormDeleteHelpSession, FormEditHelpSession, FormEditButton, FormRecur
 import calendar
+
 cal = calendar.Calendar()
 cal.setfirstweekday(calendar.SUNDAY)
 
