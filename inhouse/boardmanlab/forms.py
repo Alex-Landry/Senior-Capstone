@@ -80,7 +80,7 @@ class FormCreateHelpSession(forms.ModelForm):
             ),
         )
     topic = forms.ChoiceField(
-        choices=[(topic, topic) for topic in Topic.objects.all()],
+        #choices=[(topic, topic) for topic in Topic.objects.all()],
         widget=forms.Select(
             attrs={'id': 'selectForm'}
             ),
@@ -150,7 +150,7 @@ class FormEditHelpSession(forms.ModelForm):
             ),
         )
     topic = forms.ChoiceField(
-        choices=[(topic.topic, topic.topic) for topic in Topic.objects.all()],
+        #choices=[(topic.topic, topic.topic) for topic in Topic.objects.all()],
         widget=forms.Select(
             attrs={'id': 'selectForm'}
             ),
