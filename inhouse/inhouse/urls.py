@@ -15,6 +15,7 @@ from boardmanlab.views import (
     recurHelpSession,
 )
 from reservations.views import new_help_session
+from reports.views import course_freq_csv, helper_freq_csv, time_freq_csv
 import oauth2_provider.views as oauth2_views
 from django.conf import settings
 from boardmanlab.views import ApiEndpoint, Home
@@ -73,6 +74,9 @@ urlpatterns = [
     path("createHelpSession/", createHelpSession, name="createHelpSession"),
     path("recurHelpSession/", recurHelpSession, name="recurHelpSession"),
     path("manageHelpSessions/", managehelpsessions, name="manageHelpSessions"),
+    path('course_freq_csv/', course_freq_csv),
+    path('helper_freq_csv/', helper_freq_csv),
+    path('time_freq_csv/', time_freq_csv),
     path("editHelpSession", editHelpSession, name="editHelpSession"),
     path("helpSessionFeedback", helpSessionFeedback, name="helpSessionFeedback"),
     path("new_help_session/", new_help_session),

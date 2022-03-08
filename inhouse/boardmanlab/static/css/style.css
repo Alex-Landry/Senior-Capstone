@@ -952,6 +952,19 @@ select {
     padding: 4px;
 }
 
+.download_btn{
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.download_btn:hover {
+    background-color: RoyalBlue;
+}
+
 #select {
     background-color: #1D2E3F;
     border: none;
