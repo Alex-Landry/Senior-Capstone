@@ -18,7 +18,7 @@
       <div class="center-content-tab-content">
 
         <!-- PAGE CONTENT GOES HERE -->
-        <div class="help-session-box" style="padding: 10px; margin-left:10px">
+        <div class="help-session-box">
             <div class="help-session-title-fullrow">
                 <div>Recurring Help Session</div>
                 <div class="help-session-mode">
@@ -58,10 +58,10 @@
             {% endif %}
         </div>
         <!-- Recur Form -->
-        <form action="" method="post" class="form-custom" style="width:100%">
+        <form action="" method="post" class="form-custom" style="width:100%; padding:0px!important">
             {% csrf_token %}
             {{ Form_Recur.non_field_errors }}
-            <div class="help-session-box" style="padding: 10px;">
+            <div class="help-session-box" style="margin-top:0px!important;">
                 <div class="help-session-title">Recurrance</div>
     
                 <div class="help-session-info-row">
@@ -90,9 +90,9 @@
 
                 <div class="help-session-buttons-fullrow" style="justify-content: right !important;">
                     <div>&nbsp;</div>
-        
-                    <input type="submit" name="setrecur" class="blue" id="small-button" value="Make Recurring"></input>
-                    <a href="/manageHelpSessions" name="cancel" id="small-button" value="Cancel" class="red" style="margin-left: 4px; line-height: 14px; font-size: inherit;">Cancel</a>
+                    <input id="id_{{Form_Recur.helpSessionID.html_name}}" name="{{Form_Recur.helpSessionID.html_name}}" type="hidden" value="{{base_hs.pk}}"></input>
+                    <input type="submit" name="cancel" class="red" id="small-button" value="Cancel" formnovalidate></input>
+                    <input type="submit" name="setrecur" class="green" id="small-button" value="Make Recurring" style="margin-left: 4px;"></input>
                 </div>
             </div> 
         </form> <!-- End Recur Form -->

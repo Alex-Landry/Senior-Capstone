@@ -4,7 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from django.views.generic import ListView
+from django.shortcuts import redirect
 from datetime import datetime
+from datetime import timedelta
+from dateutil.relativedelta import *
 from .models import helpSession
 from reservations.models import Reservation
 from users.models import User, Topic
@@ -266,6 +269,10 @@ def editHelpSession(request):
     }
     return render(request, 'editHelpSession.html', context)
 
+# This is a function to perform the recurring 
+def recurHelpSession(temp_hs, frequency, recurdays, end_date):
+    pass
+
 @login_required()
 def createHelpSession(request):
     year = datetime.now().year
@@ -293,7 +300,7 @@ def createHelpSession(request):
         if 'recur' in request.POST:
             createform = FormCreateHelpSession(data=request.POST, user=request.user)
             if createform.is_valid():
-                base_hs = createform.save(commit=False)
+                base_hs = createform.save()
                 context={
                     "created_new": True,
                     "Form_Recur": FormRecur(),
@@ -302,15 +309,50 @@ def createHelpSession(request):
                 return render(request, "recurHelpSession.html", context)
 
         if 'setrecur' in request.POST:
-            createform = FormCreateHelpSession(data=request.POST, user=request.user)
-            if createform.is_valid():
-                base_hs = createform.save(commit=False)
+            Form_Recur = FormRecur(request.POST)
+            if Form_Recur.is_valid():
+                # what type of recurrance (days, weeks, months)
+                frequency = Form_Recur.cleaned_data['frequency']
+                # which days (if recur by week)
+                recurdays = Form_Recur.cleaned_data['days']
+                # end date for recurrance
+                end_date = Form_Recur.cleaned_data['end_date']
+                # get base help session (which recurrance is based on from POST)
+                base_hs = helpSession.objects.get(pk = request.POST['helpSessionID'])
+
+                cur_hs_date = base_hs.date
+                if frequency == 'daily':
+                    while cur_hs_date < end_date:
+                        cur_hs_date += timedelta(days=1)
+                        base_hs.date = cur_hs_date
+                        base_hs.pk = None #this ensures that a new helpsession object is created
+                        base_hs.save()
+                if frequency == 'monthly':
+                    while cur_hs_date < end_date:
+                        cur_hs_date += relativedelta(months=1)
+                        base_hs.date = cur_hs_date
+                        base_hs.pk = None
+                        base_hs.save()
+                if frequency == 'weekly':
+                    while cur_hs_date < end_date:
+                        cur_hs_date += relativedelta(days=1)
+                        for day in recurdays:
+                            if int(day) == cur_hs_date.weekday():
+                                base_hs.date = cur_hs_date
+                                base_hs.pk = None
+                                base_hs.save()
+
+                # Pass context to success page
                 context={
-                    "created_new": True,
-                    "Form_Recur": FormRecur(),
-                    "base_hs": base_hs
+                    "recur_success": True,
                 }
                 return render(request, "success.html", context)
+
+        # cancel recurrance
+        if 'cancel' in request.POST:
+            temp_hs = helpSession.objects.get(pk = request.POST['helpSessionID'])
+            temp_hs.delete()
+            return redirect('/manageHelpSessions/')
         
 
     return render(request, 'createHelpSession.html', context)

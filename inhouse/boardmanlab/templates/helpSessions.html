@@ -30,9 +30,9 @@
             is a list of relevant reservations according to user
             and filter preferences -->
         {% for reservation in reservations %}
-        <div class="help-session-box" style="padding: 10px">
+        <div class="help-session-box">
           <div class="help-session-title-fullrow">
-            <div>{% time_format reservation.helpSession.time %} - {% add_minutes reservation.helpSession.date reservation.helpSession.time reservation.helpSession.duration %}</div>
+            <div> {% get_day_string_from_datetime reservation.helpSession.date %}, {{ reservation.helpSession.date }}</div>
             <div class="help-session-mode">
               {% if reservation.helpSession.is_remote %}
               <div class="mode-container"><img src="{% static 'images/remote_icon.png' %}" alt="remote"/></div>
@@ -44,7 +44,7 @@
           </div>
             <div class="help-session-info-row">
                 <div class="help-session-label">Time</div>
-                <div class="help-session-info">{{reservation.helpSession.time}}</div>
+                <div class="help-session-info">{% time_format reservation.helpSession.time %} - {% add_minutes reservation.helpSession.date reservation.helpSession.time reservation.helpSession.duration %}</div>
               </div>
             <div class="help-session-info-row">
               <div class="help-session-label">Helper</div>
@@ -53,10 +53,6 @@
             <div class="help-session-info-row">
               <div class="help-session-label">Topic</div>
               <div class="help-session-info">{{reservation.helpSession.topic}}</div>
-            </div>
-            <div class="help-session-info-row">
-              <div class="help-session-label">Duration</div>
-              <div class="help-session-info">{{reservation.helpSession.duration}} minutes</div>
             </div>
             {% if reservation.helpSession.is_remote %}
             <div class="help-session-info-row">

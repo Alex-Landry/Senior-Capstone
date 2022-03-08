@@ -38,8 +38,8 @@
       <div class="scroll-content">
 
         {% for helpSession in helpSessions %}
-        <div class="help-session-box" style="padding: 10px">
-          <div class="help-session-title">{{ helpSession.date }}</div>
+        <div class="help-session-box">
+          <div class="help-session-title">{% get_day_string_from_datetime helpSession.date %} {{ helpSession.date }}</div>
           <div class="help-session-info-row">
               <div class="help-session-label">Time</div>
               <div class="help-session-info">{% time_format helpSession.time %}- {% add_minutes helpSession.date helpSession.time helpSession.duration %}</div>

@@ -15,6 +15,9 @@
     .calendar-content-session-text{
         display: none !important;
     }
+    .help-session-box{
+        width: 95% !important;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -51,7 +54,9 @@
     }
     .calendar-content-session-text{
         display: none !important;
-
+    }
+    .help-session-box{
+        width: auto !important;
     }
 }
 
@@ -873,7 +878,7 @@ input[type=text], select {
     background-color: #0D598E;
     margin-left: 0px;
     margin-top: 20px;
-    padding: 4px;
+    padding: 10px !important;
     width: 90%;
     max-width: 800px;
     filter: drop-shadow(3px 3px 1px rgb(0,0,0, .2));
@@ -1024,7 +1029,6 @@ input[type=text], select {
 .scroll-content{
     overflow-y: auto;
     max-height: 600px;
-    margin: 10px;
 }
 
 .scroll-content::-webkit-scrollbar {

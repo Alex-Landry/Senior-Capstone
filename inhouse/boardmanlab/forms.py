@@ -245,6 +245,13 @@ class FormDeleteHelpSession(forms.Form):
     )
 
 class FormRecur(forms.Form):
+
+    helpSessionID = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={ 'type' : 'hidden'}
+        )
+    )
+
     frequency = forms.ChoiceField(
         required = True,
         label = 'kindof',
