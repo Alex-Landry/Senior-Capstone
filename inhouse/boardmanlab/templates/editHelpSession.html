@@ -8,7 +8,7 @@
       <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
        <a href="/helpsessions" class="center-content-closed-tab unselectable">Sessions</a>
       {% if user.is_helper or user.is_admin %}
-      <div class="center-content-open-tab unselectable" style="margin-left: 0">Manage</div>
+      <div class="center-content-open-tab unselectable">Manage</div>
       {% endif %}
       <div class="center-content-blank-tab"></div>
     </div>
@@ -59,6 +59,39 @@
             <div class="help-session-label">Topic</div>
             <div class="help-session-info">
               {{FormEditHelpSession.topic}}
+              {{FormEditHelpSession.errors}}
+            </div>
+          </div>
+
+          <div class="help-session-info-row">
+            <div class="help-session-label">Mode</div>
+            <div class="help-session-info">
+              In Person {{FormEditHelpSession.is_inperson}}
+              Remote {{FormEditHelpSession.is_remote}}
+              {{FormEditHelpSession.errors}}
+            </div>
+          </div>
+
+          <div class="help-session-info-row">
+            <div class="help-session-label">Remote Link</div>
+            <div class="help-session-info">
+              {{FormEditHelpSession.remote_link}}
+              {{FormEditHelpSession.errors}}
+            </div>
+          </div>
+
+          <div class="help-session-info-row">
+            <div class="help-session-label">Notes</div>
+            <div class="help-session-info">
+              {{FormEditHelpSession.notes}}
+              {{FormEditHelpSession.errors}}
+            </div>
+          </div>
+
+          <div class="help-session-info-row">
+            <div class="help-session-label">Attendance</div>
+            <div class="help-session-info">
+              {{FormEditHelpSession.attendance}}
               {{FormEditHelpSession.errors}}
             </div>
           </div>

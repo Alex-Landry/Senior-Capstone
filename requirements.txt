@@ -7,3 +7,4 @@ django-oauth-toolkit
 django-cors-headers
 django-allauth
 google-auth
+python-dateutil

@@ -6,9 +6,9 @@
   <div class="center-content">
     <div class="center-content-tab-container">
       <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
-      <a href="/helpsessions" class="center-content-closed-tab unselectable" style="margin-left: 0">Sessions</a>
+      <a href="/helpsessions" class="center-content-closed-tab unselectable">Sessions</a>
       {% if user.is_helper or user.is_admin %}
-      <div class="center-content-open-tab unselectable" style="margin-left: 0">Manage</div>
+      <div class="center-content-open-tab unselectable">Manage</div>
       {% endif %}
       <div class="center-content-blank-tab"></div>
     </div>
@@ -38,8 +38,8 @@
       <div class="scroll-content">
 
         {% for helpSession in helpSessions %}
-        <div class="help-session-box" style="padding: 10px">
-          <div class="help-session-title">{{ helpSession.date }}</div>
+        <div class="help-session-box">
+          <div class="help-session-title">{% get_day_string_from_datetime helpSession.date %} {{ helpSession.date }}</div>
           <div class="help-session-info-row">
               <div class="help-session-label">Time</div>
               <div class="help-session-info">{% time_format helpSession.time %}- {% add_minutes helpSession.date helpSession.time helpSession.duration %}</div>
@@ -57,7 +57,12 @@
             <div class="help-session-info">{{helpSession.duration}} minutes</div>
           </div>
 
-          <div class="help-session-info-fullrow">
+          <div class="help-session-info-row">
+            <div class="help-session-label">Signed Up</div>
+            <div class="help-session-info">{% get_student_sign_up helpSession %} Students</div>
+          </div>
+
+          <div class="help-session-buttons-fullrow">
 
           {% if user.is_helper and helpSession.helper == user %}
             <form method="post" class="form-button" action="/editHelpSession">

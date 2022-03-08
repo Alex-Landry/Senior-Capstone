@@ -15,6 +15,9 @@
     .calendar-content-session-text{
         display: none !important;
     }
+    .help-session-box{
+        width: 95% !important;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -51,7 +54,9 @@
     }
     .calendar-content-session-text{
         display: none !important;
-
+    }
+    .help-session-box{
+        width: auto !important;
     }
 }
 
@@ -199,6 +204,28 @@ body {
     background-color: #0f1922;
   }
 
+#remote-button {
+    font-family: inherit;
+    font-size: small;
+    display: inline-block;
+    align-items: center;
+    vertical-align: middle;
+    width: fit-content;
+    padding: 3px 5px 3px 5px;
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    color: #FFFFFF;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #9e0eca !important;
+}
+
+#remote-button:hover {
+    background-color: #0f1922 !important;
+  }
 
 .content-container {
     display: -webkit-flex;
@@ -243,7 +270,6 @@ body {
     -ms-flex: 2;
     flex: 2;
     margin-left: 7px;
-    margin-right: 7px;
     margin-top: 7px;
     text-align: center;
     padding: 10px;
@@ -732,8 +758,9 @@ input[type=text], select {
 }
 
 .form-custom{
-    display: inline-block;
+    display: inline;
     padding-left: 10px;
+    width: min(100%, 800px);
 }
 
 .form-button{
@@ -746,7 +773,7 @@ input[type=text], select {
     background-color: #1D2E3F !important;
     font-family: inherit !important;
     color: #FFFFFF;
-    width: 50%;
+    width: 100%;
     border: none !important;
 }
 
@@ -851,7 +878,7 @@ input[type=text], select {
     background-color: #0D598E;
     margin-left: 0px;
     margin-top: 20px;
-    padding: 4px;
+    padding: 10px !important;
     width: 90%;
     max-width: 800px;
     filter: drop-shadow(3px 3px 1px rgb(0,0,0, .2));
@@ -889,6 +916,33 @@ input[type=text], select {
     width: 100%;
     margin-top: 4px;
 }
+
+.help-session-title-fullrow{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0em;
+    text-align: left;
+    align-items: center;
+}
+
+.help-session-mode {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    vertical-align: middle;
+}
+
+.mode-container{
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 
 .help-session-label{
     background-color: #444444;
@@ -929,7 +983,20 @@ input[type=text], select {
     color: #FFFFFF;
     padding: 0px !important;
     margin: 0px !important;
-    width: 50%;
+    width: 100%;
+    min-width: fit-content;
+    border-radius: none !important;
+    height: fit-content !important;
+}
+
+#checkboxForm {
+    display: inline-block;
+    background-color: #1D2E3F;
+    border: none;
+    color: #FFFFFF;
+    padding: 0px !important;
+    margin: 0px !important;
+    width: 25px;
     min-width: fit-content;
     border-radius: none !important;
     height: fit-content !important;
@@ -942,10 +1009,11 @@ input[type=text], select {
     border: none;
     color: #FFFFFF;
     padding: 0px !important;
-    margin: 0;
+    margin: 0px;
     width: 100%;
     height: 100%;
-    border-radius: none !important;
+    border: 0px !important;
+    border-radius: 0px !important;
     resize: vertical !important;
 }
 
@@ -959,9 +1027,8 @@ input[type=text], select {
 }
 
 .scroll-content{
-    overflow-y: auto; 
+    overflow-y: auto;
     max-height: 600px;
-    margin: 10px;
 }
 
 .scroll-content::-webkit-scrollbar {

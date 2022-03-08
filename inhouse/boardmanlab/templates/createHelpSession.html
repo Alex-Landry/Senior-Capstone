@@ -6,9 +6,9 @@
   <div class="center-content">
     <div class="center-content-tab-container">
       <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
-       <a href="/helpsessions" class="center-content-closed-tab unselectable" style="margin-left: 0">Sessions</a>
+       <a href="/helpsessions" class="center-content-closed-tab unselectable">Sessions</a>
       {% if user.is_helper or user.is_admin %}
-      <div class="center-content-open-tab unselectable" style="margin-left: 0">Manage</div>
+      <div class="center-content-open-tab unselectable">Manage</div>
       {% endif %}
       <div class="center-content-blank-tab"></div>
     </div>
@@ -17,10 +17,10 @@
       <div class="center-content-tab-content">
 
         <!-- PAGE CONTENT GOES HERE -->
-      <form action="" method="post" class="form-custom" style="width:90%">
+      <form action="" method="post" class="form-custom">
         {% csrf_token %}
         {{ FormCreateHelpSession.non_field_errors }}
-        <div class="help-session-box" style="padding: 10px">
+        <div class="help-session-box">
           <div class="help-session-title">New Help Session</div>
 
         <div class="help-session-info-row">
@@ -49,30 +49,52 @@
           <div class="help-session-info-row">
             <div class="help-session-label">Duration</div>
             <div class="help-session-info">
-              
               {{FormCreateHelpSession.duration}}
               {{FormCreateHelpSession.errors}}
-            
             </div>
           </div>
           
           <div class="help-session-info-row">
             <div class="help-session-label">Topic</div>
-
             <div class="help-session-info">
-
               {{FormCreateHelpSession.topic}}
               {{FormCreateHelpSession.errors}}
-
             </div>
           </div>
 
-            <input type="submit" id="small-button" value="Create New Help Session" class="ultrablue"></input>
-            
+          <div class="help-session-info-row">
+            <div class="help-session-label">Mode</div>
+            <div class="help-session-info">
+              In Person {{FormCreateHelpSession.is_inperson}}
+              Remote {{FormCreateHelpSession.is_remote}}
+              {{FormCreateHelpSession.errors}}
+            </div>
+          </div>
+
+          <div class="help-session-info-row">
+            <div class="help-session-label">Remote Link</div>
+            <div class="help-session-info">
+              {{FormCreateHelpSession.remote_link}}
+              {{FormCreateHelpSession.errors}}
+            </div>
+          </div>
+
+          <div class="help-session-info-row">
+            <div class="help-session-label">Notes</div>
+            <div class="help-session-info">
+              {{FormCreateHelpSession.notes}}
+              {{FormCreateHelpSession.errors}}
+            </div>
+          </div>
+
+          <div class="help-session-buttons-fullrow" style="justify-content: right !important;">
+            <div>&nbsp;</div>
+            <input type="submit" name="recur" class="blue" id="small-button" value="Make Recurring"></input>
+            <input type="submit" name="create" id="small-button" value="Create Help Session" class="ultrablue" style="margin-left: 4px;"></input>
+          </div>
         </div>
         {{FormCreateHelpSession.errors}}
             
-
       </form>
 
 

@@ -1,6 +1,7 @@
 
 from django import template
 register = template.Library()
+from reservations.models import Reservation
 
 import calendar
 from datetime import datetime
@@ -99,7 +100,9 @@ def add_minutes(date, time, duration):
 
 @register.simple_tag
 def time_format(time):
-    time = time.strftime("%I:%M %p").replace(' 0', '')
+    time = time.strftime("%I:%M %p")
+    if time[0] == '0':
+        time = time[1:]
     return time
 
 @register.simple_tag
@@ -114,3 +117,12 @@ def get_day_string_from_datetime(datetimeobj):
 @register.filter
 def index(indexable, i):
     return indexable[i]
+
+@register.simple_tag
+def get_student_sign_up(cur_helpsession):
+    return Reservation.objects.filter(helpSession=cur_helpsession).count()
+    
+@register.simple_tag
+def get_freq(freq):
+    if freq == 'days':
+        return True
