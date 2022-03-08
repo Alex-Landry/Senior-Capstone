@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('boardmanlab', '0005_helpsession_remote_link'),
+        ("boardmanlab", "0005_helpsession_remote_link"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='helpsession',
-            name='is_online',
+            model_name="helpsession",
+            name="is_online",
             field=models.BooleanField(default=False, null=True),
         ),
     ]

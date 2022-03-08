@@ -1,70 +1,60 @@
 {% load calendar_tags %}
-
-
 <div style="font-size: 10px; font-weight: 300;">
     This is a check to make sure we are getting {{ user.first_name }} {{ user.last_name }}'s profile.
 </div>
-
-
 <div class="calendar-content-strip">
-
     <div class="calendar-content-view-menu">
-        <a href="/calendarMonth/{% decrement_year year month %}/{% decrement_month_alt year month day %}/0/" class="left-arrow"></a>
+        <a href="/calendarMonth/{% decrement_year year month %}/{% decrement_month_alt year month day %}/0/"
+           class="left-arrow"></a>
         <div class="text-date-menu">{% gen_month_string month %} {{ year }}</div>
-        <a href="/calendarMonth/{% increment_year year month %}/{% increment_month_alt year month day %}/0/" class="right-arrow"></a>
+        <a href="/calendarMonth/{% increment_year year month %}/{% increment_month_alt year month day %}/0/"
+           class="right-arrow"></a>
     </div>
-
 </div>
-
 <div class="calendar-day-labels">
-{% for day in day_string_list %}
-    <div class="calendar-content-day-labels">{% gen_day_string day %}</div>
-{% endfor %}
-</div>
-
-
-
-<div class="calendar-grid">
-{% for week in month_obj %}
-    {% for date in week %}
-        {% if date != 0 %}
-            {% if date != day %}
-                <a href="/calendarDay/{{year}}/{{month}}/{{date}}/" class="calendar-content-day blue">
-                    <div class="calendar-content-date-container">{{date}}</div>
-                    {% if sessionflag|index:date > 0 %}
-                        {% if sessionflag|index:date > 9 %}
-                            <div class="calendar-content-session-text">9+</div>
-                        {% else %}
-                            <div class="calendar-content-session-text">{{sessionflag|index:date}}</div>
-                        {% endif %}
-                        <div class="calendar-content-session-available-icon"></div>
-                    {% endif %}
-                    <div class="calendar-content-day-big-number">{{date}}</div>
-                </a>
-            {% else %} 
-                <a href="/calendarDay/{{year}}/{{month}}/{{date}}/" class="calendar-content-day lightblue">
-                    <div class="calendar-content-date-container ultrablue darktext">{{date}}</div>
-                    {% if sessionflag|index:date > 0 %}
-                        {% if sessionflag|index:date > 9 %}
-                            <div class="calendar-content-session-text">9+</div>
-                        {% else %}
-                            <div class="calendar-content-session-text">{{sessionflag|index:date}}</div>
-                        {% endif %}
-                        <div class="calendar-content-session-available-icon"></div>
-                    {% endif %}
-                    <div class="calendar-content-day-big-number">{{date}}</div>
-                </a>
-            {% endif %}
-        {% else %}    
-            <div class="calendar-content-day gray"></div>
-        {% endif %}
+    {% for day in day_string_list %}
+        <div class="calendar-content-day-labels">{% gen_day_string day %}</div>
     {% endfor %}
-
-{% endfor %}
 </div>
-
-
-
+<div class="calendar-grid">
+    {% for week in month_obj %}
+        {% for date in week %}
+            {% if date != 0 %}
+                {% if date != day %}
+                    <a href="/calendarDay/{{ year }}/{{ month }}/{{ date }}/"
+                       class="calendar-content-day blue">
+                        <div class="calendar-content-date-container">{{ date }}</div>
+                        {% if sessionflag|index:date > 0 %}
+                            {% if sessionflag|index:date > 9 %}
+                                <div class="calendar-content-session-text">9+</div>
+                            {% else %}
+                                <div class="calendar-content-session-text">{{ sessionflag|index:date }}</div>
+                            {% endif %}
+                            <div class="calendar-content-session-available-icon"></div>
+                        {% endif %}
+                        <div class="calendar-content-day-big-number">{{ date }}</div>
+                    </a>
+                {% else %}
+                    <a href="/calendarDay/{{ year }}/{{ month }}/{{ date }}/"
+                       class="calendar-content-day lightblue">
+                        <div class="calendar-content-date-container ultrablue darktext">{{ date }}</div>
+                        {% if sessionflag|index:date > 0 %}
+                            {% if sessionflag|index:date > 9 %}
+                                <div class="calendar-content-session-text">9+</div>
+                            {% else %}
+                                <div class="calendar-content-session-text">{{ sessionflag|index:date }}</div>
+                            {% endif %}
+                            <div class="calendar-content-session-available-icon"></div>
+                        {% endif %}
+                        <div class="calendar-content-day-big-number">{{ date }}</div>
+                    </a>
+                {% endif %}
+            {% else %}
+                <div class="calendar-content-day gray"></div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</div>
 <!-- Not Used Currently (not sure if its needed)
 <div class="legend-object">
     <div class="smallbox ultrablue"></div>

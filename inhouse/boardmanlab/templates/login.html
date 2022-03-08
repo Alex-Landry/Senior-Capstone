@@ -4,47 +4,41 @@
 {% get_providers as socialaccount_providers %}
 {% load static %}
 {% load i18n %}
-
 <!-- Page Content -->
 {% block content %}
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<div class="content-container">
-
-    <div class="login-container"></div>
-    <div class="content-bgimage">
-    <img src="{% static 'images/sw_bg.jpeg' %}" />
-    </div>
-    <div class="login-container">
-        <div class="login-logo"><img src="{% static 'images/umaine_fullcrest_small.png' %}" /></div>
-
-        <div class="input-container">
-            <img src="{% static 'images/login.png' %}" />
-            {% if user.is_authenticated %}
-                <p>Welcome {{ user.first_name }}!</p>
-                <form action="/calendarMonth/0/0/0">
-                    <input type="submit" class="lightblue" id="submit" value="Calendar"></input>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <div class="content-container">
+        <div class="login-container"></div>
+        <div class="content-bgimage">
+            <img src="{% static 'images/sw_bg.jpeg' %}" />
+        </div>
+        <div class="login-container">
+            <div class="login-logo">
+                <img src="{% static 'images/umaine_fullcrest_small.png' %}" />
+            </div>
+            <div class="input-container">
+                <img src="{% static 'images/login.png' %}" />
+                {% if user.is_authenticated %}
+                    <p>
+                        Welcome {{ user.first_name }}!
+                    </p>
+                    <form action="/calendarMonth/0/0/0">
+                        <input type="submit" class="lightblue" id="submit" value="Calendar">
+                    </input>
                 </form>
-                {% else %}
-                <p>Please login to see this page.</p>
+            {% else %}
+                <p>
+                    Please login to see this page.
+                </p>
                 <form method="post" action="{% provider_login_url 'google' %}">
                     {% csrf_token %}
-                    <input type="submit" id="login" value="Login with Umaine Account"></input>
-                </form>
-                {% endif %}
-                
-            
-            
-            
-
-
-        </div>
-    
-        <div class="input-bottom-bar">Powered by Google OAUTH</div>
-
+                    <input type="submit" id="login" value="Login with Umaine Account">
+                </input>
+            </form>
+        {% endif %}
     </div>
-
+    <div class="input-bottom-bar">Powered by Google OAUTH</div>
 </div>
-
-
+</div>
 <!-- End of Page Content -->
 {% endblock %}

@@ -15,14 +15,28 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='helpSession',
+            name="helpSession",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('topic', models.TextField(max_length=300)),
-                ('date', models.DateField()),
-                ('duration', models.IntegerField(default=30)),
-                ('attendance', models.IntegerField(default=0)),
-                ('helper', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("topic", models.TextField(max_length=300)),
+                ("date", models.DateField()),
+                ("duration", models.IntegerField(default=30)),
+                ("attendance", models.IntegerField(default=0)),
+                (
+                    "helper",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

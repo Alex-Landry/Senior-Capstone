@@ -9,39 +9,49 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('boardmanlab', '0002_helpsession_time'),
-        ('reservations', '0001_initial'),
+        ("boardmanlab", "0002_helpsession_time"),
+        ("reservations", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='reservation',
-            name='duration',
+            model_name="reservation",
+            name="duration",
         ),
         migrations.RemoveField(
-            model_name='reservation',
-            name='feedback',
+            model_name="reservation",
+            name="feedback",
         ),
         migrations.RemoveField(
-            model_name='reservation',
-            name='helper',
+            model_name="reservation",
+            name="helper",
         ),
         migrations.RemoveField(
-            model_name='reservation',
-            name='student',
+            model_name="reservation",
+            name="student",
         ),
         migrations.RemoveField(
-            model_name='reservation',
-            name='topic',
+            model_name="reservation",
+            name="topic",
         ),
         migrations.AddField(
-            model_name='reservation',
-            name='helpSession',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='boardmanlab.helpsession'),
+            model_name="reservation",
+            name="helpSession",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="boardmanlab.helpsession",
+            ),
         ),
         migrations.AddField(
-            model_name='reservation',
-            name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="reservation",
+            name="user",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

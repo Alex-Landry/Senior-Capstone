@@ -1,85 +1,92 @@
 {% extends 'main/base.html' %}
 {% load calendar_tags %}
 {% load static %}
-
 {% block content %}
-<!-- Center Flex Box -->
-  <div class="center-content">
-    <div class="center-content-tab-container">
-      <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
-      <div class="center-content-open-tab unselectable">Sessions</div>
-        {% if user.is_helper or user.is_admin %}
-      <a href="/manageHelpSessions" class="center-content-closed-tab unselectable">Manage</a>
-      {% endif %}
-      <div class="center-content-blank-tab"></div>
-    </div>
-    <div class="center-content-tab-content-container">
-
-      <div class="center-content-tab-content">
-
-
-        <!-- PAGE CONTENT GOES HERE -->
-
-        <!-- Filter -->
-        {% include 'elements/filter_helpSessions.html' %}
-        <!-- End of Filter -->
-
-
-        <div class="scroll-content">
-        <!-- reservations comes from the view context,
+    <!-- Center Flex Box -->
+    <div class="center-content">
+        <div class="center-content-tab-container">
+            <a href="/calendarMonth/0/0/0/"
+               class="center-content-closed-tab unselectable">Calendar</a>
+            <div class="center-content-open-tab unselectable">Sessions</div>
+            {% if user.is_helper or user.is_admin %}
+                <a href="/manageHelpSessions"
+                   class="center-content-closed-tab unselectable">Manage</a>
+            {% endif %}
+            <div class="center-content-blank-tab"></div>
+        </div>
+        <div class="center-content-tab-content-container">
+            <div class="center-content-tab-content">
+                <!-- PAGE CONTENT GOES HERE -->
+                <!-- Filter -->
+                {% include 'elements/filter_helpSessions.html' %}
+                <!-- End of Filter -->
+                <div class="scroll-content">
+                    <!-- reservations comes from the view context,
             is a list of relevant reservations according to user
             and filter preferences -->
-        {% for reservation in reservations %}
-        <div class="help-session-box">
-          <div class="help-session-title-fullrow">
-            <div> {% get_day_string_from_datetime reservation.helpSession.date %}, {{ reservation.helpSession.date }}</div>
-            <div class="help-session-mode">
-              {% if reservation.helpSession.is_remote %}
-              <div class="mode-container"><img src="{% static 'images/remote_icon.png' %}" alt="remote"/></div>
-              {% endif %}
-              {% if reservation.helpSession.is_inperson %}
-              <div class="mode-container"><img src="{% static 'images/inperson_icon.png' %}" alt="In Person" /></div>
-              {% endif %}
-            </div>
-          </div>
-            <div class="help-session-info-row">
-                <div class="help-session-label">Time</div>
-                <div class="help-session-info">{% time_format reservation.helpSession.time %} - {% add_minutes reservation.helpSession.date reservation.helpSession.time reservation.helpSession.duration %}</div>
-              </div>
-            <div class="help-session-info-row">
-              <div class="help-session-label">Helper</div>
-              <div class="help-session-info">{{reservation.helpSession.helper.first_name}} {{reservation.helpSession.helper.last_name}}</div>
-            </div>
-            <div class="help-session-info-row">
-              <div class="help-session-label">Topic</div>
-              <div class="help-session-info">{{reservation.helpSession.topic}}</div>
-            </div>
-            {% if reservation.helpSession.is_remote %}
-            <div class="help-session-info-row">
-              <div class="help-session-label">Remote Link</div>
-              <div class="help-session-info" style="padding:0px" ><a href={{reservation.helpSession.remote_link}} class="blue" target="blank" id="remote-button"> Go To Remote Session</a></div>
-            </div>
-            {% endif %}
-        
-            <div class="help-session-info-fullrow">
-                
-                <form method="post" class="form-button" action="/helpSessionFeedback">
-                    {% csrf_token %}
-                    <!-- Testing -->
-                    <input id="id_{{FormFeedbackButton.helpSessionID.html_name}}" name="{{FormFeedbackButton.helpSessionID.html_name}}" type="hidden" value="{{reservation.pk}}"></input>
-                    <input type="submit" name="feedback" class="ultrablue darktext" id="small-button" value="Provide Feedback"></input>
-                </form>
-            </div>
-        
-          </div>
-        {% endfor %}
+                    {% for reservation in reservations %}
+                        <div class="help-session-box">
+                            <div class="help-session-title-fullrow">
+                                <div>{% get_day_string_from_datetime reservation.helpSession.date %}, {{ reservation.helpSession.date }}</div>
+                                <div class="help-session-mode">
+                                    {% if reservation.helpSession.is_remote %}
+                                        <div class="mode-container">
+                                            <img src="{% static 'images/remote_icon.png' %}" alt="remote"/>
+                                        </div>
+                                    {% endif %}
+                                    {% if reservation.helpSession.is_inperson %}
+                                        <div class="mode-container">
+                                            <img src="{% static 'images/inperson_icon.png' %}" alt="In Person" />
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="help-session-info-row">
+                                <div class="help-session-label">Time</div>
+                                <div class="help-session-info">
+                                    {% time_format reservation.helpSession.time %} - {% add_minutes reservation.helpSession.date reservation.helpSession.time reservation.helpSession.duration %}
+                                </div>
+                            </div>
+                            <div class="help-session-info-row">
+                                <div class="help-session-label">Helper</div>
+                                <div class="help-session-info">
+                                    {{ reservation.helpSession.helper.first_name }} {{ reservation.helpSession.helper.last_name }}
+                                </div>
+                            </div>
+                            <div class="help-session-info-row">
+                                <div class="help-session-label">Topic</div>
+                                <div class="help-session-info">{{ reservation.helpSession.topic }}</div>
+                            </div>
+                            {% if reservation.helpSession.is_remote %}
+                                <div class="help-session-info-row">
+                                    <div class="help-session-label">Remote Link</div>
+                                    <div class="help-session-info" style="padding:0px">
+                                        <a href={{ reservation.helpSession.remote_link }} class="blue" target="blank" id="remote-button"> Go To Remote Session</a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="help-session-info-fullrow">
+                                <form method="post" class="form-button" action="/helpSessionFeedback">
+                                    {% csrf_token %}
+                                    <!-- Testing -->
+                                    <input id="id_{{ FormFeedbackButton.helpSessionID.html_name }}"
+                                           name="{{ FormFeedbackButton.helpSessionID.html_name }}"
+                                           type="hidden"
+                                           value="{{ reservation.pk }}">
+                                </input>
+                                <input type="submit"
+                                       name="feedback"
+                                       class="ultrablue darktext"
+                                       id="small-button"
+                                       value="Provide Feedback">
+                            </input>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-
-
-
-        
-      </div>
     </div>
-  </div>
+</div>
+</div>
 <!-- End Center Flex Box -->
 {% endblock %}

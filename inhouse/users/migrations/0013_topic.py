@@ -7,19 +7,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0012_alter_user_username'),
+        ("users", "0012_alter_user_username"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Topic',
+            name="Topic",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('topic', models.TextField(blank=True, max_length=300, null=True)),
-                ('user', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("topic", models.TextField(blank=True, max_length=300, null=True)),
+                ("user", models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'ordering': ['topic'],
+                "ordering": ["topic"],
             },
         ),
     ]

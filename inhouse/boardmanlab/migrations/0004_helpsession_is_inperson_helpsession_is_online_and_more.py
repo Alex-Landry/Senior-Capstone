@@ -6,23 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('boardmanlab', '0003_alter_helpsession_options_and_more'),
+        ("boardmanlab", "0003_alter_helpsession_options_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='helpsession',
-            name='is_inperson',
+            model_name="helpsession",
+            name="is_inperson",
             field=models.BooleanField(blank=True, default=True, null=True),
         ),
         migrations.AddField(
-            model_name='helpsession',
-            name='is_online',
+            model_name="helpsession",
+            name="is_online",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='helpsession',
-            name='notes',
+            model_name="helpsession",
+            name="notes",
             field=models.TextField(blank=True, max_length=1000, null=True),
         ),
     ]

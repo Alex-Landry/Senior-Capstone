@@ -12,7 +12,7 @@ DAYS = (
     ("2", "Wednesday"),
     ("3", "Thursday"),
     ("4", "Friday"),
-    ("5", "Saturday")
+    ("5", "Saturday"),
 )
 
 MONTHS = (
@@ -36,14 +36,24 @@ YEARS = (
     ("2024", "2024"),
 )
 
+
 class FormCreateHelpSession(forms.ModelForm):
     class Meta:
         model = helpSession
-        exclude = ['attendance', 'helper']
-        fields = ['date', 'time', 'duration', 'topic', 'is_remote', 'is_inperson', 'remote_link', 'notes']
+        exclude = ["attendance", "helper"]
+        fields = [
+            "date",
+            "time",
+            "duration",
+            "topic",
+            "is_remote",
+            "is_inperson",
+            "remote_link",
+            "notes",
+        ]
 
     def __init__(self, *args, **kwargs):
-        self._user = kwargs.pop('user')
+        self._user = kwargs.pop("user")
         super(FormCreateHelpSession, self).__init__(*args, **kwargs)
 
     def save(self, commit=True):
@@ -55,240 +65,196 @@ class FormCreateHelpSession(forms.ModelForm):
         return inst
 
     date = forms.DateField(
-        label='date', 
+        label="date",
         initial=today.date,
-        widget=forms.DateInput(
-            attrs={'type': 'date',
-                   'id' : 'form-picker-input'
-                   }
-            ),
-        )
+        widget=forms.DateInput(attrs={"type": "date", "id": "form-picker-input"}),
+    )
     time = forms.TimeField(
-        label='time', 
-        widget=forms.TimeInput(
-            attrs={'type': 'time',
-                   'id' : 'form-picker-input'
-                   }
-            ),
-        )
+        label="time",
+        widget=forms.TimeInput(attrs={"type": "time", "id": "form-picker-input"}),
+    )
     duration = forms.ChoiceField(
         choices=[(i, i) for i in range(15, 130, 15)],
-        label='duration', 
+        label="duration",
         initial=30,
-        widget=forms.Select(
-            attrs={'id': 'selectForm'}
-            ),
-        )
+        widget=forms.Select(attrs={"id": "selectForm"}),
+    )
     topic = forms.ChoiceField(
         choices=[(topic, topic) for topic in Topic.objects.all()],
-        widget=forms.Select(
-            attrs={'id': 'selectForm'}
-            ),
-        )
+        widget=forms.Select(attrs={"id": "selectForm"}),
+    )
 
     is_inperson = forms.NullBooleanField(
-        required = False,
-        label = 'inperson',
-        widget= forms.CheckboxInput(
-            attrs={'id': 'checkboxForm'}
-            ),
-        )
-    
+        required=False,
+        label="inperson",
+        widget=forms.CheckboxInput(attrs={"id": "checkboxForm"}),
+    )
+
     is_remote = forms.NullBooleanField(
-        required = False,
-        label = 'remote',
-        widget= forms.CheckboxInput(
-            attrs={'id': 'checkboxForm'}
-            ),
-        )
+        required=False,
+        label="remote",
+        widget=forms.CheckboxInput(attrs={"id": "checkboxForm"}),
+    )
 
     remote_link = forms.CharField(
-        required = False,
-        label='remotelink',
+        required=False,
+        label="remotelink",
         max_length=200,
-        widget=forms.TextInput(
-            attrs={'id': 'textAreaForm'}
-            ),
-        )
+        widget=forms.TextInput(attrs={"id": "textAreaForm"}),
+    )
 
     notes = forms.CharField(
-        required = False,
-        label='notes',
+        required=False,
+        label="notes",
         max_length=1000,
-        widget=forms.Textarea(
-            attrs={'id': 'textAreaForm'}
-            ),
-        )
-
+        widget=forms.Textarea(attrs={"id": "textAreaForm"}),
+    )
 
 
 class FormEditHelpSession(forms.ModelForm):
     class Meta:
         model = helpSession
-        exclude = ['helper']
-        fields = ['date', 'time', 'duration', 'topic', 'is_remote', 'is_inperson', 'remote_link', 'notes', 'attendance']
+        exclude = ["helper"]
+        fields = [
+            "date",
+            "time",
+            "duration",
+            "topic",
+            "is_remote",
+            "is_inperson",
+            "remote_link",
+            "notes",
+            "attendance",
+        ]
 
     date = forms.DateField(
-        label='date', 
-        widget=forms.DateInput(
-            attrs={'type': 'date',
-                   'id' : 'form-picker-input'}
-            ),
-        )
+        label="date",
+        widget=forms.DateInput(attrs={"type": "date", "id": "form-picker-input"}),
+    )
     time = forms.TimeField(
-        label='time', 
-        widget=forms.TimeInput(
-            attrs={'type': 'time',
-                   'id' : 'form-picker-input'}
-            ),
-        )
+        label="time",
+        widget=forms.TimeInput(attrs={"type": "time", "id": "form-picker-input"}),
+    )
     duration = forms.ChoiceField(
         choices=[(i, i) for i in range(15, 130, 15)],
-        label='duration',
-        widget=forms.Select(
-            attrs={'id': 'selectForm'}
-            ),
-        )
+        label="duration",
+        widget=forms.Select(attrs={"id": "selectForm"}),
+    )
     topic = forms.ChoiceField(
         choices=[(topic.topic, topic.topic) for topic in Topic.objects.all()],
-        widget=forms.Select(
-            attrs={'id': 'selectForm'}
-            ),
-        )
+        widget=forms.Select(attrs={"id": "selectForm"}),
+    )
 
     is_inperson = forms.NullBooleanField(
-        required = False,
-        label = 'inperson',
-        widget= forms.CheckboxInput(
-            attrs={'id': 'checkboxForm'}
-            ),
-        )
-    
+        required=False,
+        label="inperson",
+        widget=forms.CheckboxInput(attrs={"id": "checkboxForm"}),
+    )
+
     is_remote = forms.NullBooleanField(
-        required = False,
-        label = 'remote',
-        widget= forms.CheckboxInput(
-            attrs={'id': 'checkboxForm'}
-            ),
-        )
+        required=False,
+        label="remote",
+        widget=forms.CheckboxInput(attrs={"id": "checkboxForm"}),
+    )
 
     remote_link = forms.CharField(
-        required = False,
-        label='remotelink',
+        required=False,
+        label="remotelink",
         max_length=200,
-        widget=forms.TextInput(
-            attrs={'id': 'textAreaForm'}
-            ),
-        )
+        widget=forms.TextInput(attrs={"id": "textAreaForm"}),
+    )
 
     notes = forms.CharField(
-        required = False,
-        label='notes',
+        required=False,
+        label="notes",
         max_length=1000,
-        widget=forms.Textarea(
-            attrs={'id': 'textAreaForm'}
-            ),
-        )
+        widget=forms.Textarea(attrs={"id": "textAreaForm"}),
+    )
 
     attendance = forms.IntegerField(
-        required = False,
-        label='attendance',
-        widget=forms.NumberInput(
-            attrs={'id': 'textAreaForm'}
-            ),
-        )
+        required=False,
+        label="attendance",
+        widget=forms.NumberInput(attrs={"id": "textAreaForm"}),
+    )
+
 
 class FormEditHelpSessionFeedback(forms.ModelForm):
     class Meta:
         model = Reservation
-        exclude = ['helpSession', 'user']
+        exclude = ["helpSession", "user"]
 
     feedback = forms.CharField(
-        label='Feedback',
+        label="Feedback",
         max_length=1000,
-        widget=forms.Textarea(
-            attrs={'id': 'textAreaForm'}
-            ),
-        )
+        widget=forms.Textarea(attrs={"id": "textAreaForm"}),
+    )
 
 
 class FormEditButton(forms.Form):
-        helpSessionID = forms.IntegerField(
-            widget=forms.NumberInput()
-        )
+    helpSessionID = forms.IntegerField(widget=forms.NumberInput())
+
 
 class FormFeedbackButton(forms.Form):
-        helpSessionID = forms.IntegerField(
-            widget=forms.NumberInput()
-        )
-        
-    
+    helpSessionID = forms.IntegerField(widget=forms.NumberInput())
+
+
 # Form for filtering by month, year
 class FormFilterDate(forms.Form):
     month = forms.ChoiceField(
         choices=MONTHS,
         initial=MONTHS[today.month - 1],
-        widget=forms.Select(
-            attrs={'id': 'selectFilter'}
-            ),
-        )
+        widget=forms.Select(attrs={"id": "selectFilter"}),
+    )
     year = forms.ChoiceField(
         choices=YEARS,
-        widget=forms.Select(
-            attrs={'id': 'selectFilter'}
-            ),
-        )
+        widget=forms.Select(attrs={"id": "selectFilter"}),
+    )
+
 
 class FormDeleteHelpSession(forms.Form):
-    helpSessionID = forms.IntegerField(
-        widget=forms.NumberInput()
-    )
+    helpSessionID = forms.IntegerField(widget=forms.NumberInput())
+
 
 class FormRecur(forms.Form):
 
     helpSessionID = forms.IntegerField(
-        widget=forms.NumberInput(
-            attrs={ 'type' : 'hidden'}
-        )
+        widget=forms.NumberInput(attrs={"type": "hidden"})
     )
 
     frequency = forms.ChoiceField(
-        required = True,
-        label = 'kindof',
-        choices=[('daily', 'Daily'), ('weekly', 'Weekly'), ('monthly', 'Monthly')],
+        required=True,
+        label="kindof",
+        choices=[("daily", "Daily"), ("weekly", "Weekly"), ("monthly", "Monthly")],
         widget=forms.Select(
-            attrs={'id': 'selectForm',
+            attrs={
+                "id": "selectForm",
             }
-            ),
-        )
+        ),
+    )
 
     days = forms.MultipleChoiceField(
-            required = False,
-            label = 'days',
-            choices=DAYS,
-            widget=forms.CheckboxSelectMultiple(
-                attrs={'id': 'checkboxForm'})
-            )
-    
+        required=False,
+        label="days",
+        choices=DAYS,
+        widget=forms.CheckboxSelectMultiple(attrs={"id": "checkboxForm"}),
+    )
+
     end_date = forms.DateField(
-        required = True,
-        label='date', 
-        widget=forms.DateInput(
-            attrs={'type': 'date',
-                   'id' : 'form-picker-input'}
-            ),
-        )
-    
+        required=True,
+        label="date",
+        widget=forms.DateInput(attrs={"type": "date", "id": "form-picker-input"}),
+    )
+
     def clean(self):
         cleaned_data = super().clean()
         frequency = cleaned_data.get("frequency")
         days = cleaned_data.get("days")
 
-        if frequency == 'days' and not days:
+        if frequency == "days" and not days:
             raise ValidationError(
-                "Need to specify which days to recur on"
-                "if frequency is days."
-                )
+                "Need to specify which days to recur on" "if frequency is days."
+            )
+
 
 class ProfileEdit(forms.Form):
     pass

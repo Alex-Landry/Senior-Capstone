@@ -1,72 +1,62 @@
 {% extends 'main/base.html' %}
 {% load socialaccount %}
-
-
 {% block content %}
-<!-- Center Flex Box -->
-<div class="center-content">
-    <div class="center-content-tab-container">
-      <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
-       <a href="/helpsessions" class="center-content-closed-tab unselectable">Sessions</a>
-      {% if user.is_helper or user.is_admin %}
-      <a href="/manageHelpSessions" class="center-content-closed-tab unselectable">Manage</a>
-      {% endif %}
-      <div class="center-content-blank-tab"></div>
-    </div>
-    <div class="center-content-tab-content-container">
-
-      <div class="center-content-tab-content">
-
-        
-
-        <!-- PAGE CONTENT GOES HERE -->
-
-        
-        <div class="manage-content-strip">
-
-            <!-- CHECK IF NEW HELP SESSION WAS CREATED -->
-            {% if created_new %}
-                <p> New Help Session Successfully Created</p>
+    <!-- Center Flex Box -->
+    <div class="center-content">
+        <div class="center-content-tab-container">
+            <a href="/calendarMonth/0/0/0/"
+               class="center-content-closed-tab unselectable">Calendar</a>
+            <a href="/helpsessions" class="center-content-closed-tab unselectable">Sessions</a>
+            {% if user.is_helper or user.is_admin %}
+                <a href="/manageHelpSessions"
+                   class="center-content-closed-tab unselectable">Manage</a>
             {% endif %}
-
-            <!-- CHECK IF ALREADY ATTENDING -->
-            {% if already_attending %}
-                <p class="successful-booking-label">You are already booked for this help session.</p>
-            {% endif %}
-
-            <!-- CHECK IF SUCCESSFUL BOOKING -->
-            {% if new_reservation %}
-                <p class="successful-booking-label">Appointment Successfully Booked!</p>
-            {% endif %}
-
-            <!-- CHECK IF EDITED HELPSESSION -->
-            {% if editedHelpSession %}
-                <p class="successful-booking-label">Help Session Successfully Edited!</p>
-            {% endif %}
-
-            <!-- CHECK IS EDITED FEEDBACK-->        
-            {% if editedHelpSessionFeedback %}
-                <p class="successful-booking-label">Help Session Feedback Successfully Edited!</p>
-            {% endif %}
-
-
-            <!-- CHECK IS EDITED FEEDBACK-->        
-            {% if recur_success %}
-                <p class="successful-booking-label">Reccurance successfully saved!</p>
-            {% endif %}
-
-
-
+            <div class="center-content-blank-tab"></div>
         </div>
-        <!-- END CONTENT -->
-
-
-      </div>
+        <div class="center-content-tab-content-container">
+            <div class="center-content-tab-content">
+                <!-- PAGE CONTENT GOES HERE -->
+                <div class="manage-content-strip">
+                    <!-- CHECK IF NEW HELP SESSION WAS CREATED -->
+                    {% if created_new %}
+                        <p>
+                            New Help Session Successfully Created
+                        </p>
+                    {% endif %}
+                    <!-- CHECK IF ALREADY ATTENDING -->
+                    {% if already_attending %}
+                        <p class="successful-booking-label">
+                            You are already booked for this help session.
+                        </p>
+                    {% endif %}
+                    <!-- CHECK IF SUCCESSFUL BOOKING -->
+                    {% if new_reservation %}
+                        <p class="successful-booking-label">
+                            Appointment Successfully Booked!
+                        </p>
+                    {% endif %}
+                    <!-- CHECK IF EDITED HELPSESSION -->
+                    {% if editedHelpSession %}
+                        <p class="successful-booking-label">
+                            Help Session Successfully Edited!
+                        </p>
+                    {% endif %}
+                    <!-- CHECK IS EDITED FEEDBACK-->
+                    {% if editedHelpSessionFeedback %}
+                        <p class="successful-booking-label">
+                            Help Session Feedback Successfully Edited!
+                        </p>
+                    {% endif %}
+                    <!-- CHECK IS EDITED FEEDBACK-->
+                    {% if recur_success %}
+                        <p class="successful-booking-label">
+                            Reccurance successfully saved!
+                        </p>
+                    {% endif %}
+                </div>
+                <!-- END CONTENT -->
+            </div>
+        </div>
     </div>
-  </div>
-<!-- End Center Flex Box -->
-
-
-
-
+    <!-- End Center Flex Box -->
 {% endblock %}

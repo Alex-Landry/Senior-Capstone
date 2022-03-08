@@ -6,23 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('boardmanlab', '0007_rename_is_online_helpsession_is_remote'),
+        ("boardmanlab", "0007_rename_is_online_helpsession_is_remote"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='helpsession',
-            name='is_inperson',
+            model_name="helpsession",
+            name="is_inperson",
             field=models.BooleanField(default=True, null=True),
         ),
         migrations.AlterField(
-            model_name='helpsession',
-            name='notes',
+            model_name="helpsession",
+            name="notes",
             field=models.TextField(max_length=1000, null=True),
         ),
         migrations.AlterField(
-            model_name='helpsession',
-            name='remote_link',
+            model_name="helpsession",
+            name="remote_link",
             field=models.TextField(max_length=200, null=True),
         ),
     ]

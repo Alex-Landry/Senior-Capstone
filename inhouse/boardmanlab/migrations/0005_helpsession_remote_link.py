@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('boardmanlab', '0004_helpsession_is_inperson_helpsession_is_online_and_more'),
+        ("boardmanlab", "0004_helpsession_is_inperson_helpsession_is_online_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='helpsession',
-            name='remote_link',
+            model_name="helpsession",
+            name="remote_link",
             field=models.TextField(blank=True, max_length=200, null=True),
         ),
     ]

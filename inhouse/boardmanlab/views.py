@@ -11,24 +11,37 @@ from dateutil.relativedelta import *
 from .models import helpSession
 from reservations.models import Reservation
 from users.models import User, Topic
-from .forms import FormEditHelpSessionFeedback, FormFeedbackButton, FormFilterDate, FormCreateHelpSession, FormDeleteHelpSession, FormEditHelpSession, FormEditButton, FormRecur
+from .forms import (
+    FormEditHelpSessionFeedback,
+    FormFeedbackButton,
+    FormFilterDate,
+    FormCreateHelpSession,
+    FormDeleteHelpSession,
+    FormEditHelpSession,
+    FormEditButton,
+    FormRecur,
+)
 import calendar
+
 cal = calendar.Calendar()
 cal.setfirstweekday(calendar.SUNDAY)
 
 
 # Create your views here.
 
+
 @login_required()
 def index(request):
-    return render(request, 'index.html')
+    return render(request, "index.html")
+
 
 def login(request):
-    return render(request, 'login.html')
+    return render(request, "login.html")
+
 
 @login_required()
 def calendarMonth(request, year, month, day):
-    sessionflag=[0]
+    sessionflag = [0]
     if year == 0 and month == 0:
         year = datetime.now().year
         month = datetime.now().month
@@ -38,38 +51,45 @@ def calendarMonth(request, year, month, day):
     for week in cal.monthdayscalendar(year, month):
         for dayz in week:
             if dayz != 0:
-                sessionflag.append(helpSession.objects.filter(date__day=dayz, date__month=month).count())
+                sessionflag.append(
+                    helpSession.objects.filter(
+                        date__day=dayz, date__month=month
+                    ).count()
+                )
             else:
                 continue
     context = {
-        "day_string_list": [6,0,1,2,3,4,5],
+        "day_string_list": [6, 0, 1, 2, 3, 4, 5],
         "day": day,
         "month": month,
         "year": year,
         "month_obj": cal.monthdayscalendar(year, month),
         "sessionflag": sessionflag,
     }
-    return render(request, 'calendarMonth.html', context)
+    return render(request, "calendarMonth.html", context)
+
 
 @login_required()
 def calendarDay(request, year, month, day):
     if request.method == "POST":
-        
-        key = request.POST['helpSessionID']
+
+        key = request.POST["helpSessionID"]
         res_HelpSession = helpSession.objects.get(pk=key)
 
-        #DELETE
-        if 'delete' in request.POST and res_HelpSession.helper.pk is request.user.pk:
+        # DELETE
+        if "delete" in request.POST and res_HelpSession.helper.pk is request.user.pk:
             deleteform = FormDeleteHelpSession(request.POST)
             if deleteform.is_valid():
-                key = deleteform.cleaned_data['helpSessionID']
+                key = deleteform.cleaned_data["helpSessionID"]
                 res_HelpSession = helpSession.objects.get(pk=key)
                 res_HelpSession.delete()
 
-        #ATTEND
-        if 'attend' in request.POST:
+        # ATTEND
+        if "attend" in request.POST:
             # Check to see if user is already signed up for helpSession
-            if Reservation.objects.filter(user=request.user, helpSession=res_HelpSession):
+            if Reservation.objects.filter(
+                user=request.user, helpSession=res_HelpSession
+            ):
                 already_attending = True
                 new_reservation = False
             else:
@@ -78,10 +98,10 @@ def calendarDay(request, year, month, day):
                 ins = Reservation(user=request.user, helpSession=res_HelpSession)
                 ins.save()
             # Set context for success page... if/else dependent
-            context={
+            context = {
                 "already_attending": already_attending,
                 "new_reservation": new_reservation,
-                }
+            }
             return render(request, "success.html", context)
 
     if year == 0 and month == 0:
@@ -90,10 +110,12 @@ def calendarDay(request, year, month, day):
         day = datetime.now().day
     if day == 0 and month == datetime.now().month:
         day = datetime.now().day
-    helpSessions = helpSession.objects.filter(date__year=str(year), date__month=str(month), date__day=str(day))
+    helpSessions = helpSession.objects.filter(
+        date__year=str(year), date__month=str(month), date__day=str(day)
+    )
     context = {
         "helpSessions": helpSessions,
-        "day_string_list": [6,0,1,2,3,4,5],
+        "day_string_list": [6, 0, 1, 2, 3, 4, 5],
         "day": day,
         "month": month,
         "year": year,
@@ -101,77 +123,81 @@ def calendarDay(request, year, month, day):
         "FormDeleteHelpSession": FormDeleteHelpSession(),
         "month_obj": cal.monthdayscalendar(year, month),
     }
-    return render(request, 'calendarDay.html', context)
+    return render(request, "calendarDay.html", context)
 
 
-        
 @login_required()
 def helpsessions(request):
     user = request.user
     # this is for the filter (changes context)
-    if request.method == 'POST':
+    if request.method == "POST":
         # FILTER
-        if 'filter' in request.POST:
+        if "filter" in request.POST:
             filterform = FormFilterDate(request.POST)
             if filterform.is_valid():
-                month = filterform.cleaned_data['month']
-                year = filterform.cleaned_data['year']
+                month = filterform.cleaned_data["month"]
+                year = filterform.cleaned_data["year"]
                 # list of reservations that match user, filtered by month/year
-                reservations = Reservation.objects.filter(user=user,
-                                                        helpSession__date__year=year,
-                                                    helpSession__date__month=month).order_by("-helpSession__date")
+                reservations = Reservation.objects.filter(
+                    user=user,
+                    helpSession__date__year=year,
+                    helpSession__date__month=month,
+                ).order_by("-helpSession__date")
                 # filter context
                 context = {
                     "filterbool": True,
                     "reservations": reservations,
                     "already_attending": False,
                     "new_reservation": False,
-                    "FormFilterDate": FormFilterDate(initial={'month': month}),
-                    "FormFeedbackButton": FormFeedbackButton()
-                    }
+                    "FormFilterDate": FormFilterDate(initial={"month": month}),
+                    "FormFeedbackButton": FormFeedbackButton(),
+                }
                 # return filtered results
-                return render(request, 'helpSessions.html', context)
+                return render(request, "helpSessions.html", context)
         # FEEDBACK
-        if 'feedback' in request.POST:
+        if "feedback" in request.POST:
             # TODO
             feedbackform = FormFeedbackButton(request.POST)
             if feedbackform.is_valid():
-                key = feedbackform.cleaned_data['helpSessionID']
+                key = feedbackform.cleaned_data["helpSessionID"]
                 reservation = Reservation.objects.filter(pk=key, user=request.user)
                 context = {
                     "reservation": reservation,
-                    "FormEditHelpSessionFeedback": FormEditHelpSessionFeedback(instance=reservation),
+                    "FormEditHelpSessionFeedback": FormEditHelpSessionFeedback(
+                        instance=reservation
+                    ),
                 }
-                return render(request, 'helpSessionFeedback.html', context)
-    
+                return render(request, "helpSessionFeedback.html", context)
+
     # just render the page normally
     # list of reservations that match the user
-    reservations = Reservation.objects.filter(user = user).order_by("-helpSession__date")
+    reservations = Reservation.objects.filter(user=user).order_by("-helpSession__date")
     context = {
         "filterbool": False,
         "reservations": reservations,
         "already_attending": False,
         "new_reservation": False,
         "FormFilterDate": FormFilterDate(),
-        "FormFeedbackButton": FormFeedbackButton()
+        "FormFeedbackButton": FormFeedbackButton(),
     }
 
-    return render(request, 'helpSessions.html', context)
+    return render(request, "helpSessions.html", context)
+
 
 @login_required()
 def managehelpsessions(request):
     helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
     # Post requests
-    if request.method == 'POST':
-        #FILTER
-        if 'filter' in request.POST:
+    if request.method == "POST":
+        # FILTER
+        if "filter" in request.POST:
             filterform = FormFilterDate(request.POST)
             if filterform.is_valid():
-                month = filterform.cleaned_data['month']
-                year = filterform.cleaned_data['year']
-                helpsessions = helpSession.objects.filter(helper=request.user,
-                                                        date__year=year,
-                                                    date__month=month).order_by("-date")
+                month = filterform.cleaned_data["month"]
+                year = filterform.cleaned_data["year"]
+                helpsessions = helpSession.objects.filter(
+                    helper=request.user, date__year=year, date__month=month
+                ).order_by("-date")
                 # filter context
                 context = {
                     "helpSessions": helpsessions,
@@ -179,22 +205,22 @@ def managehelpsessions(request):
                     "FormDeleteHelpSession": FormDeleteHelpSession(),
                     "FormEditButton": FormEditButton(),
                     "filterbool": True,
-                    "FormFilterDate": FormFilterDate(initial={'month': month}),
-                    }
+                    "FormFilterDate": FormFilterDate(initial={"month": month}),
+                }
                 # return filtered results
-                return render(request, 'manageHelpSessions.html', context)
-        #DELETE
+                return render(request, "manageHelpSessions.html", context)
+        # DELETE
         if "delete" in request.POST:
             deleteform = FormDeleteHelpSession(request.POST)
             if deleteform.is_valid():
-                key = deleteform.cleaned_data['helpSessionID']
+                key = deleteform.cleaned_data["helpSessionID"]
                 res_HelpSession = helpSession.objects.get(pk=key)
                 res_HelpSession.delete()
-        #EDIT
+        # EDIT
         if "edit" in request.POST:
             editformbutton = FormEditButton(request.POST)
             if editformbutton.is_valid():
-                pk = editformbutton.cleaned_data['helpSessionID']
+                pk = editformbutton.cleaned_data["helpSessionID"]
                 instance = helpSession.objects.get(pk=pk)
                 context = {
                     "helpSession": helpSession.objects.get(pk=pk),
@@ -209,8 +235,8 @@ def managehelpsessions(request):
             "FormEditButton": FormEditButton(),
             "filterbool": False,
             "FormFilterDate": FormFilterDate(),
-            }
-        return render(request, 'manageHelpSessions.html', context)    
+        }
+        return render(request, "manageHelpSessions.html", context)
 
     # Base
     context = {
@@ -220,64 +246,71 @@ def managehelpsessions(request):
         "FormFilterDate": FormFilterDate(),
         "FormDeleteHelpSession": FormDeleteHelpSession(),
         "FormEditButton": FormEditButton(),
-        }
+    }
 
-    return render(request, 'manageHelpSessions.html', context)
+    return render(request, "manageHelpSessions.html", context)
 
 
 @login_required
 def helpSessionFeedback(request):
     # TODO
-    if request.method == 'POST':
-        if 'save' in request.POST:
+    if request.method == "POST":
+        if "save" in request.POST:
             # get the primary key of the reservation
             pk = request.POST.get("pk")
             # get the reservation
             helpSessionFeedbackEdit = Reservation.objects.get(pk=pk)
-            editFeedbackForm = FormEditHelpSessionFeedback(data=request.POST, instance=helpSessionFeedbackEdit)
+            editFeedbackForm = FormEditHelpSessionFeedback(
+                data=request.POST, instance=helpSessionFeedbackEdit
+            )
             if editFeedbackForm.is_valid():
                 editFeedbackForm.save()
                 context = {
                     "editedHelpSessionFeedback": True,
                 }
-            return render(request, 'success.html', context)
+            return render(request, "success.html", context)
     # Where does this 'helpSessionID' come from and what is it?
-    key = request.POST.get('helpSessionID')
+    key = request.POST.get("helpSessionID")
     helpSessionFeedbackEdit = Reservation.objects.get(pk=key, user=request.user)
     context = {
         "reservation": helpSessionFeedbackEdit,
-        "FormEditHelpSessionFeedback": FormEditHelpSessionFeedback(instance=helpSessionFeedbackEdit)
+        "FormEditHelpSessionFeedback": FormEditHelpSessionFeedback(
+            instance=helpSessionFeedbackEdit
+        ),
     }
-    return render(request, 'helpSessionFeedback.html', context)
+    return render(request, "helpSessionFeedback.html", context)
 
-    
 
 @login_required
 def editHelpSession(request):
-    if request.method == 'POST':
-        if 'save' in request.POST:
+    if request.method == "POST":
+        if "save" in request.POST:
             pk = request.POST.get("pk")
             helpSessionEdit = helpSession.objects.get(pk=pk)
             editform = FormEditHelpSession(data=request.POST, instance=helpSessionEdit)
             if editform.is_valid():
                 editform.save()
-                helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
-                context={
+                helpsessions = helpSession.objects.filter(helper=request.user).order_by(
+                    "-date"
+                )
+                context = {
                     "editedHelpSession": True,
                 }
-            return render(request, 'success.html', context)
+            return render(request, "success.html", context)
     # If request method isn't POST, try again?
-    helpSessionID = request.POST.get('helpSessionID')
+    helpSessionID = request.POST.get("helpSessionID")
     helpSessionEdit = helpSession.objects.get(pk=helpSessionID)
     context = {
         "helpSession": helpSessionEdit,
         "FormEditHelpSession": FormEditHelpSession(instance=helpSessionEdit),
     }
-    return render(request, 'editHelpSession.html', context)
+    return render(request, "editHelpSession.html", context)
 
-# This is a function to perform the recurring 
+
+# This is a function to perform the recurring
 def recurHelpSession(temp_hs, frequency, recurdays, end_date):
     pass
+
 
 @login_required()
 def createHelpSession(request):
@@ -289,57 +322,57 @@ def createHelpSession(request):
         "day": day,
         "month": month,
         "year": year,
-        "FormCreateHelpSession": FormCreateHelpSession(user=request.user)
+        "FormCreateHelpSession": FormCreateHelpSession(user=request.user),
     }
 
-    if request.method=="POST":
+    if request.method == "POST":
         # If user clicks 'create' save the helpsession and send them to success
-        if 'create' in request.POST:
+        if "create" in request.POST:
             createform = FormCreateHelpSession(data=request.POST, user=request.user)
             if createform.is_valid():
                 createform.save()
-                context={
+                context = {
                     "created_new": True,
                 }
                 return render(request, "success.html", context)
         # If user clicks 'recur' save the base helpsession and send them to recur page
-        if 'recur' in request.POST:
+        if "recur" in request.POST:
             createform = FormCreateHelpSession(data=request.POST, user=request.user)
             if createform.is_valid():
                 base_hs = createform.save()
-                context={
+                context = {
                     "created_new": True,
                     "Form_Recur": FormRecur(),
-                    "base_hs": base_hs
+                    "base_hs": base_hs,
                 }
                 return render(request, "recurHelpSession.html", context)
 
-        if 'setrecur' in request.POST:
+        if "setrecur" in request.POST:
             Form_Recur = FormRecur(request.POST)
             if Form_Recur.is_valid():
                 # what type of recurrance (days, weeks, months)
-                frequency = Form_Recur.cleaned_data['frequency']
+                frequency = Form_Recur.cleaned_data["frequency"]
                 # which days (if recur by week)
-                recurdays = Form_Recur.cleaned_data['days']
+                recurdays = Form_Recur.cleaned_data["days"]
                 # end date for recurrance
-                end_date = Form_Recur.cleaned_data['end_date']
+                end_date = Form_Recur.cleaned_data["end_date"]
                 # get base help session (which recurrance is based on from POST)
-                base_hs = helpSession.objects.get(pk = request.POST['helpSessionID'])
+                base_hs = helpSession.objects.get(pk=request.POST["helpSessionID"])
 
                 cur_hs_date = base_hs.date
-                if frequency == 'daily':
+                if frequency == "daily":
                     while cur_hs_date < end_date:
                         cur_hs_date += timedelta(days=1)
                         base_hs.date = cur_hs_date
-                        base_hs.pk = None #this ensures that a new helpsession object is created
+                        base_hs.pk = None  # this ensures that a new helpsession object is created
                         base_hs.save()
-                if frequency == 'monthly':
+                if frequency == "monthly":
                     while cur_hs_date < end_date:
                         cur_hs_date += relativedelta(months=1)
                         base_hs.date = cur_hs_date
                         base_hs.pk = None
                         base_hs.save()
-                if frequency == 'weekly':
+                if frequency == "weekly":
                     while cur_hs_date < end_date:
                         cur_hs_date += relativedelta(days=1)
                         for day in recurdays:
@@ -349,59 +382,61 @@ def createHelpSession(request):
                                 base_hs.save()
 
                 # Pass context to success page
-                context={
+                context = {
                     "recur_success": True,
                 }
                 return render(request, "success.html", context)
 
         # cancel recurrance
-        if 'cancel' in request.POST:
-            temp_hs = helpSession.objects.get(pk = request.POST['helpSessionID'])
+        if "cancel" in request.POST:
+            temp_hs = helpSession.objects.get(pk=request.POST["helpSessionID"])
             temp_hs.delete()
-            return redirect('/manageHelpSessions/')
-        
+            return redirect("/manageHelpSessions/")
 
-    return render(request, 'createHelpSession.html', context)
+    return render(request, "createHelpSession.html", context)
+
 
 @login_required()
 def recurHelpSession(request):
-    return render(request, 'recurHelpSession.html')
+    return render(request, "recurHelpSession.html")
 
 
 def success(request):
-    return render(request, 'success.html')
+    return render(request, "success.html")
 
 
 def error(request):
-    return render(request, 'error.html')
+    return render(request, "error.html")
 
 
-#AUTHORIZED ONLY VIEWS
+# AUTHORIZED ONLY VIEWS
 class ApiEndpoint(ProtectedResourceView):
     def get(self, request, *args, **kwargs):
         return HttpResponse(
-            'Hello there! You are acting on behalf of "%s"\n'
-            % (request.user))
+            'Hello there! You are acting on behalf of "%s"\n' % (request.user)
+        )
 
 
 class Home(TemplateView):
-    template_name = 'home.html'
-
+    template_name = "home.html"
 
 
 # Error Handling
 def error_404(request, exception):
-        data = {}
-        return render(request,'errors/404.html', data)
+    data = {}
+    return render(request, "errors/404.html", data)
+
 
 def error_500(request):
-        data = {}
-        return render(request,'errors/500.html', data)
+    data = {}
+    return render(request, "errors/500.html", data)
+
 
 def error_400(request, exception):
-        data = {}
-        return render(request,'errors/400.html', data)
+    data = {}
+    return render(request, "errors/400.html", data)
 
-def error_403(request,  exception):
-        data = {}
-        return render(request,'errors/403.html', data)
+
+def error_403(request, exception):
+    data = {}
+    return render(request, "errors/403.html", data)

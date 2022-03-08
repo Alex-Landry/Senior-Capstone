@@ -7,19 +7,26 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Reservation',
+            name="Reservation",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('topic', models.TextField()),
-                ('duration', models.TextField(default='15 Minutes')),
-                ('student', models.TextField()),
-                ('helper', models.TextField()),
-                ('feedback', models.TextField(default='')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("topic", models.TextField()),
+                ("duration", models.TextField(default="15 Minutes")),
+                ("student", models.TextField()),
+                ("helper", models.TextField()),
+                ("feedback", models.TextField(default="")),
             ],
         ),
     ]

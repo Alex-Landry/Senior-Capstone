@@ -1,117 +1,100 @@
 {% extends 'main/base.html' %}
-
-
 {% block content %}
-<!-- Center Flex Box -->
-  <div class="center-content">
-    <div class="center-content-tab-container">
-      <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
-       <a href="/helpsessions" class="center-content-closed-tab unselectable">Sessions</a>
-      {% if user.is_helper or user.is_admin %}
-      <div class="center-content-open-tab unselectable">Manage</div>
-      {% endif %}
-      <div class="center-content-blank-tab"></div>
+    <!-- Center Flex Box -->
+    <div class="center-content">
+        <div class="center-content-tab-container">
+            <a href="/calendarMonth/0/0/0/"
+               class="center-content-closed-tab unselectable">Calendar</a>
+            <a href="/helpsessions" class="center-content-closed-tab unselectable">Sessions</a>
+            {% if user.is_helper or user.is_admin %}<div class="center-content-open-tab unselectable">Manage</div>{% endif %}
+            <div class="center-content-blank-tab"></div>
+        </div>
+        <div class="center-content-tab-content-container">
+            <div class="center-content-tab-content">
+                <!-- PAGE CONTENT GOES HERE -->
+                <form action="" method="post" class="form-custom" style="width:90%">
+                    {% csrf_token %}
+                    {{ FormEditHelpSession.non_field_errors }}
+                    <div class="help-session-box" style="padding: 10px">
+                        <div class="help-session-title">Edit Help Session</div>
+                        <div class="help-session-info-row">
+                            <div class="help-session-label">Helper</div>
+                            <div class="help-session-info">{{ helpSession.helper.first_name }} {{ helpSession.helper.last_name }}</div>
+                        </div>
+                        <div class="help-session-info-row">
+                            <div class="help-session-label">Date</div>
+                            <div class="help-session-info">
+                                {{ FormEditHelpSession.date }}
+                                {{ FormEditHelpSession.errors }}
+                            </div>
+                        </div>
+                        <div class="help-session-info-row">
+                            <div class="help-session-label">Time</div>
+                            <div class="help-session-info">
+                                {{ FormEditHelpSession.time }}
+                                {{ FormEditHelpSession.errors }}
+                            </div>
+                        </div>
+                        <div class="help-session-info-row">
+                            <div class="help-session-label">Duration</div>
+                            <div class="help-session-info">
+                                {{ FormEditHelpSession.duration }}
+                                {{ FormEditHelpSession.errors }}
+                            </div>
+                        </div>
+                        <div class="help-session-info-row">
+                            <div class="help-session-label">Topic</div>
+                            <div class="help-session-info">
+                                {{ FormEditHelpSession.topic }}
+                                {{ FormEditHelpSession.errors }}
+                            </div>
+                        </div>
+                        <div class="help-session-info-row">
+                            <div class="help-session-label">Mode</div>
+                            <div class="help-session-info">
+                                In Person {{ FormEditHelpSession.is_inperson }}
+                                Remote {{ FormEditHelpSession.is_remote }}
+                                {{ FormEditHelpSession.errors }}
+                            </div>
+                        </div>
+                        <div class="help-session-info-row">
+                            <div class="help-session-label">Remote Link</div>
+                            <div class="help-session-info">
+                                {{ FormEditHelpSession.remote_link }}
+                                {{ FormEditHelpSession.errors }}
+                            </div>
+                        </div>
+                        <div class="help-session-info-row">
+                            <div class="help-session-label">Notes</div>
+                            <div class="help-session-info">
+                                {{ FormEditHelpSession.notes }}
+                                {{ FormEditHelpSession.errors }}
+                            </div>
+                        </div>
+                        <div class="help-session-info-row">
+                            <div class="help-session-label">Attendance</div>
+                            <div class="help-session-info">
+                                {{ FormEditHelpSession.attendance }}
+                                {{ FormEditHelpSession.errors }}
+                            </div>
+                        </div>
+                        <div class="help-session-buttons-fullrow">
+                            <div>&nbsp;</div>
+                            <input id="pk" name="pk" type="hidden" value="{{ helpSession.pk }}">
+                        </input>
+                        <input type="submit"
+                               name="save"
+                               id="small-button"
+                               value="Save Changes"
+                               class="ultrablue">
+                    </input>
+                </div>
+            </div>
+            {{ FormEditHelpSession.errors }}
+            {{ FormEditHelpSession.non_field_errors }}
+        </form>
     </div>
-    <div class="center-content-tab-content-container">
-
-      <div class="center-content-tab-content">
-
-
-        <!-- PAGE CONTENT GOES HERE -->
-      <form action="" method="post" class="form-custom" style="width:90%">
-        {% csrf_token %}
-        {{ FormEditHelpSession.non_field_errors }}
-        <div class="help-session-box" style="padding: 10px">
-          <div class="help-session-title">Edit Help Session</div>
-
-        <div class="help-session-info-row">
-          <div class="help-session-label">Helper</div>
-          <div class="help-session-info">
-            {{helpSession.helper.first_name}} {{helpSession.helper.last_name}}
-          </div>
-        </div>
-
-        <div class="help-session-info-row">  
-          <div class="help-session-label">Date</div>
-            <div class="help-session-info">
-              {{FormEditHelpSession.date}}
-              {{FormEditHelpSession.errors}}
-            </div>
-        </div>
-          
-        <div class="help-session-info-row">
-          <div class="help-session-label">Time</div>
-              <div class="help-session-info">
-                {{FormEditHelpSession.time}}
-                {{FormEditHelpSession.errors}}
-              </div>
-        </div>
-
-          <div class="help-session-info-row">
-            <div class="help-session-label">Duration</div>
-            <div class="help-session-info">
-              {{FormEditHelpSession.duration}}
-              {{FormEditHelpSession.errors}}
-            </div>
-          </div>
-          
-          <div class="help-session-info-row">
-            <div class="help-session-label">Topic</div>
-            <div class="help-session-info">
-              {{FormEditHelpSession.topic}}
-              {{FormEditHelpSession.errors}}
-            </div>
-          </div>
-
-          <div class="help-session-info-row">
-            <div class="help-session-label">Mode</div>
-            <div class="help-session-info">
-              In Person {{FormEditHelpSession.is_inperson}}
-              Remote {{FormEditHelpSession.is_remote}}
-              {{FormEditHelpSession.errors}}
-            </div>
-          </div>
-
-          <div class="help-session-info-row">
-            <div class="help-session-label">Remote Link</div>
-            <div class="help-session-info">
-              {{FormEditHelpSession.remote_link}}
-              {{FormEditHelpSession.errors}}
-            </div>
-          </div>
-
-          <div class="help-session-info-row">
-            <div class="help-session-label">Notes</div>
-            <div class="help-session-info">
-              {{FormEditHelpSession.notes}}
-              {{FormEditHelpSession.errors}}
-            </div>
-          </div>
-
-          <div class="help-session-info-row">
-            <div class="help-session-label">Attendance</div>
-            <div class="help-session-info">
-              {{FormEditHelpSession.attendance}}
-              {{FormEditHelpSession.errors}}
-            </div>
-          </div>
-          
-          <div class="help-session-buttons-fullrow">
-            <div>&nbsp;</div>
-            <input id="pk" name="pk" type="hidden" value="{{helpSession.pk}}"></input>
-            <input type="submit" name="save" id="small-button" value="Save Changes" class="ultrablue"></input>
-          </div>
-
-        </div>
-        {{FormEditHelpSession.errors}}
-        {{ FormEditHelpSession.non_field_errors }}
-
-      </form>
-
-
-        
-      </div>
-    </div>
-  </div>
+</div>
+</div>
 <!-- End Center Flex Box -->
 {% endblock %}

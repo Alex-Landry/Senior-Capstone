@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('reservations', '0002_remove_reservation_duration_and_more'),
+        ("reservations", "0002_remove_reservation_duration_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='reservation',
-            name='feedback',
-            field=models.TextField(default='', max_length=1000),
+            model_name="reservation",
+            name="feedback",
+            field=models.TextField(default="", max_length=1000),
         ),
     ]

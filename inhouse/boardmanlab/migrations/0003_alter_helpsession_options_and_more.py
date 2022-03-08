@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('boardmanlab', '0002_helpsession_time'),
+        ("boardmanlab", "0002_helpsession_time"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='helpsession',
-            options={'ordering': ['time']},
+            name="helpsession",
+            options={"ordering": ["time"]},
         ),
         migrations.AlterField(
-            model_name='helpsession',
-            name='attendance',
+            model_name="helpsession",
+            name="attendance",
             field=models.IntegerField(blank=True, default=0, null=True),
         ),
     ]
