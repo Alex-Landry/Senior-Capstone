@@ -79,8 +79,15 @@ class FormCreateHelpSession(forms.ModelForm):
         initial=30,
         widget=forms.Select(attrs={"id": "selectForm"}),
     )
+
+    # try getting choices (if in db)
+    try:
+        choicesGen=[(topic, topic) for topic in Topic.objects.all()]
+    except:
+        choicesGen=[('topic', 'topic')]
+
     topic = forms.ChoiceField(
-        choices=[(topic, topic) for topic in Topic.objects.all()],
+        choices=choicesGen,
         widget=forms.Select(attrs={"id": "selectForm"}),
     )
 
@@ -140,8 +147,15 @@ class FormEditHelpSession(forms.ModelForm):
         label="duration",
         widget=forms.Select(attrs={"id": "selectForm"}),
     )
+
+    # try getting choices (if in db)
+    try:
+        choicesGen=[(topic, topic) for topic in Topic.objects.all()]
+    except:
+        choicesGen=[('topic', 'topic')]
+
     topic = forms.ChoiceField(
-        choices=[(topic.topic, topic.topic) for topic in Topic.objects.all()],
+        choices=choicesGen,
         widget=forms.Select(attrs={"id": "selectForm"}),
     )
 
