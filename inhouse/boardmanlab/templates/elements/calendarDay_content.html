@@ -56,7 +56,7 @@
       {% if helpSession.helper != user %}
       <form action="" method="post" class="form-button">
         {% csrf_token %}
-        <input type="none" value={{helpSession.pk}} name="helpSession" style="display: none;"></input>
+        <input type="none" value={{helpSession.pk}} name="helpSessionID" style="display: none;"></input>
         <input type="submit" name="attend" class="green" id="small-button" value="Attend Help Session"></input>
       </form>
       {% endif %}
