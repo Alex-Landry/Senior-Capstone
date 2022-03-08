@@ -55,12 +55,16 @@ def calendarMonth(request, year, month, day):
 def calendarDay(request, year, month, day):
     if request.method == "POST":
         
-        key = request.POST['helpSession']
+        key = request.POST['helpSessionID']
         res_HelpSession = helpSession.objects.get(pk=key)
 
         #DELETE
         if 'delete' in request.POST and res_HelpSession.helper.pk is request.user.pk:
-            res_HelpSession.delete()
+            deleteform = FormDeleteHelpSession(request.POST)
+            if deleteform.is_valid():
+                key = deleteform.cleaned_data['helpSessionID']
+                res_HelpSession = helpSession.objects.get(pk=key)
+                res_HelpSession.delete()
 
         #ATTEND
         if 'attend' in request.POST:
@@ -93,6 +97,8 @@ def calendarDay(request, year, month, day):
         "day": day,
         "month": month,
         "year": year,
+        "FormEditButton": FormEditButton(),
+        "FormDeleteHelpSession": FormDeleteHelpSession(),
         "month_obj": cal.monthdayscalendar(year, month),
     }
     return render(request, 'calendarDay.html', context)
