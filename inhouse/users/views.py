@@ -3,7 +3,7 @@ from .models import User
 
 # Create your views here.
 
-
+# This is currently not working
 def update_user_social_data(strategy, *args, **kwargs):
     response = kwargs["response"]
     backend = kwargs["backend"]

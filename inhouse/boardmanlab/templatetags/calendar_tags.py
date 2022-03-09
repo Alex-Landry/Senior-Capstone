@@ -14,6 +14,7 @@ def get_month():
 
 
 # Get the current year: return obj
+# DANGER
 @register.simple_tag
 def get_month():
     return datetime.now().year
@@ -43,35 +44,35 @@ def get_day_string(year, month, day):
 def gen_month_string(value):
     return calendar.month_name[value].title()  #'March'
 
-
+# returns next date (tomorrow)
 @register.simple_tag
 def increment_day(year, month, day):
     day = datetime(year, month, day)
     day = day + timedelta(days=1)
     return day.day
 
-
+# returns previous date (yesterday)
 @register.simple_tag
 def decrement_day(year, month, day):
     date = datetime(year, month, day)
     date = date - timedelta(days=1)
     return date.day
 
-
+# gets the next month (int) for calendarday
 @register.simple_tag
 def increment_month(year, month, day):
     date = datetime(year, month, day)
     date = date + timedelta(days=1)
     return date.month
 
-
+# gets the previous month (int) for calendarday
 @register.simple_tag
 def decrement_month(year, month, day):
     date = datetime(year, month, day)
     date = date - timedelta(days=1)
     return date.month
 
-
+# gets the next month (int) for calendarmonth
 @register.simple_tag
 def increment_month_alt(year, month, day):
     if month == 12:
@@ -79,7 +80,7 @@ def increment_month_alt(year, month, day):
     else:
         return month + 1
 
-
+# gets the previous month (int) for calendarmonth
 @register.simple_tag
 def decrement_month_alt(year, month, day):
     if month == 1:
@@ -87,7 +88,7 @@ def decrement_month_alt(year, month, day):
     else:
         return month - 1
 
-
+# gets the next year
 @register.simple_tag
 def increment_year(year, month):
     if month != 12:
@@ -95,7 +96,7 @@ def increment_year(year, month):
     else:
         return year + 1
 
-
+# gets the previous year
 @register.simple_tag
 def decrement_year(year, month):
     if month != 1:
@@ -103,7 +104,7 @@ def decrement_year(year, month):
     else:
         return year - 1
 
-
+# returns a string of the time + duration
 @register.simple_tag
 def add_minutes(date, time, duration):
     endtime = datetime.combine(date, time) + timedelta(minutes=duration)
@@ -112,7 +113,7 @@ def add_minutes(date, time, duration):
         endtime = endtime[1:]
     return endtime
 
-
+# formats time into a string object
 @register.simple_tag
 def time_format(time):
     time = time.strftime("%I:%M %p")
@@ -120,28 +121,29 @@ def time_format(time):
         time = time[1:]
     return time
 
-
+# UNSURE of what this does
 @register.simple_tag
 def set_pk(aform, helpSessionpk):
     aform = helpSessionpk
     return aform
 
-
+# generates a day string('wednesday') from datetime object
 @register.simple_tag
 def get_day_string_from_datetime(datetimeobj):
     return datetimeobj.strftime("%A")
 
-
+# indexes a list from a indexable list and an index
 @register.filter
 def index(indexable, i):
     return indexable[i]
 
-
+# return the number of students signed up for a particular help session
 @register.simple_tag
 def get_student_sign_up(cur_helpsession):
     return Reservation.objects.filter(helpSession=cur_helpsession).count()
 
-
+# checks if some parameter is the string 'days'
+# this could be unused code
 @register.simple_tag
 def get_freq(freq):
     if freq == "days":
