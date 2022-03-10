@@ -17,7 +17,8 @@
     .calendar-content-session-text {
         display: none !important;
     }
-    /* !!! Is this necessary? Normal view is 90%, maybe they can be the same */
+    /* !!! Is this necessary? Normal view is 90%, maybe they can be the same 
+    I think so... normal view is min(800px, 90%)  - Sam */
     .help-session-box {
         width: 95% !important;
     }
@@ -55,7 +56,8 @@
         font-size: 6vw !important;
         color: #0f1922 !important;
     }
-    /* !!! Can be deleted? */
+    /* !!! Can be deleted? 
+    I think so, might want to carry over the !important tag for width in the id -Sam*/
     #form-picker-input {
         width: 100% !important;
     }
@@ -63,6 +65,7 @@
         display: none !important;
     }
     .help-session-box {
+        /* !!! Potentially hides/overlaps with scroll bar  -Sam */
         width: auto !important;
     }
 }
@@ -209,7 +212,9 @@ body {
     padding: 0px;
     border: none;
     background-color: none;
-    /* !!! Color change? */
+    /* !!! Color change? 
+    Not sure what the question is? THIS IS A DROPSHADOW
+    and to get the alpha channel you need rgb color space -Sam */
     filter: drop-shadow(0rem .1rem 0.1rem rgba(0, 0, 0, 0.25));
 }
 
@@ -254,7 +259,8 @@ body {
 /* Logout button */
 
 
-/* !!! Refactor name? Convert to dark-blue-button? */
+/* !!! Refactor name? Convert to dark-blue-button? 
+sounds good! - Sam*/
 
 #logout {
     display: inline-block;
@@ -273,10 +279,13 @@ body {
 /* base.html */
 
 
-/* !!! Convert to darkblue-button:hover? */
+/* !!! Convert to darkblue-button:hover? 
+yes! -sam */
 
 #logout:hover {
-    /* !!! Use brightness instead */
+    /* !!! Use brightness instead 
+    no support in I.E. do we care? no. 
+    change to filter: brightness(.8)*/
     background-color: #0f1922;
 }
 
@@ -321,7 +330,8 @@ body {
 /* login.html, 400.html, 403.html, 404.html, 500.html, base.html */
 
 
-/* !!! Content-container does two things */
+/* !!! Content-container does two things 
+need to find out which on we need (my guess is the larger of the two) */
 
 .content-container {
     display: -webkit-flex;
@@ -375,7 +385,8 @@ body {
     margin-top: 7px;
     text-align: center;
     padding: 10px;
-    /* !!! Color change */
+    /* !!! Color change 
+    Are we able to use more than one grey? this is how we specified it in figma...*/
     background-color: #222222;
     height: auto;
 }
@@ -453,7 +464,8 @@ body {
 
 
 /* !!! I think this and the above tab are always immediately nested, 
-        not sure if necessary or could be removed */
+        not sure if necessary or could be removed 
+        Probably needs name changed.. might be necessary -Sam*/
 
 .center-content-tab-content {
     margin-left: 7px;
@@ -470,7 +482,8 @@ body {
 }
 
 
-/* !!! Do these two need to be different tags? */
+/* !!! Do these two need to be different tags? 
+no */
 
 
 /* base.html */
@@ -642,7 +655,8 @@ body {
 /* login.html, 400.html, 403.html, 404.html, 500.html, base.html */
 
 
-/* !!! Content-container does two things */
+/* !!! Content-container does two things 
+this might be the one to use */
 
 .content-container {
     position: relative;
@@ -740,7 +754,8 @@ a:hover {
 }
 
 
-/* !!! What is this? Needs some color rework */
+/* !!! What is this? Needs some color rework 
+this might be graveyard code for styling checkboxes that was never implemented */
 
 input[type=text],
 select {
@@ -757,7 +772,8 @@ select {
 }
 
 
-/* !!! Should be changed to green-button, or renamed */
+/* !!! Should be changed to green-button, or renamed 
+yes */
 
 
 /* Used by most templates */
@@ -772,12 +788,13 @@ select {
     cursor: pointer;
     background-color: #29DF25;
     padding: 12px;
-    /* !!! Color change? */
+    /* !!! Color change?  yeah... */
     filter: drop-shadow(0 .2rem .1rem #999999);
 }
 
 
-/* !!! Should be changed to green-hover */
+/* !!! Should be changed to green-button::hover
+also should just be a filter: brightness */
 
 
 /* Used by most templates */
@@ -903,7 +920,8 @@ select {
 /* !!! Cannot find in any template */
 
 
-/* Probably from old sign in page */
+/* Probably from old sign in page 
+graveyard was for og filter button (no longer in use) */
 
 .tos {
     cursor: pointer !important;
@@ -1484,7 +1502,8 @@ select {
 }
 
 
-/* !!! Used for forms?? */
+/* !!! Used for forms?? 
+possibly (very) not used at all */
 
 #select {
     background-color: #1D2E3F;
@@ -1497,7 +1516,8 @@ select {
 }
 
 
-/* !!! Used for forms?? */
+/* !!! Used for forms?? 
+also a form element but for the filter ... */
 
 #selectFilter {
     display: inline-block;
@@ -1621,6 +1641,7 @@ select {
 /* helpSessionFeedback.html, helpSessions.html, manageHelpSessions.html, calendarDay_content.html */
 
 .scroll-content::-webkit-scrollbar-thumb:hover {
-    /* !!! Color change */
+    /* !!! Color change 
+    this needs a whole new color */
     background: #555;
 }
