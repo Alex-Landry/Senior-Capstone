@@ -6,7 +6,6 @@ from boardmanlab.views import (
     helpsessions,
     managehelpsessions,
     calendarMonth,
-    error,
     calendarDay,
     createHelpSession,
     editHelpSession,
@@ -79,14 +78,12 @@ urlpatterns = [
     path('time_freq_csv/', time_freq_csv),
     path("editHelpSession", editHelpSession, name="editHelpSession"),
     path("helpSessionFeedback", helpSessionFeedback, name="helpSessionFeedback"),
-    path("new_help_session/", new_help_session),
     path("calendarMonth", calendarMonth, name="calendarMonth"),
     path("calendarMonth/<int:year>/<int:month>/<int:day>/", calendarMonth),
     path(
         "calendarDay/<int:year>/<int:month>/<int:day>/", calendarDay, name="calendarDay"
     ),
     path("success", success, name="success"),
-    path("error/", error),
     path("", login),
     path("allauth", Home.as_view(), name="home"),  # new
     # OAuth 2 endpoints:

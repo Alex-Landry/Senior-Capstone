@@ -41,16 +41,20 @@ def login(request):
 
 @login_required()
 def calendarMonth(request, year, month, day):
+    # session flag shows helpsessions on a given day (based on month)
     sessionflag = [0]
+
     if year == 0 and month == 0:
         year = datetime.now().year
         month = datetime.now().month
         day = datetime.now().day
     if day == 0 and month == datetime.now().month:
         day = datetime.now().day
+    # session flag content
     for week in cal.monthdayscalendar(year, month):
         for dayz in week:
             if dayz != 0:
+                # sessionflag list: index = date, value = number of help sessions
                 sessionflag.append(
                     helpSession.objects.filter(
                         date__day=dayz, date__month=month
@@ -186,6 +190,7 @@ def helpsessions(request):
 
 @login_required()
 def managehelpsessions(request):
+    # !!! wouldnt the admin like to see all help sessions and manage them? !!!
     helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
     # Post requests
     if request.method == "POST":
@@ -201,7 +206,7 @@ def managehelpsessions(request):
                 # filter context
                 context = {
                     "helpSessions": helpsessions,
-                    "created_new": False,
+                    "created_new": False, # redundant?
                     "FormDeleteHelpSession": FormDeleteHelpSession(),
                     "FormEditButton": FormEditButton(),
                     "filterbool": True,
@@ -228,6 +233,7 @@ def managehelpsessions(request):
                 }
                 return render(request, "editHelpSession.html", context)
 
+        # if nothing is in the post request, but is still a post request?
         context = {
             "helpSessions": helpsessions,
             "created_new": False,
@@ -259,6 +265,7 @@ def helpSessionFeedback(request):
             # get the primary key of the reservation
             pk = request.POST.get("pk")
             # get the reservation
+            # ambiguous variable name?
             helpSessionFeedbackEdit = Reservation.objects.get(pk=pk)
             editFeedbackForm = FormEditHelpSessionFeedback(
                 data=request.POST, instance=helpSessionFeedbackEdit
@@ -290,6 +297,7 @@ def editHelpSession(request):
             editform = FormEditHelpSession(data=request.POST, instance=helpSessionEdit)
             if editform.is_valid():
                 editform.save()
+                # this might be old code from when this redirected to manage help sessions.
                 helpsessions = helpSession.objects.filter(helper=request.user).order_by(
                     "-date"
                 )
@@ -297,7 +305,8 @@ def editHelpSession(request):
                     "editedHelpSession": True,
                 }
             return render(request, "success.html", context)
-    # If request method isn't POST, try again?
+    # If request method isn't POST, load page
+    # This IS a post request... we just never hit the above if's......
     helpSessionID = request.POST.get("helpSessionID")
     helpSessionEdit = helpSession.objects.get(pk=helpSessionID)
     context = {
@@ -305,11 +314,6 @@ def editHelpSession(request):
         "FormEditHelpSession": FormEditHelpSession(instance=helpSessionEdit),
     }
     return render(request, "editHelpSession.html", context)
-
-
-# This is a function to perform the recurring
-def recurHelpSession(temp_hs, frequency, recurdays, end_date):
-    pass
 
 
 @login_required()
@@ -403,10 +407,6 @@ def recurHelpSession(request):
 
 def success(request):
     return render(request, "success.html")
-
-
-def error(request):
-    return render(request, "error.html")
 
 
 # AUTHORIZED ONLY VIEWS

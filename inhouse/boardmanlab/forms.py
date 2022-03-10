@@ -83,6 +83,7 @@ class FormCreateHelpSession(forms.ModelForm):
     # try getting choices (if in db)
     try:
         choicesGen=[(topic, topic) for topic in Topic.objects.all()]
+    # except just give it something
     except:
         choicesGen=[('topic', 'topic')]
 
@@ -266,7 +267,7 @@ class FormRecur(forms.Form):
 
         if frequency == "days" and not days:
             raise ValidationError(
-                "Need to specify which days to recur on" "if frequency is days."
+                "Need to specify which days to recur on if frequency is days."
             )
 
 

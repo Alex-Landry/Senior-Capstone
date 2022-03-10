@@ -10,9 +10,7 @@ urlpatterns = [
     path("/createHelpSession/", views.createHelpSession, name="createHelpSession"),
     path("/recurHelpSession/", views.recurHelpSession, name="recurHelpSession"),
     path("/editHelpSession/", views.editHelpSession, name="editHelpSession"),
-    path(
-        "/helpSessionFeedback/", views.helpSessionFeedback, name="helpSessionFeedback"
-    ),
+    path("/helpSessionFeedback/", views.helpSessionFeedback, name="helpSessionFeedback"),
     path("calendar", views.calendar, name="calendar"),
     path(
         "calendarMonth/<int:year>/<int:month>/<int:day>/",
@@ -25,6 +23,5 @@ urlpatterns = [
         name="calendarDay",
     ),
     path("/success/", views.success, name="success"),
-    path("/error/", views.error, name="error"),
     path("/accounts/", include("allauth.urls")),
 ]
