@@ -172,11 +172,11 @@ class FormEditHelpSession(forms.ModelForm):
         widget=forms.CheckboxInput(attrs={"id": "checkboxForm"}),
     )
 
-    remote_link = forms.CharField(
+    remote_link = forms.URLField(
         required=False,
         label="remotelink",
         max_length=200,
-        widget=forms.TextInput(attrs={"id": "textAreaForm"}),
+        widget=forms.URLInput(attrs={"id": "textAreaForm"}),
     )
 
     notes = forms.CharField(

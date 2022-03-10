@@ -49,7 +49,7 @@
             <div class="help-session-label">Duration</div>
             <div class="help-session-info">{{ helpSession.duration }} minutes</div>
         </div>
-        {% if helpSession.is_remote %}
+        {% if helpSession.is_remote and reservation.helpSession.remote_link %}
         <div class="help-session-info-row">
             <div class="help-session-label">Remote Link</div>
             <div class="help-session-info" style="padding:0px">

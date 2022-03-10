@@ -57,7 +57,7 @@
                                 <div class="help-session-label">Topic</div>
                                 <div class="help-session-info">{{ reservation.helpSession.topic }}</div>
                             </div>
-                            {% if reservation.helpSession.is_remote %}
+                            {% if reservation.helpSession.is_remote and reservation.helpSession.remote_link %}
                                 <div class="help-session-info-row">
                                     <div class="help-session-label">Remote Link</div>
                                     <div class="help-session-info" style="padding:0px">
