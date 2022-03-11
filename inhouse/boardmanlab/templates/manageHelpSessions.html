@@ -18,7 +18,7 @@ awesome/4.7.0/css/font-awesome.min.css">
                 <!-- BEGIN MANAGE MENU -->
                 {% if user.is_helper %}
                     <div class="manage-content-strip">
-                        <a href="/createHelpSession/" id="create-button">Create Help Session</a>
+                        <a href="/createHelpSession/" id="small-button" class="green">Create Help Session</a>
                     </div>
                     <!-- Filter -->
                     {% include 'elements/filter_manageHelpSessions.html' %}
