@@ -668,9 +668,8 @@ a:hover {
 }
 
 
-/* !!! What is this? Needs some color rework 
-    this might be graveyard code for styling checkboxes that was 
-    never implemented */
+/* !!! this might be graveyard code for styling checkboxes that was never implemented
+    delete? */
 
 input[type=text],
 select {
@@ -739,7 +738,6 @@ select {
     border-radius: 0px;
     cursor: pointer;
     padding: 8px;
-    /* !!! Standardize? */
     filter: drop-shadow(0 .2rem .1rem rgb(0, 0, 0, .2));
 }
 
@@ -892,7 +890,6 @@ select {
     width: auto;
     height: 5vw;
     background-color: #1D2E3F;
-    /* !!! Drop shadow standardize? */
     filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
 }
 
@@ -902,7 +899,6 @@ select {
     width: auto;
     height: 5vw;
     background-color: #333333;
-    /* !!! Standardize? */
     filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
 }
 
@@ -912,7 +908,6 @@ select {
     width: auto;
     height: 5vw;
     background-color: #0D598E;
-    /* !!! standardize? */
     filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
 }
 
@@ -1184,7 +1179,6 @@ select {
     padding: 10px !important;
     width: 90%;
     max-width: 800px;
-    /* !!! Drop shadow standardize? */
     filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
 }
 
