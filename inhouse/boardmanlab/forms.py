@@ -200,7 +200,7 @@ class FormEditHelpSessionFeedback(forms.ModelForm):
     feedback = forms.CharField(
         label="Feedback",
         max_length=1000,
-        widget=forms.Textarea(attrs={"id": "textAreaForm"}),
+        widget=forms.Textarea(attrs={"id": "text-area-form"}),
     )
 
 
