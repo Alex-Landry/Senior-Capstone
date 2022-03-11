@@ -238,7 +238,6 @@ body {
     padding: 0px;
     border: none;
     background-color: none;
-    /* !!! Standardize drop shadows? - Forrest */
     filter: drop-shadow(0rem .1rem 0.1rem rgba(0, 0, 0, 0.25));
 }
 
@@ -668,23 +667,6 @@ a:hover {
 }
 
 
-/* !!! this might be graveyard code for styling checkboxes that was never implemented
-    delete? */
-
-input[type=text],
-select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 0px 0;
-    display: inline-block;
-    border: 1px solid #FFFFFF;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: #FFFFFF;
-    padding: 20px;
-}
-
-
 /* Is a medium sized, rounded corner button
     Used only in login.html */
 
@@ -702,28 +684,6 @@ select {
 #submit:hover {
     filter: brightness(.8);
 }
-
-
-/* Login button */
-
-
-/* !!! The login button had its id changed to submit,
-    this code is no longer needed
-#login {
-    width: 100%;
-    color: #FFFFFF;
-    text-align: center;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #0D598E;
-    padding: 12px;
-    filter: drop-shadow(0 .2rem .1rem #333333);
-}
-#login:hover {
-    background-color: #0a3c5f;
-}*/
 
 
 /* Used by most templates 
@@ -746,32 +706,6 @@ select {
 }
 
 
-/* manageHelpSessions.html */
-
-
-/* !!! See if this looks ok as a small-button, if not we can change back */
-
-
-/*
-#create-button {
-    display: inline-block;
-    color: #0D598E !important;
-    font-weight: 400 !important;
-    text-align: center;
-    margin: 4px 0;
-    border: none;
-    border-radius: 0px;
-    cursor: pointer;
-    background-color: #29DF25;
-    padding: 8px;
-    filter: drop-shadow(0 .2rem .1rem rgb(0, 0, 0, .2));
-}
-
-#create-button:hover {
-    background-color: #45a049 !important;
-} */
-
-
 /* On the bottom of the OAuth login container 
     login.html */
 
@@ -780,7 +714,7 @@ select {
     width: 100%;
     height: 20px;
     /* !!! Could be changed to #FFFFFF but will remove footer bar on login box,
-        color is not in color palette */
+        color is not in our color palette, but maybe its google's color palette */
     background-color: #C4C4C4;
     bottom: 0px;
     border-radius: 0 0 20px 20px;
@@ -1287,13 +1221,10 @@ select {
 
 
 /* Used for downloading reports
-    !!! Maybe should change colors to color class?
     manageHelpSessions.html */
 
 .download-button {
-    background-color: #8FD1FC;
     border: none;
-    color: #FFFFFF;
     padding: 6px 10px;
     cursor: pointer;
     font-size: 16px;
@@ -1304,20 +1235,6 @@ select {
 
 .download-button:hover {
     filter: brightness(.8);
-}
-
-
-/* !!! Used for forms?? 
-possibly (very) not used at all */
-
-#select {
-    background-color: #1D2E3F;
-    border: none;
-    color: #FFFFFF;
-    border-radius: none !important;
-    height: fit-content !important;
-    margin: 0px !important;
-    padding: 0px !important;
 }
 
 
