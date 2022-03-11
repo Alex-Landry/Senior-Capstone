@@ -825,7 +825,7 @@ select {
 
 /* 400.html, 403.html, 404.html, 500.html */
 
-.error_title {
+.error-title {
     font-weight: 500;
     color: #FFFFFF;
     font-size: 28px;
@@ -836,7 +836,7 @@ select {
 
 /* 400.html, 403.html, 404.html, 500.html */
 
-.error_text {
+.error-text {
     font-weight: 500;
     color: #FFFFFF;
     font-size: 12px;
@@ -847,7 +847,7 @@ select {
 
 /* 400.html, 403.html, 404.html, 500.html */
 
-.error_return {
+.error-return {
     cursor: pointer !important;
     font-weight: 500;
     color: #8FD1FC;
@@ -1292,9 +1292,11 @@ select {
 }
 
 
-/* manageHelpSessions.html */
+/* Used for downloading reports
+    !!! Maybe should change colors to color class?
+    manageHelpSessions.html */
 
-.download_btn {
+.download-button {
     background-color: #8FD1FC;
     border: none;
     color: #FFFFFF;
@@ -1306,7 +1308,7 @@ select {
 
 /* manageHelpSessions.html */
 
-.download_btn:hover {
+.download-button:hover {
     filter: brightness(.8);
 }
 
@@ -1327,7 +1329,7 @@ possibly (very) not used at all */
 
 /* form element but for the filter */
 
-#selectFilter {
+#select-filter {
     display: inline-block;
     background-color: #1D2E3F;
     border: none;
@@ -1341,7 +1343,7 @@ possibly (very) not used at all */
 
 /* form element */
 
-#selectForm {
+#select-form {
     display: inline-block;
     background-color: #1D2E3F;
     border: none;
@@ -1357,7 +1359,7 @@ possibly (very) not used at all */
 
 /* form element */
 
-#checkboxForm {
+#checkbox-form {
     display: inline-block;
     background-color: #1D2E3F;
     border: none;
@@ -1373,7 +1375,7 @@ possibly (very) not used at all */
 
 /* form element */
 
-#textAreaForm {
+#text-area-form {
     display: relative;
     font: inherit !important;
     background-color: #0D598E;

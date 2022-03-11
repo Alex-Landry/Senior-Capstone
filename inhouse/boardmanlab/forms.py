@@ -77,7 +77,7 @@ class FormCreateHelpSession(forms.ModelForm):
         choices=[(i, i) for i in range(15, 130, 15)],
         label="duration",
         initial=30,
-        widget=forms.Select(attrs={"id": "selectForm"}),
+        widget=forms.Select(attrs={"id": "select-form"}),
     )
 
     # try getting choices (if in db)
@@ -88,33 +88,33 @@ class FormCreateHelpSession(forms.ModelForm):
 
     topic = forms.ChoiceField(
         choices=choicesGen,
-        widget=forms.Select(attrs={"id": "selectForm"}),
+        widget=forms.Select(attrs={"id": "select-form"}),
     )
 
     is_inperson = forms.NullBooleanField(
         required=False,
         label="inperson",
-        widget=forms.CheckboxInput(attrs={"id": "checkboxForm"}),
+        widget=forms.CheckboxInput(attrs={"id": "checkbox-form"}),
     )
 
     is_remote = forms.NullBooleanField(
         required=False,
         label="remote",
-        widget=forms.CheckboxInput(attrs={"id": "checkboxForm"}),
+        widget=forms.CheckboxInput(attrs={"id": "checkbox-form"}),
     )
 
     remote_link = forms.CharField(
         required=False,
         label="remotelink",
         max_length=200,
-        widget=forms.TextInput(attrs={"id": "textAreaForm"}),
+        widget=forms.TextInput(attrs={"id": "text-area-form"}),
     )
 
     notes = forms.CharField(
         required=False,
         label="notes",
         max_length=1000,
-        widget=forms.Textarea(attrs={"id": "textAreaForm"}),
+        widget=forms.Textarea(attrs={"id": "text-area-form"}),
     )
 
 
@@ -145,7 +145,7 @@ class FormEditHelpSession(forms.ModelForm):
     duration = forms.ChoiceField(
         choices=[(i, i) for i in range(15, 130, 15)],
         label="duration",
-        widget=forms.Select(attrs={"id": "selectForm"}),
+        widget=forms.Select(attrs={"id": "select-form"}),
     )
 
     # try getting choices (if in db)
@@ -156,39 +156,39 @@ class FormEditHelpSession(forms.ModelForm):
 
     topic = forms.ChoiceField(
         choices=choicesGen,
-        widget=forms.Select(attrs={"id": "selectForm"}),
+        widget=forms.Select(attrs={"id": "select-form"}),
     )
 
     is_inperson = forms.NullBooleanField(
         required=False,
         label="inperson",
-        widget=forms.CheckboxInput(attrs={"id": "checkboxForm"}),
+        widget=forms.CheckboxInput(attrs={"id": "checkbox-form"}),
     )
 
     is_remote = forms.NullBooleanField(
         required=False,
         label="remote",
-        widget=forms.CheckboxInput(attrs={"id": "checkboxForm"}),
+        widget=forms.CheckboxInput(attrs={"id": "checkbox-form"}),
     )
 
     remote_link = forms.CharField(
         required=False,
         label="remotelink",
         max_length=200,
-        widget=forms.TextInput(attrs={"id": "textAreaForm"}),
+        widget=forms.TextInput(attrs={"id": "text-area-form"}),
     )
 
     notes = forms.CharField(
         required=False,
         label="notes",
         max_length=1000,
-        widget=forms.Textarea(attrs={"id": "textAreaForm"}),
+        widget=forms.Textarea(attrs={"id": "text-area-form"}),
     )
 
     attendance = forms.IntegerField(
         required=False,
         label="attendance",
-        widget=forms.NumberInput(attrs={"id": "textAreaForm"}),
+        widget=forms.NumberInput(attrs={"id": "text-area-form"}),
     )
 
 
@@ -217,11 +217,11 @@ class FormFilterDate(forms.Form):
     month = forms.ChoiceField(
         choices=MONTHS,
         initial=MONTHS[today.month - 1],
-        widget=forms.Select(attrs={"id": "selectFilter"}),
+        widget=forms.Select(attrs={"id": "select-filter"}),
     )
     year = forms.ChoiceField(
         choices=YEARS,
-        widget=forms.Select(attrs={"id": "selectFilter"}),
+        widget=forms.Select(attrs={"id": "select-filter"}),
     )
 
 
@@ -241,7 +241,7 @@ class FormRecur(forms.Form):
         choices=[("daily", "Daily"), ("weekly", "Weekly"), ("monthly", "Monthly")],
         widget=forms.Select(
             attrs={
-                "id": "selectForm",
+                "id": "select-form",
             }
         ),
     )
@@ -250,7 +250,7 @@ class FormRecur(forms.Form):
         required=False,
         label="days",
         choices=DAYS,
-        widget=forms.CheckboxSelectMultiple(attrs={"id": "checkboxForm"}),
+        widget=forms.CheckboxSelectMultiple(attrs={"id": "checkbox-form"}),
     )
 
     end_date = forms.DateField(
