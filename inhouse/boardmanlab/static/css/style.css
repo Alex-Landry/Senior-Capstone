@@ -1,3 +1,22 @@
+/* Style rules:
+    Classes and id's are in kebab-case
+    Only buttons get color classes.
+    Stick to the color palette:
+        White: #FFFFFF
+        LightGray: #444444
+        Gray: #333333
+        DarkGray: #222222
+        UltraDarkGray: #111111
+        Black: #000000
+        Blue: #1D2E3F
+        LightBlue: #0D598E
+        UltraBlue: #1478C0
+        Red: #8C271E
+        Green: #70A288
+    
+*/
+
+
 /* Content settings for medium screen size */
 
 @media screen and (max-width: 1080px) {
@@ -8,10 +27,19 @@
     .calendar-content-day {
         height: 7vw !important;
     }
+    .calendar-content-day-current {
+        height: 7vw !important;
+    }
+    .calendar-content-day-blank {
+        height: 7vw !important;
+    }
     .calendar-content-day-labels {
         font-size: 1.5vw !important;
     }
     .calendar-content-date-container {
+        display: none !important;
+    }
+    .calendar-content-date-container-current {
         display: none !important;
     }
     .calendar-content-session-text {
@@ -46,10 +74,19 @@
     .calendar-content-day {
         height: 10vw !important;
     }
+    .calendar-content-day-blank {
+        height: 10vw !important;
+    }
+    .calendar-content-day-current {
+        height: 10vw !important;
+    }
     .calendar-content-day-labels {
         font-size: 2vw !important;
     }
     .calendar-content-date-container {
+        display: none !important;
+    }
+    .calendar-content-date-container-current {
         display: none !important;
     }
     .calendar-content-day-big-number {
@@ -78,7 +115,7 @@
 
 .calendar-content-session-available-icon {
     /* !!! Color change */
-    background-color: #29DF25;
+    background-color: #70A288;
     width: .07vw;
     height: .07vw;
     top: .1vw;
@@ -98,7 +135,7 @@
 .calendar-content-session-text {
     font-size: .8vw;
     /* !!! Color change */
-    color: #29DF25;
+    color: #70A288;
     top: 5px;
     right: 20px;
     position: absolute;
@@ -776,7 +813,8 @@ select {
 yes */
 
 
-/* Used by most templates */
+/* Used by most templates 
+    Is a medium sized, rounded corner button*/
 
 #submit {
     width: 100%;
@@ -800,7 +838,7 @@ also should just be a filter: brightness */
 /* Used by most templates */
 
 #submit:hover {
-    background-color: #45a049;
+    filter: brightness(.8);
 }
 
 
@@ -812,8 +850,10 @@ also should just be a filter: brightness */
 
 /* Login button */
 
+
+/* *** The login button had its id changed to submit,
+    this code is no longer needed
 #login {
-    float: right;
     width: 100%;
     color: #FFFFFF;
     text-align: center;
@@ -823,25 +863,15 @@ also should just be a filter: brightness */
     cursor: pointer;
     background-color: #0D598E;
     padding: 12px;
-    /* !!! Color change? */
     filter: drop-shadow(0 .2rem .1rem #333333);
 }
-
-
-/* !!! Could be changed to blue-button:hover */
-
-
-/* !!! Might not actually be used ever, login button is actually a submit type */
-
 #login:hover {
     background-color: #0a3c5f;
-}
+}*/
 
 
-/* !!! Could be changed to blue button */
-
-
-/* Used by most templates */
+/* Used by most templates 
+    Is a small, square button */
 
 #small-button {
     font-weight: 400 !important;
@@ -852,20 +882,13 @@ also should just be a filter: brightness */
     border: none;
     border-radius: 0px;
     cursor: pointer;
-    background-color: #0D598E;
     padding: 8px;
     /* !!! Color change? */
     filter: drop-shadow(0 .2rem .1rem rgb(0, 0, 0, .2));
 }
 
-
-/* !!! Could be changed to blue-button:hover */
-
-
-/* Used by most templates */
-
 #small-button:hover {
-    background-color: #0a3c5f;
+    filter: brightness(.8);
 }
 
 
@@ -1063,6 +1086,34 @@ graveyard was for og filter button (no longer in use) */
     filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
 }
 
+.calendar-content-day-blank {
+    position: relative;
+    margin: 4px;
+    width: auto;
+    height: 5vw;
+    background-color: #333333;
+    /* !!! Color change? */
+    filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
+}
+
+.calendar-content-day-current {
+    position: relative;
+    margin: 4px;
+    width: auto;
+    height: 5vw;
+    background-color: #0D598E;
+    /* !!! Color change? */
+    filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
+}
+
+.calendar-content-day:hover {
+    filter: brightness(.8);
+}
+
+.calendar-content-day-current:hover {
+    filter: brightness(.8);
+}
+
 
 /* calendarMonth_content.html */
 
@@ -1104,6 +1155,19 @@ graveyard was for og filter button (no longer in use) */
     font-weight: 400;
     /* !!! Color change, if we need an offwhite maybe use brightness? */
     color: #CCCCCC;
+}
+
+.calendar-content-date-container-current {
+    /* !!! Color change */
+    background-color: #8FD1FC;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    padding: 4px;
+    text-align: center;
+    font-weight: 400;
+    /* !!! Color change, if we need an offwhite maybe use brightness? */
+    color: #1D2E3F;
 }
 
 
@@ -1198,7 +1262,7 @@ graveyard was for og filter button (no longer in use) */
 }
 
 
-/* calendarMonth_content.html */
+/* not used */
 
 .gray {
     /* !!! Color change? Brightness? */
@@ -1206,24 +1270,21 @@ graveyard was for og filter button (no longer in use) */
 }
 
 
-/* createHelpSession.html, helpSessions.html, recurHelpSession.html, calendarDay_content.html,
-    calendarMonth_content.html */
+/* used for button in createHelpSession.html, calendarDay_content.html */
 
 .blue {
     background-color: #1D2E3F !important;
 }
 
 
-/* login.html, calendarMonth_content.html */
+/* not used */
 
 .lightblue {
     background-color: #0D598E !important;
 }
 
 
-/* createHelpSession.html, editHelpSession.html, helpSessionFeedback.html
-    helpSessions.html, manageHelpSessions.html, calendarDay_content.html
-    calendarMonth_content.html */
+/* used for button in helpSessions.html */
 
 .ultrablue {
     /* !!! Color change, brightness? */
@@ -1232,35 +1293,29 @@ graveyard was for og filter button (no longer in use) */
 }
 
 
-/* createHelpSession.html, editHelpSession.html, helpSessionFeedback.html
-    helpSessions.html, manageHelpSessions.html, calendarDay_content.html
-    calendarMonth_content.html */
+/* !!! change this to be button brightness?
 
 .ultrablue:hover {
-    /* !!! Color change, brightness? */
     background-color: #1478c0 !important;
     color: #0a3c5f !important;
-}
+} */
 
 
-/* login.html, calendarMonth_content.html */
+/* !!! change this to be button brightness? 
 
 .lightblue:hover {
-    /* !!! Color change, brightness */
     background-color: #0a3c5f !important;
-}
+}*/
 
 
-/* createHelpSession.html, helpSessions.html, recurHelpSession.html, calendarDay_content.html,
-    calendarMonth_content.html */
+/* !!! change this to be button brightness 
 
 .blue:hover {
-    /* !!! Color change, brightness */
     background-color: #0a3c5f !important;
-}
+}*/
 
 
-/* recurHelpSession.html, calendarDay_content */
+/* used for button in recurHelpSession.html */
 
 .green {
     /* !!! Color change */
@@ -1269,17 +1324,15 @@ graveyard was for og filter button (no longer in use) */
 }
 
 
-/* recurHelpSession.html, calendarDay_content */
+/* !!! Change to button brightness? 
 
 .green:hover {
-    /* !!! Color change, brightness */
     background-color: #45a049 !important;
     color: #0a3c5f !important;
-}
+}*/
 
 
-/* login.html, manageHelpSessions.html, recurHelpSession.html, calendarDay_content.html
-    filter_helpSessions.html, filter_manageHelpSessions.html, base.html */
+/* used for button in helpSessions.html, recurHelpSession.html */
 
 .red {
     /* !!! Color change */
@@ -1288,14 +1341,12 @@ graveyard was for og filter button (no longer in use) */
 }
 
 
-/* login.html, manageHelpSessions.html, recurHelpSession.html, calendarDay_content.html
-    filter_helpSessions.html, filter_manageHelpSessions.html, base.html */
+/* !!! change to button brightness? 
 
 .red:hover {
-    /* !!! Color change, brightness */
     background-color: #ce0000 !important;
     color: #ffffff !important;
-}
+}*/
 
 
 /* calendarMonth_content.html */

@@ -32,7 +32,7 @@
                 </p>
                 <form method="post" action="{% provider_login_url 'google' %}">
                     {% csrf_token %}
-                    <input type="submit" id="login" value="Login with Umaine Account">
+                    <input type="submit" id="submit" class="lightblue" value="Login with Umaine Account">
                 </input>
             </form>
         {% endif %}

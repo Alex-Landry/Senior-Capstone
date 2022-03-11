@@ -22,7 +22,7 @@
             {% if date != 0 %}
                 {% if date != day %}
                     <a href="/calendarDay/{{ year }}/{{ month }}/{{ date }}/"
-                       class="calendar-content-day blue">
+                       class="calendar-content-day">
                         <div class="calendar-content-date-container">{{ date }}</div>
                         {% if sessionflag|index:date > 0 %}
                             {% if sessionflag|index:date > 9 %}
@@ -36,8 +36,8 @@
                     </a>
                 {% else %}
                     <a href="/calendarDay/{{ year }}/{{ month }}/{{ date }}/"
-                       class="calendar-content-day lightblue">
-                        <div class="calendar-content-date-container ultrablue darktext">{{ date }}</div>
+                       class="calendar-content-day-current">
+                        <div class="calendar-content-date-container-current">{{ date }}</div>
                         {% if sessionflag|index:date > 0 %}
                             {% if sessionflag|index:date > 9 %}
                                 <div class="calendar-content-session-text">9+</div>
@@ -50,14 +50,8 @@
                     </a>
                 {% endif %}
             {% else %}
-                <div class="calendar-content-day gray"></div>
+                <div class="calendar-content-day-blank"></div>
             {% endif %}
         {% endfor %}
     {% endfor %}
 </div>
-<!-- Not Used Currently (not sure if its needed)
-<div class="legend-object">
-    <div class="smallbox ultrablue"></div>
-    <div class="padding-left">Today</div> 
-</div> 
--->
