@@ -846,11 +846,11 @@ a:hover {
 }
 
 .calendar-content-day:hover {
-    filter: brightness(.8);
+    filter: brightness(1.4);
 }
 
 .calendar-content-day-current:hover {
-    filter: brightness(.8);
+    filter: brightness(1.4);
 }
 
 
