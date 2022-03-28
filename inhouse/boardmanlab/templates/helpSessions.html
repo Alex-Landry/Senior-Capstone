@@ -22,8 +22,8 @@
                 <!-- End of Filter -->
                 <div class="scroll-content">
                     <!-- reservations comes from the view context,
-            is a list of relevant reservations according to user
-            and filter preferences -->
+            is a list of reservations that the user
+            has signed up for and filtered -->
                     {% for reservation in reservations %}
                         <div class="help-session-box">
                             <div class="help-session-title-fullrow">
@@ -57,7 +57,7 @@
                                 <div class="help-session-label">Topic</div>
                                 <div class="help-session-info">{{ reservation.helpSession.topic }}</div>
                             </div>
-                            {% if reservation.helpSession.is_remote %}
+                            {% if reservation.helpSession.is_remote and reservation.helpSession.remote_link %}
                                 <div class="help-session-info-row">
                                     <div class="help-session-label">Remote Link</div>
                                     <div class="help-session-info" style="padding:0px">
@@ -79,8 +79,8 @@
                                        class="ultrablue"
                                        id="small-button"
                                        value="Provide Feedback">
-                            </input>
-                        </form>
+                                </input>
+                                </form>
                     </div>
                 </div>
             {% endfor %}

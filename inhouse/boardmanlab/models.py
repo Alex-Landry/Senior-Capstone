@@ -13,7 +13,7 @@ class helpSession(models.Model):
     attendance = models.IntegerField(default=0, blank=True, null=True)
     is_remote = models.BooleanField(default=False, blank=False, null=True)
     is_inperson = models.BooleanField(default=True, blank=False, null=True)
-    remote_link = models.TextField(max_length=200, blank=True, null=True)
+    remote_link = models.URLField(max_length=200, blank=True, null=True)
     notes = models.TextField(max_length=1000, blank=True, null=True)
 
     class Meta:

@@ -9,9 +9,8 @@
            class="right-arrow"></a>
     </div>
     <form action="/calendarMonth/0/0/0/" class="form-custom">
-        <input type="submit" id="small-button" class="lightblue" value="Month View">
-    </input>
-</form>
+        <input type="submit" id="small-button" class="lightblue" value="Month View"></input>
+    </form>
 </div>
 <div class="scroll-content">
     {% for helpSession in helpSessions %}
@@ -22,14 +21,14 @@
                 </div>
                 <div class="help-session-mode">
                     {% if helpSession.is_remote %}
-                        <div class="mode-container">
-                            <img src="{% static 'images/remote_icon.png' %}" alt="remote"/>
-                        </div>
+                    <div class="mode-container">
+                        <img src="{% static 'images/remote_icon.png' %}" alt="remote"/>
+                    </div>
                     {% endif %}
                     {% if helpSession.is_inperson %}
-                        <div class="mode-container">
-                            <img src="{% static 'images/inperson_icon.png' %}" alt="In Person" />
-                        </div>
+                    <div class="mode-container">
+                        <img src="{% static 'images/inperson_icon.png' %}" alt="In Person" />
+                    </div>
                     {% endif %}
                 </div>
             </div>
@@ -49,64 +48,74 @@
                 <div class="help-session-label">Duration</div>
                 <div class="help-session-info">{{ helpSession.duration }} minutes</div>
             </div>
-            {% if helpSession.is_remote %}
+            {% if helpSession.is_remote and reservation.helpSession.remote_link %}
+            <div class="help-session-info-row">
+                <div class="help-session-label">Remote Link</div>
+                <div class="help-session-info" style="padding:0px">
+                    <a href="{{ helpSession.remote_link }}" class="blue" target="blank" id="remote-button"> Go To Remote Session</a>
+                </div>
                 <div class="help-session-info-row">
-                    <div class="help-session-label">Remote Link</div>
-                    <div class="help-session-info" style="padding:0px">
-                        <a href={{ helpSession.remote_link }} class="red" target="blank" id="remote-button"> Go To Remote Session</a>
+                    <div class="help-session-label">Duration</div>
+                    <div class="help-session-info">{{ helpSession.duration }} minutes</div>
+                </div>
+                {% if helpSession.is_remote %}
+                    <div class="help-session-info-row">
+                        <div class="help-session-label">Remote Link</div>
+                        <div class="help-session-info" style="padding:0px">
+                            <a href={{ helpSession.remote_link }} class="red" target="blank" id="remote-button"> Go To Remote Session</a>
+                        </div>
                     </div>
+                {% endif %}
+                <div class="help-session-buttons-fullrow"
+                    style="justify-content: right !important;">
+                    {% if helpSession.helper != user %}
+                        <form action="" method="post" class="form-button">
+                            {% csrf_token %}
+                            <input type="none" value={{ helpSession.pk }} name="helpSessionID" style="display: none;"></input>
+                            <input type="submit"
+                                name="attend"
+                                class="green"
+                                id="small-button"
+                                value="Attend Help Session">
+                            </input>
+                        </form>
                 </div>
             {% endif %}
-            <div class="help-session-buttons-fullrow"
-                 style="justify-content: right !important;">
-                {% if helpSession.helper != user %}
-                    <form action="" method="post" class="form-button">
-                        {% csrf_token %}
-                        <input type="none" value={{ helpSession.pk }} name="helpSessionID" style="display: none;">
+                {% if user.is_helper and helpSession.helper == user %}
+                <form method="post" class="form-button" action="/editHelpSession">
+                    {% csrf_token %}
+                    <input id="id_{{ FormEditButton.helpSessionID.html_name }}"
+                        name="{{ FormEditButton.helpSessionID.html_name }}"
+                        type="hidden"
+                        value="{{ helpSession.pk }}">
                     </input>
-                    <input type="submit"
-                           name="attend"
-                           class="green"
-                           id="small-button"
-                           value="Attend Help Session">
+                <input type="submit"
+                    name="edit"
+                    class="ultrablue"
+                    id="small-button"
+                    value="Edit Help Session"
+                    style="margin-left: 4px;">
                 </input>
-            </form>
-        {% endif %}
-        {% if user.is_helper and helpSession.helper == user %}
-            <form method="post" class="form-button" action="/editHelpSession">
-                {% csrf_token %}
-                <input id="id_{{ FormEditButton.helpSessionID.html_name }}"
-                       name="{{ FormEditButton.helpSessionID.html_name }}"
-                       type="hidden"
-                       value="{{ helpSession.pk }}">
+                </form>
+    {% endif %}
+    {% if user.is_helper and helpSession.helper == user %}
+        <form method="post" class="form-button">
+            {% csrf_token %}
+            <input id="id_{{ FormDeleteHelpSession.helpSessionID.html_name }}"
+                name="{{ FormDeleteHelpSession.helpSessionID.html_name }}"
+                type="hidden"
+                value="{{ helpSession.pk }}">
             </input>
             <input type="submit"
-                   name="edit"
-                   class="ultrablue"
-                   id="small-button"
-                   value="Edit Help Session"
-                   style="margin-left: 4px;">
-        </input>
-    </form>
-{% endif %}
-{% if user.is_helper and helpSession.helper == user %}
-    <form method="post" class="form-button">
-        {% csrf_token %}
-        <input id="id_{{ FormDeleteHelpSession.helpSessionID.html_name }}"
-               name="{{ FormDeleteHelpSession.helpSessionID.html_name }}"
-               type="hidden"
-               value="{{ helpSession.pk }}">
-    </input>
-    <input type="submit"
-           name="delete"
-           class="red"
-           id="small-button"
-           value="Remove"
-           style="margin-left: 4px;">
-</input>
-</form>
-{% endif %}
-</div>
-</div>
-{% endfor %}
+                name="delete"
+                class="red"
+                id="small-button"
+                value="Remove"
+                style="margin-left: 4px;">
+            </input>
+        </form>
+    {% endif %}
+    </div>
+    </div>
+    {% endfor %}
 </div>

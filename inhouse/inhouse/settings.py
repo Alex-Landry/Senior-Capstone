@@ -145,6 +145,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+# needs addressing at deployment
 STATIC_URL = "static/"
 
 # Default primary key field type
@@ -170,9 +171,10 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-
+# for updating the profile picture on login (this does not work currently )
 SOCIAL_AUTH_PIPELINE = "users.views.update_user_social_data"
 
+# setting the default date imput
 DATE_INPUT_FORMAT = [
     "%Y-%m-%d",
     "%Y/%m/%d",  # '2006-10-25', '10/25/2006', '10/25/06'

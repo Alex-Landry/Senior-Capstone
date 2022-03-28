@@ -1,5 +1,4 @@
 {% extends 'main/base.html' %}
-{% load socialaccount %}
 {% block content %}
     <!-- Center Flex Box -->
     <div class="center-content">
@@ -7,8 +6,7 @@
             <div class="center-content-open-tab unselectable">Calendar</div>
             <a href="/helpsessions" class="center-content-closed-tab unselectable">Sessions</a>
             {% if user.is_helper or user.is_admin %}
-                <a href="/manageHelpSessions"
-                   class="center-content-closed-tab unselectable">Manage</a>
+                <a href="/manageHelpSessions" class="center-content-closed-tab unselectable">Manage</a>
             {% endif %}
             <div class="center-content-blank-tab unselectable"></div>
         </div>

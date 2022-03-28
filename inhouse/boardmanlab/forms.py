@@ -83,6 +83,7 @@ class FormCreateHelpSession(forms.ModelForm):
     # try getting choices (if in db)
     try:
         choicesGen=[(topic, topic) for topic in Topic.objects.all()]
+    # except just give it something
     except:
         choicesGen=[('topic', 'topic')]
 
@@ -171,11 +172,11 @@ class FormEditHelpSession(forms.ModelForm):
         widget=forms.CheckboxInput(attrs={"id": "checkbox-form"}),
     )
 
-    remote_link = forms.CharField(
+    remote_link = forms.URLField(
         required=False,
         label="remotelink",
         max_length=200,
-        widget=forms.TextInput(attrs={"id": "text-area-form"}),
+        widget=forms.URLInput(attrs={"id": "text-area-form"}),
     )
 
     notes = forms.CharField(
@@ -266,7 +267,7 @@ class FormRecur(forms.Form):
 
         if frequency == "days" and not days:
             raise ValidationError(
-                "Need to specify which days to recur on" "if frequency is days."
+                "Need to specify which days to recur on if frequency is days."
             )
 
 
