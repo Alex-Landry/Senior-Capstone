@@ -18,6 +18,8 @@ from reports.views import course_freq_csv, helper_freq_csv, time_freq_csv
 import oauth2_provider.views as oauth2_views
 from django.conf import settings
 from boardmanlab.views import ApiEndpoint, Home
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
 
 # OAuth2 provider endpoints
 oauth2_endpoint_views = [
@@ -97,6 +99,7 @@ urlpatterns = [
     ),
     path("api/hello", ApiEndpoint.as_view()),  # an example resource endpoint
     path("accounts/", include("allauth.urls")),
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('images/favicon.ico')))
 ]
 
 # Error handling
