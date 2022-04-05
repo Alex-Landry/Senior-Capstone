@@ -38,7 +38,7 @@ class CustomUserAdmin(UserAdmin):
         ("Important dates", {"fields": ("last_login", "date_joined")}),
         (
             "Additional info",
-            {"fields": ("is_student", "is_helper", "is_admin", "topics")},
+            {"fields": ("is_student", "is_helper", "is_admin", "classStanding", "position", "topics", "personalBio")},
         ),
     )
 
@@ -60,7 +60,7 @@ class CustomUserAdmin(UserAdmin):
         ("Important dates", {"fields": ("last_login", "date_joined")}),
         (
             "Additional info",
-            {"fields": ("is_student", "is_helper", "is_admin", "topics")},
+            {"fields": ("is_student", "is_helper", "is_admin", "classStanding", "position", "topics", "personalBio")},
         ),
     )
 
