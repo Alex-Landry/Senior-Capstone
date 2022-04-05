@@ -3,17 +3,11 @@
 
 
 
-
-{% block leftnav %}
-<a href="/calendarMonth/0/0/0/" class="sidebar-button-open unselectable">Calendar</a>
-<a href="/calendarMonth/0/0/0/" class="sidebar-button-closed unselectable">Account</a>
-{% endblock %}
-
 {% block content %}
 <!-- Center Flex Box -->
 <div class="center-content">
     <div class="center-content-tab-container">
-      <div class="center-content-open-tab unselectable">myAccount</div>
+      <div class="center-content-open-tab unselectable">Profile</div>
       <div class="center-content-blank-tab"></div>
       <div class="center-content-blank-tab"></div>
     </div>
@@ -22,22 +16,13 @@
       <div class="center-content-tab-content">
 
      
-
         <!-- PAGE CONTENT GOES HERE -->
 
-
-        {% include 'elements/myAccount_content.html' %}
       
           <div class="help-session-box">
-            <div class="help-session-title"></div>
+            <div class="help-session-title">{{user.first_name}} {{user.last_name}}</div>
             <div class="help-session-info-row">
-                <div class="help-session-label">Name</div>
-                <div class="help-session-info">
-                    {{user.first_name}} {{user.last_name}}
-                </div>
-            </div>
-            <div class="help-session-info-row">
-                <div class="help-session-label">Year</div>
+                <div class="help-session-label">Class Standing</div>
                 <div class="help-session-info">
                     {{user.classStanding}}
                 </div>
@@ -63,31 +48,20 @@
               </div>
             </div>
             <div class="help-session-buttons-fullrow">
-                  <form method="post" class="form-button" action="/myAccount_Edit/">
+                <form method="post" class="form-button" action="/profileEdit/">
                       {% csrf_token %}
-                      <input id="id_{{ FormEditButton.helpSessionID.html_name }}"
-                             name="{{ FormEditButton.helpSessionID.html_name }}"
-                             type="hidden"
-                             value="{{ helpSession.pk }}">
-                  </input>
-                  <input type="submit"
-                         name="edit"
-                         class="ultrablue darktext"
-                         id="small-button"
-                         value="Edit my Account"
-                         style="margin-left: 4px;">
-              </input>
-          </form>
+                <input type="submit"
+                    name="edit"
+                    class="ultrablue darktext"
+                    id="small-button"
+                    value="Edit my Account"
+                    style="margin-left: 4px;">
+                </input>
+                </form>
+            </div>
 
-            
-        
-         
-
-
-             
-
-        </div>
-        <!-- END PAGE CONTENT -->
+            </div>
+            <!-- END PAGE CONTENT -->
 
       </div>
     </div>

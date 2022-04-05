@@ -15,7 +15,7 @@ from boardmanlab.views import (
     profile,
     profileEdit,
 )
-from reservations.views import new_help_session
+
 from reports.views import course_freq_csv, helper_freq_csv, time_freq_csv
 import oauth2_provider.views as oauth2_views
 from django.conf import settings

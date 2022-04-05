@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import User
+from .models import ClassStanding, Position, User
 from .models import Topic
 
 # Register your models here.
@@ -66,3 +66,10 @@ class CustomUserAdmin(UserAdmin):
 
 
 admin.site.register(User, CustomUserAdmin)
+
+class TopicAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Topic, TopicAdmin)
+admin.site.register(ClassStanding, TopicAdmin)
+admin.site.register(Position, TopicAdmin)

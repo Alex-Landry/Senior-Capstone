@@ -8,11 +8,11 @@ from .models import helpSession
 from reservations.models import Reservation
 
 
-class TopicAdmin(admin.ModelAdmin):
+class BoardmanAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(Topic, TopicAdmin)
 
-admin.site.register(helpSession, TopicAdmin)
-admin.site.register(Reservation, TopicAdmin)
+
+admin.site.register(helpSession, BoardmanAdmin)
+admin.site.register(Reservation, BoardmanAdmin)

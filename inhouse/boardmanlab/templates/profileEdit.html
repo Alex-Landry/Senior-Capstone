@@ -2,24 +2,16 @@
 {% load socialaccount %}
 
 
-
-
-{% block leftnav %}
-<a href="/calendarMonth/0/0/0/" class="sidebar-button-open unselectable">Calendar</a>
-<a href="/calendarMonth/0/0/0/" class="sidebar-button-closed unselectable">Account</a>
-{% endblock %}
-
 {% block content %}
   <!-- Center Flex Box -->
   <div class="center-content">
+
     <div class="center-content-tab-container">
-        <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
-        <a href="/helpsessions" class="center-content-closed-tab unselectable">Sessions</a>
-        {% if user.is_helper or user.is_admin %}
-        <div class="center-content-open-tab unselectable">Manage</div>
-        {% endif %}
+        <div class="center-content-open-tab unselectable">Edit Profile</div>
+        <div class="center-content-blank-tab"></div>
         <div class="center-content-blank-tab"></div>
     </div>
+
     <div class="center-content-tab-content-container">
         <div class="center-content-tab-content">
             <!-- PAGE CONTENT GOES HERE -->
@@ -27,11 +19,8 @@
                 {% csrf_token %}
                 {{ FormMyAccountEdit.non_field_errors }}
                 <div class="help-session-box" style="padding: 10px">
-                    <div class="help-session-title">Edit My Account</div>
-                    <div class="help-session-info-row">
-                        <div class="help-session-label">Name</div>
-                        <div class="help-session-info">{{ user.first_name }} {{ user.last_name }}</div>
-                    </div>
+                    <div class="help-session-title">{{ user.first_name }} {{ user.last_name }}</div>
+                    
                     <div class="help-session-info-row">
                         <div class="help-session-label">Year</div>
                         <div class="help-session-info">
