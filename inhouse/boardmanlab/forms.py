@@ -1,6 +1,6 @@
 from django import forms
 from datetime import datetime
-from users.models import User, Topic
+from users.models import User, Topic, ClassStanding, Position
 from .models import helpSession
 from reservations.models import Reservation
 
@@ -271,5 +271,37 @@ class FormRecur(forms.Form):
             )
 
 
-class ProfileEdit(forms.Form):
-    pass
+class ProfileEdit(forms.ModelForm):
+    class Meta:
+        model=User
+        exclude= ["is_student", "is_helper", 
+        "is_admin", "password", "username", 
+        "date_joined", "first_name", "last_name", 
+        "email", "picture", "is_active"]
+    
+
+    classStanding = forms.ModelChoiceField(
+                queryset=ClassStanding.objects.all(),
+                widget=forms.Select(attrs={"id": "select-form"}),
+                )
+
+    position = forms.ModelChoiceField(
+                queryset=Position.objects.all(),
+                widget=forms.Select(attrs={"id": "select-form"}),
+                required=False
+                )
+                            
+ 
+    topics = forms.ModelMultipleChoiceField(
+                queryset=Topic.objects.all(),
+                widget=forms.CheckboxSelectMultiple(attrs={"id": "select-form"}),
+                )
+    
+
+
+    personalBio = forms.CharField(
+        label ="Bio",
+        max_length=1000,
+        widget=forms.Textarea(attrs={"id": "textAreaForm"}),
+        required=False
+    )

@@ -20,6 +20,7 @@ from .forms import (
     FormEditHelpSession,
     FormEditButton,
     FormRecur,
+    ProfileEdit,
 )
 import calendar
 
@@ -44,7 +45,18 @@ def profile(request):
 
 @login_required()
 def profileEdit(request):
-    return render(request, "profileEdit.html")
+    editedUser = User.objects.get(pk=request.user.pk)
+    if request.method=="POST":
+        if "save" in request.POST:
+            formEditUser = ProfileEdit(data=request.POST, instance=editedUser)
+            if formEditUser.is_valid():
+                editedUser = formEditUser.save()
+                context = {"created_new": True}
+                return render(request, "success.html", context)
+            return render(request, 'profileEdit.html', {'ProfileEdit':formEditUser})
+
+    context ={"ProfileEdit": ProfileEdit(instance=editedUser)}
+    return render(request, 'profileEdit.html', context)
 
 
 @login_required()
