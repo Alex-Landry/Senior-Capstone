@@ -1,0 +1,72 @@
+{% extends 'main/base.html' %}
+{% load socialaccount %}
+
+
+{% block content %}
+  <!-- Center Flex Box -->
+<div class="center-content">
+
+    <div class="center-content-tab-container">
+        <div class="center-content-open-tab unselectable">Edit Profile</div>
+        <div class="center-content-blank-tab"></div>
+        <div class="center-content-blank-tab"></div>
+    </div>
+
+    <div class="center-content-tab-content-container">
+        <div class="center-content-tab-content">
+            <!-- PAGE CONTENT GOES HERE -->
+            <form action="" method="POST" class="form-custom" style="width:90%">
+                {% csrf_token %}
+                {{ ProfileEdit.non_field_errors }}
+                <div class="help-session-box" style="padding: 10px">
+                    <div class="help-session-title">{{ user.first_name }} {{ user.last_name }}</div>
+                    
+                    <div class="help-session-info-row">
+                        <div class="help-session-label">Year</div>
+                        <div class="help-session-info">
+                            {{ ProfileEdit.classStanding }}
+                            {{ user.errors }}
+                        </div>
+                    </div>
+
+                    <div class="help-session-info-row">
+                      <div class="help-session-label">Topics</div>
+                      <div class="help-session-info">
+                          {{ ProfileEdit.topics }}
+                          {{ user.errors }}
+                      </div>
+                    </div>
+
+                    {% if user.is_helper%}
+                    <div class="help-session-info-row">
+                        <div class="help-session-label">Position</div>
+                        <div class="help-session-info">
+                        {{ ProfileEdit.position }}
+                        {{ ProfileEdit.errors }}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="help-session-info-row">
+                        <div class="help-session-label">Bio</div>
+                        <div class="help-session-info">
+                        {{ProfileEdit.personalBio }}
+                        {{ user.errors }}
+                        </div>
+                    </div>
+                
+                    <div class="help-session-buttons-fullrow">
+                        <div>&nbsp;</div>
+                        <input type="submit" name="save" id="small-button" value="Save Changes" class="ultrablue">
+                        </input>
+                    </div>
+                </div>
+                {{ ProfileEdit.errors }}
+                {{ ProfileEdit.non_field_errors }}
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Center Flex Box -->
+
+{% endblock %}

@@ -12,8 +12,10 @@ from boardmanlab.views import (
     success,
     helpSessionFeedback,
     recurHelpSession,
+    profile,
+    profileEdit,
 )
-from reservations.views import new_help_session
+
 from reports.views import course_freq_csv, helper_freq_csv, time_freq_csv
 import oauth2_provider.views as oauth2_views
 from django.conf import settings
@@ -70,6 +72,8 @@ if settings.DEBUG:
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('profile/', profile, name='profile'),
+    path('profileEdit/', profileEdit, name='profileEdit'),
     path("home/", index),
     path("helpsessions/", helpsessions),
     path("createHelpSession/", createHelpSession, name="createHelpSession"),

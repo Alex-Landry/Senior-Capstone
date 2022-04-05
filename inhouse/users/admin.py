@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import User
+from .models import ClassStanding, Position, User
 from .models import Topic
 
 # Register your models here.
@@ -38,7 +38,7 @@ class CustomUserAdmin(UserAdmin):
         ("Important dates", {"fields": ("last_login", "date_joined")}),
         (
             "Additional info",
-            {"fields": ("is_student", "is_helper", "is_admin", "topics")},
+            {"fields": ("is_student", "is_helper", "is_admin", "classStanding", "position", "topics", "personalBio")},
         ),
     )
 
@@ -60,9 +60,16 @@ class CustomUserAdmin(UserAdmin):
         ("Important dates", {"fields": ("last_login", "date_joined")}),
         (
             "Additional info",
-            {"fields": ("is_student", "is_helper", "is_admin", "topics")},
+            {"fields": ("is_student", "is_helper", "is_admin", "classStanding", "position", "topics", "personalBio")},
         ),
     )
 
 
 admin.site.register(User, CustomUserAdmin)
+
+class TopicAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Topic, TopicAdmin)
+admin.site.register(ClassStanding, TopicAdmin)
+admin.site.register(Position, TopicAdmin)
