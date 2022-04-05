@@ -1,0 +1,83 @@
+{% extends 'main/base.html' %}
+{% load socialaccount %}
+
+
+
+
+{% block leftnav %}
+<a href="/calendarMonth/0/0/0/" class="sidebar-button-open unselectable">Calendar</a>
+<a href="/calendarMonth/0/0/0/" class="sidebar-button-closed unselectable">Account</a>
+{% endblock %}
+
+{% block content %}
+  <!-- Center Flex Box -->
+  <div class="center-content">
+    <div class="center-content-tab-container">
+        <a href="/calendarMonth/0/0/0/" class="center-content-closed-tab unselectable">Calendar</a>
+        <a href="/helpsessions" class="center-content-closed-tab unselectable">Sessions</a>
+        {% if user.is_helper or user.is_admin %}
+        <div class="center-content-open-tab unselectable">Manage</div>
+        {% endif %}
+        <div class="center-content-blank-tab"></div>
+    </div>
+    <div class="center-content-tab-content-container">
+        <div class="center-content-tab-content">
+            <!-- PAGE CONTENT GOES HERE -->
+            <form action="" method="post" class="form-custom" style="width:90%">
+                {% csrf_token %}
+                {{ FormMyAccountEdit.non_field_errors }}
+                <div class="help-session-box" style="padding: 10px">
+                    <div class="help-session-title">Edit My Account</div>
+                    <div class="help-session-info-row">
+                        <div class="help-session-label">Name</div>
+                        <div class="help-session-info">{{ user.first_name }} {{ user.last_name }}</div>
+                    </div>
+                    <div class="help-session-info-row">
+                        <div class="help-session-label">Year</div>
+                        <div class="help-session-info">
+                            {{ user.classStanding }}
+                            {{ user.errors }}
+                        </div>
+                    </div>
+                    <div class="help-session-info-row">
+                      <div class="help-session-label">Topics</div>
+                      <div class="help-session-info">
+                          {{ FormMyAccountEdit.topics }}
+                          {{ user.errors }}
+                      </div>
+                  </div>
+                  {% if user.is_helper%}
+                  <div class="help-session-info-row">
+                    <div class="help-session-label">Position</div>
+                    <div class="help-session-info">
+                        {{ FormMyAccountEdit.position }}
+                        {{ FormMyAccountEdit.errors }}
+                    </div>
+                </div>
+                {% endif %}
+                <div class="help-session-info-row">
+                  <div class="help-session-label">Bio</div>
+                  <div class="help-session-info">
+                      {{FormMyAccountEdit.personalBio }}
+                      {{ user.errors }}
+                  </div>
+              </div>
+                
+                 
+                   
+                  <div class="help-session-buttons-fullrow">
+                        <div>&nbsp;</div>
+                        
+                    <input type="submit" name="save" id="small-button" value="Save Changes" class="ultrablue">
+                </input>
+            </div>
+        </div>
+        {{ FormMyAccountEdit.errors }}
+        {{ FormMyAccountEdit.non_field_errors }}
+    </form>
+</div>
+</div>
+</div>
+<!-- End Center Flex Box -->
+
+{% endblock %}

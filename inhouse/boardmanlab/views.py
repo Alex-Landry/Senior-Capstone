@@ -38,6 +38,14 @@ def index(request):
 def login(request):
     return render(request, "login.html")
 
+@login_required()
+def profile(request):
+    return render(request, "profile.html")
+
+@login_required()
+def profileEdit(request):
+    return render(request, "profileEdit.html")
+
 
 @login_required()
 def calendarMonth(request, year, month, day):
