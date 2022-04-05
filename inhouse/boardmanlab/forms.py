@@ -277,31 +277,33 @@ class ProfileEdit(forms.ModelForm):
         exclude= ["is_student", "is_helper", 
         "is_admin", "password", "username", 
         "date_joined", "first_name", "last_name", 
-        "email", "picture", "is_active"]
+        "email", "picture", "is_active", "is_staff",
+        "is_superuser", "last_login", "user_permissions",
+        "groups"]
     
 
     classStanding = forms.ModelChoiceField(
+                required=False,
                 queryset=ClassStanding.objects.all(),
                 widget=forms.Select(attrs={"id": "select-form"}),
                 )
 
     position = forms.ModelChoiceField(
+                required=False,
                 queryset=Position.objects.all(),
                 widget=forms.Select(attrs={"id": "select-form"}),
-                required=False
                 )
                             
  
     topics = forms.ModelMultipleChoiceField(
+                required=False,
                 queryset=Topic.objects.all(),
                 widget=forms.CheckboxSelectMultiple(attrs={"id": "select-form"}),
                 )
     
 
-
     personalBio = forms.CharField(
-        label ="Bio",
-        max_length=1000,
-        widget=forms.Textarea(attrs={"id": "textAreaForm"}),
-        required=False
-    )
+                required=False,
+                max_length=1000,
+                widget=forms.Textarea(attrs={"id": "text-area-form"}),
+                )
