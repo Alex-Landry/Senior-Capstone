@@ -382,6 +382,10 @@ def createHelpSession(request):
                 end_date = Form_Recur.cleaned_data["end_date"]
                 # get base help session (which recurrance is based on from POST)
                 base_hs = helpSession.objects.get(pk=request.POST["helpSessionID"])
+                # don't let more than a year get created at a time
+                end_date_limiter = base_hs.date + relativedelta(years=1)
+                if end_date_limiter < end_date:
+                    end_date = end_date_limiter
 
                 cur_hs_date = base_hs.date
                 if frequency == "daily":
