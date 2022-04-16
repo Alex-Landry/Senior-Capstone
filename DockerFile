@@ -1,13 +1,13 @@
 # syntax=docker/dockerfile:1
-FROM python:3
+FROM python:3.9.6-alpine
+
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /inhouse
+WORKDIR /home/samuelmorse/In-House
 COPY ./requirements.txt /requirements.txt
 RUN pip install -r requirements.txt
-COPY ./inhouse /inhouse
+COPY ./inhouse -r /inhouse/
 
-WORKDIR /inhouse
 EXPOSE 8000
 
