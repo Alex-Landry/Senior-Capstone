@@ -18,7 +18,9 @@
                 <div class="umaine-logo">
                     <img src="{% static 'images/umaine_fullcrest_small.png' %}" />
                 </div>
-                <div class="header-text">Computer Science | Boardman Lab</div>
+                <a href = "/calendarMonth/0/0/0" class = "header-text">
+                    Computer Science | Boardman Lab
+                </a>
                 <div class="logout-container">
                     <form method="post" action="{% url 'account_logout' %}">
                         {% csrf_token %}
@@ -32,8 +34,11 @@
                 </form>
                 {% if user.picture %}
                     <div class="logout-image-container">
-                        <img src="{{ user.picture }}" />
+                        <a href = "/profile">
+                            <img src="{{ user.picture }}" />
+                        </a>
                     </div>
+
                 {% else %}
                     <div class="logout-image-container">
                         <img src="{% static 'images/login_header.png' %}" />
