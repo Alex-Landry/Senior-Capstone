@@ -4,10 +4,14 @@ FROM python:3.9.6-alpine
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /home/samuelmorse/In-House
-COPY ./requirements.txt /requirements.txt
+RUN pip install --upgrade pip
+WORKDIR /app
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
-COPY ./inhouse -r /inhouse/
+COPY ./inhouse /app
 
-EXPOSE 8000
+COPY ./entrypoint.sh /
+ENTRYPOINT ["sh", "/entrypoint.sh"]
+
+
 
