@@ -1,0 +1,1352 @@
+/* Style rules:
+    Classes and id's are in kebab-case
+    Only buttons get color classes.
+    Stick to the color palette:
+        White: #FFFFFF
+        LightGray: #444444
+        Gray: #333333
+        DarkGray: #222222
+        UltraDarkGray: #111111
+        Black: #000000
+        Blue: #1D2E3F
+        LightBlue: #0D598E
+        UltraBlue: #8FD1FC
+        Red: #8C271E
+        Green: #70A288
+    
+*/
+
+
+/* Content settings for medium screen size */
+
+@media screen and (max-width: 1080px) {
+    .right-content {
+        flex-direction: column !important;
+        display: none !important;
+    }
+    .calendar-content-day {
+        height: 7vw !important;
+    }
+    .calendar-content-day-current {
+        height: 7vw !important;
+    }
+    .calendar-content-day-blank {
+        height: 7vw !important;
+    }
+    .calendar-content-day-labels {
+        font-size: 1.5vw !important;
+    }
+    .calendar-content-date-container {
+        display: none !important;
+    }
+    .calendar-content-date-container-current {
+        display: none !important;
+    }
+    .calendar-content-session-text {
+        display: none !important;
+    }
+    .help-session-box {
+        width: 95% !important;
+    }
+}
+
+
+/* Content settings for small screen size */
+
+@media screen and (max-width: 600px) {
+    .right-content {
+        flex-direction: column !important;
+        display: none !important;
+    }
+    .left-content {
+        flex-direction: column !important;
+        display: none !important;
+    }
+    .umaine-logo {
+        display: none !important;
+    }
+    .header-text {
+        text-align: right !important;
+        font-size: 14px !important;
+    }
+    .calendar-content-day {
+        height: 10vw !important;
+    }
+    .calendar-content-day-blank {
+        height: 10vw !important;
+    }
+    .calendar-content-day-current {
+        height: 10vw !important;
+    }
+    .calendar-content-day-labels {
+        font-size: 2vw !important;
+    }
+    .calendar-content-date-container {
+        display: none !important;
+    }
+    .calendar-content-date-container-current {
+        display: none !important;
+    }
+    .calendar-content-day-big-number {
+        font-size: 6vw !important;
+        color: #1D2E3F !important;
+    }
+    .calendar-content-session-text {
+        display: none !important;
+    }
+    .help-session-box {
+        /* !!! Potentially hides/overlaps with scroll bar  -Sam */
+        width: auto !important;
+    }
+}
+
+
+/* This is the icon that shows if there is a help session on a 
+    given day in month view 
+        calendarMonth_content.html */
+
+.calendar-content-session-available-icon {
+    background-color: #70A288;
+    width: .07vw;
+    height: .07vw;
+    top: .1vw;
+    right: 0px;
+    position: absolute;
+    padding: 4px;
+    margin: .5vw;
+    border-radius: 50%;
+}
+
+
+/* This is the text that lists the number of help sessions on a 
+    given day in month view  
+    calendarMonth_content.html */
+
+.calendar-content-session-text {
+    font-size: .8vw;
+    color: #70A288;
+    top: 5px;
+    right: 20px;
+    position: absolute;
+}
+
+
+/* base.html, base_simple.html, error_base.html */
+
+body {
+    background-color: #111111;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    max-width: 2000px;
+    margin: 0 auto;
+}
+
+
+/* base.html, base_simple.html, error_base.html */
+
+.header {
+    background-color: #0D598E;
+    display: block;
+}
+
+
+/* base.html */
+
+.header-container {
+    width: 100%;
+    display: flex;
+    vertical-align: middle;
+}
+
+
+/* base.html, base_simple.html, error_base.html */
+
+.footer {
+    background-color: #1D2E3F;
+    padding: 10px;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
+
+/* base.html, base_simple.html, error_base.html */
+
+.header-text {
+    width: auto;
+    padding: 10px;
+    text-align: center;
+    font-size: 22px;
+    color: #FFFFFF;
+    font-weight: 600;
+    margin: auto;
+}
+
+
+/* base.html, base_simple.html, error_base.html */
+
+.head-strip {
+    filter: drop-shadow(0 0 0.5rem black);
+    width: auto;
+    height: 25px;
+    overflow: hidden;
+}
+
+
+/* base.html, base_simple.html, error_base.html */
+
+.head-strip img {
+    position: relative;
+    transform: rotate(180deg);
+    max-width: 2000px;
+    height: 1400px;
+    margin: -600px 0px 0px 0px;
+    object-fit: cover;
+    opacity: 0.5;
+}
+
+
+/* base.html */
+
+.umaine-logo {
+    width: 125px;
+    height: 40px;
+    display: flex;
+    object-fit: cover;
+    float: left;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+
+/* base.html */
+
+.logout-container {
+    display: flex;
+    width: 145px;
+    height: 60px;
+    vertical-align: middle;
+    align-items: center;
+}
+
+
+/* base.html */
+
+.logout-container img {
+    margin: auto;
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0px;
+    border: none;
+    background-color: none;
+    filter: drop-shadow(0rem .1rem 0.1rem rgba(0, 0, 0, 0.25));
+}
+
+
+/* base.html */
+
+.logout-image-container {
+    display: inline-block;
+    padding: 4px;
+    height: 52px;
+}
+
+
+/* base.html */
+
+.logout-image-container img {
+    position: relative;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    text-align: center;
+}
+
+
+/* base.html */
+
+.logout-container form {
+    margin: auto;
+    display: inline-block;
+    width: 75px;
+}
+
+
+/* Logout button 
+    base.html
+    !!! This button could potentially be converted to a small-button,
+    but I wanted to see how other people felt first - Forrest */
+
+#logout {
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+#logout:hover {
+    filter: brightness(.8);
+}
+
+
+/* Used only for remote links 
+    helpSessions.html, recurHelpSession.html, calendarDay_content.html */
+
+#remote-button {
+    font-family: inherit;
+    font-size: small;
+    display: inline-block;
+    align-items: center;
+    vertical-align: middle;
+    width: fit-content;
+    padding: 3px 5px 3px 5px;
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#remote-button:hover {
+    filter: brightness(.8);
+}
+
+
+/* login.html, 400.html, 403.html, 404.html, 500.html, base.html */
+
+.content-container {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    background-color: #000000;
+    position: relative;
+    min-height: 600px;
+    overflow: hidden;
+    justify-content: center;
+}
+
+
+/* Used as a main content div 
+    Used by most templates */
+
+.center-content {
+    display: flex;
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    padding: 0px;
+    color: #FFFFFF;
+    flex-direction: column;
+}
+
+
+/* Used as a tab container 
+    Used by most templates */
+
+.center-content-tab-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+}
+
+.center-content-open-tab {
+    -webkit-flex: 2;
+    -ms-flex: 2;
+    flex: 2;
+    margin-left: 7px;
+    margin-top: 7px;
+    text-align: center;
+    padding: 10px;
+    background-color: #222222;
+    height: auto;
+}
+
+
+/* Used to indicate which tabs you arent on 
+    Used by most templates*/
+
+.center-content-closed-tab {
+    -webkit-flex: 2;
+    -ms-flex: 2;
+    flex: 2;
+    margin-left: 7px;
+    margin-top: 7px;
+    text-align: center;
+    padding: 10px;
+    background-color: #222222;
+    opacity: .5;
+    height: auto;
+    transition-duration: 0.2s;
+    color: #FFFFFF;
+}
+
+
+/* Used to indicate hovering over a new tab 
+    Used by most templates */
+
+.center-content-closed-tab:hover {
+    opacity: 1;
+}
+
+
+/* Used in the tab container to pad the right side with empty space 
+    Used by most templates */
+
+.center-content-blank-tab {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-left: 7px;
+    margin-top: 7px;
+    max-width: 200px;
+    float: left;
+    padding: 10px;
+    background-color: #000000;
+    height: auto;
+}
+
+
+/* A smaller container inside the content-container 
+    and below the center-content-tab-container,
+    Used by most templates */
+
+.center-content-tab-content-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+
+/* Used by most templates */
+
+.center-content-tab-content {
+    margin-left: 7px;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-bottom: 0px;
+    margin-right: 7px;
+    background: #222222;
+    padding: 10px;
+}
+
+
+/* base.html */
+
+.left-content {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    background-color: #000000;
+    max-width: 200px;
+}
+
+.right-content {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    background-color: #000000;
+    max-width: 200px;
+}
+
+
+/* Left image crop */
+
+
+/* base.html */
+
+.bg-image-left {
+    float: left;
+    width: 200px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* Right image crop */
+
+
+/* base.html */
+
+.bg-image-right {
+    float: right;
+    width: 200px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* Left image specifications for crop */
+
+
+/* base.html */
+
+.bg-image-left img {
+    position: relative;
+    width: 1080px;
+    margin: 100px 0px 0px 0px;
+    object-fit: cover;
+    opacity: 0.5;
+}
+
+
+/* Right image specifications for crop */
+
+
+/* base.html */
+
+.bg-image-right img {
+    position: relative;
+    width: 1080px;
+    margin: 100px 0px 0px -880px;
+    object-fit: cover;
+    opacity: 0.5;
+}
+
+
+/* base.html */
+
+.sidebar-overlay {
+    display: grid;
+    position: absolute;
+}
+
+
+/* base.html */
+
+.sidebar-blank {
+    position: relative;
+    display: -ms-inline-grid;
+    height: 36px;
+    width: 200px;
+    background-color: #000000;
+}
+
+
+/* leftnav.html */
+
+.sidebar-button-open {
+    position: relative;
+    display: -ms-inline-grid;
+    height: 36px;
+    line-height: 36px;
+    width: 200px;
+    background-color: #000000;
+    text-align: left;
+    vertical-align: middle;
+    color: #FFFFFF;
+    width: auto;
+    padding-left: 25px;
+}
+
+
+/* leftnav.html */
+
+.sidebar-button-closed {
+    position: relative;
+    display: -ms-inline-grid;
+    height: 36px;
+    line-height: 36px;
+    width: 200px;
+    background-color: #000000;
+    text-align: left;
+    vertical-align: middle;
+    color: #444444;
+    width: auto;
+    padding-left: 25px;
+    transition-duration: 0s;
+}
+
+
+/* leftnav.html */
+
+.sidebar-button-closed:hover {
+    color: #FFFFFF;
+}
+
+
+/* login.html, 400.html, 403.html, 404.html, 500.html, base.html */
+
+.content-bgimage {
+    display: flex;
+    background-color: #000000;
+}
+
+
+/* login.html, 400.html, 403.html, 404.html, 500.html, base.html */
+
+.content-bgimage img {
+    width: 100%;
+    object-fit: cover;
+}
+
+
+/* login.html */
+
+.login-container {
+    background-color: #FFFFFF;
+    height: 500px;
+    width: 400px;
+    position: absolute;
+    margin: 0 auto;
+    top: 25px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Umaine logo in login
+    login.html */
+
+.login-logo {
+    position: relative;
+    margin: 0 auto;
+    object-fit: cover;
+    padding: 20px;
+}
+
+
+/* Used to indicate unselectable element 
+    Used by most templates*/
+
+.unselectable {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+
+/* Used by most templates */
+
+a:link {
+    text-decoration: none;
+}
+
+
+/* Used by most templates */
+
+a:hover {
+    cursor: default;
+}
+
+
+/* login.html, 400.html, 403.html, 404.html, 500.html */
+
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+
+/* Is a medium sized, rounded corner button
+    Used only in login.html */
+
+#submit {
+    width: 100%;
+    text-align: center;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 12px;
+    filter: drop-shadow(0 .2rem .1rem rgb(0, 0, 0, .2));
+}
+
+#submit:hover {
+    filter: brightness(.8);
+}
+
+
+/* Used by most templates 
+    Is a small, square button */
+
+#small-button {
+    font-weight: 400 !important;
+    display: inline-block;
+    text-align: center;
+    margin: 4px 0;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 8px;
+    filter: drop-shadow(0 .2rem .1rem rgb(0, 0, 0, .2));
+}
+
+#small-button:hover {
+    filter: brightness(.8);
+}
+
+
+/* On the bottom of the OAuth login container 
+    login.html */
+
+.input-bottom-bar {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    /* !!! Could be changed to #FFFFFF but will remove footer bar on login box,
+        color is not in our color palette, but maybe its google's color palette */
+    background-color: #C4C4C4;
+    bottom: 0px;
+    border-radius: 0 0 20px 20px;
+    font-size: 12px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+/* 400.html, 403.html, 404.html, 500.html */
+
+.error-container {
+    background-color: #111111;
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    margin: 0 auto;
+    top: 25px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* 400.html, 403.html, 404.html, 500.html */
+
+.error-window-bottom-bar {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #1D2E3F;
+    bottom: 0px;
+    border-radius: 0 0 20px 20px;
+    font-size: 12px;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+/* 400.html, 403.html, 404.html, 500.html */
+
+.error-title {
+    font-weight: 500;
+    color: #FFFFFF;
+    font-size: 28px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+/* 400.html, 403.html, 404.html, 500.html */
+
+.error-text {
+    font-weight: 500;
+    color: #FFFFFF;
+    font-size: 12px;
+    text-align: center;
+    padding: 0 0 80px 0;
+}
+
+
+/* 400.html, 403.html, 404.html, 500.html */
+
+.error-return {
+    cursor: pointer !important;
+    font-weight: 500;
+    color: #8FD1FC;
+    text-align: center;
+    font-size: 12px;
+}
+
+
+/* Holds the date currently being displayed by calendarDay_content or calendarMonth_content
+    calendarDay_content.html, calendarMonth_content.html */
+
+.calendar-content-strip {
+    padding-left: 4px;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+
+/* The date currently being displayed by calendarDay_content or calendarMonth_content 
+    calendarDay_content.html, calendarMonth_content.html */
+
+.calendar-content-view-menu {
+    width: auto;
+    height: auto;
+    padding: 10px 0;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+
+/* calendarMonth_content.html */
+
+.calendar-content-day {
+    position: relative;
+    margin: 4px;
+    width: auto;
+    height: 5vw;
+    background-color: #1D2E3F;
+    filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
+}
+
+.calendar-content-day-blank {
+    position: relative;
+    margin: 4px;
+    width: auto;
+    height: 5vw;
+    background-color: #333333;
+    filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
+}
+
+.calendar-content-day-current {
+    position: relative;
+    margin: 4px;
+    width: auto;
+    height: 5vw;
+    background-color: #0D598E;
+    filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
+}
+
+.calendar-content-day:hover {
+    filter: brightness(1.4);
+}
+
+.calendar-content-day-current:hover {
+    filter: brightness(1.4);
+}
+
+
+/* calendarMonth_content.html */
+
+.calendar-content-day-big-number {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 2vw;
+    font-weight: 600;
+    color: #FFFFFF !important;
+}
+
+
+/* calendarMonth_content.html */
+
+.calendar-content-day-labels {
+    padding: 4px;
+    margin: 4px;
+    width: auto;
+    font-size: 1.2vw;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+
+/* calendarMonth_content.html */
+
+.calendar-content-date-container {
+    background-color: #444444;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    padding: 4px;
+    text-align: center;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.calendar-content-date-container-current {
+    background-color: #8FD1FC;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    padding: 4px;
+    text-align: center;
+    font-weight: 400;
+    color: #1D2E3F;
+}
+
+
+/* manageHelpSessions.html, success.html, filter_helpSessions.html, filter_manageHelpSessions.html */
+
+.manage-content-strip {
+    padding-left: 4px;
+    margin-left: 10px;
+    width: 100%;
+    height: fit-content;
+    font-size: 16px;
+    font-weight: 500;
+    vertical-align: middle;
+    display: inline-block !important;
+}
+
+
+/* calendarMonth_content.html */
+
+.legend-object {
+    height: 30px;
+    width: 150px;
+    padding: 4px;
+    margin: 4px;
+    text-align: left;
+    align-items: center;
+    display: block;
+    float: left;
+}
+
+
+/* calendarMonth_content.html */
+
+.padding-left {
+    padding-left: 4px;
+    display: inline;
+}
+
+
+/* !!! no longer used, moved into color classes that require it */
+
+.darktext {
+    color: #000000 !important;
+}
+
+
+/* calendarMonth_content.html */
+
+.smallbox {
+    float: left;
+    height: 22px;
+    width: 22px;
+    display: block;
+}
+
+
+/* createHelpSession.html, editHelpSession.html, helpSessionFeedback.html,
+    recurHelpSession.html, calendarDay_content.html */
+
+.form-custom {
+    display: inline;
+    padding-left: 10px;
+    width: min(100%, 800px);
+}
+
+
+/* helpSessions.html, helpSessionFeedback.html, manageHelpSessions.html, 
+    calendarDay_content.html */
+
+.form-button {
+    display: inline-block;
+}
+
+
+/* forms.py */
+
+#form-picker-input {
+    padding: 0px !important;
+    margin: 0px !important;
+    background-color: #1D2E3F !important;
+    font-family: inherit !important;
+    color: #FFFFFF;
+    width: 100%;
+    !important;
+    border: none !important;
+}
+
+
+/* Used to darkmode the calendar day selection in forms */
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(100%);
+}
+
+
+/* not used */
+
+.gray {
+    background-color: #333333 !important;
+}
+
+
+/* used for button in createHelpSession.html, calendarDay_content.html */
+
+.blue {
+    background-color: #1D2E3F !important;
+    color: #FFFFFF;
+}
+
+
+/* used for button in login.html, calendarDay_content.html
+    filter_helpSessions.html, filter_manageHelpSessions.html */
+
+.lightblue {
+    background-color: #0D598E !important;
+    color: #FFFFFF;
+}
+
+
+/* used for button in helpSessions.html, createHelpSession.html,
+    edithHelpSession.html, helpSessionFeedback.html, manageHelpSessions.html,
+    calendarDay_content.html */
+
+.ultrablue {
+    background-color: #8FD1FC !important;
+    color: #0a3c5f !important;
+}
+
+.green {
+    background-color: #70A288 !important;
+    color: #1D2E3F !important;
+}
+
+.red {
+    background-color: #8C271E !important;
+    color: #FFFFFF !important;
+}
+
+
+/* calendarMonth_content.html */
+
+.calendar-day-labels,
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+
+/* calendarMonth_content.html, calendarDay_content.html */
+
+.text-date-menu {
+    top: 50%;
+    padding: 7px;
+    transform: translate(0%, -2%);
+    display: inline-block;
+    margin: auto;
+}
+
+
+/* calendarMonth_content.html, calendarDay_content.html */
+
+.left-arrow {
+    margin: auto;
+    display: inline-block;
+    height: 0px;
+    width: 0px;
+    border: 7px solid transparent;
+    border-left: 0;
+    border-right: 12px solid #0D598E;
+    filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
+}
+
+
+/* calendarMonth_content.html, calendarDay_content.html */
+
+.right-arrow {
+    margin: auto;
+    display: inline-block;
+    height: 0px;
+    width: 0px;
+    border: 7px solid transparent;
+    border-right: 0;
+    border-left: 12px solid #0D598E;
+    filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
+}
+
+
+/* calendarMonth_content.html, calendarDay_content.html */
+
+.left-arrow:hover {
+    border-right: 12px solid #8FD1FC !important;
+}
+
+
+/* calendarMonth_content.html, calendarDay_content.html */
+
+.right-arrow:hover {
+    border-left: 12px solid #8FD1FC !important;
+}
+
+
+/* createHelpSession.html, editHelpSession.html, helpSessionFeedback.html, 
+    helpSessions.html, manageHelpSessions.html, recurHelpSession.html, calendarDay_content.html */
+
+.help-session-box {
+    background-color: #0D598E;
+    margin-left: 0px;
+    margin-top: 20px;
+    padding: 10px !important;
+    width: 90%;
+    max-width: 800px;
+    filter: drop-shadow(3px 3px 1px rgb(0, 0, 0, .2));
+}
+
+
+/* createHelpSession.html, editHelpSession.html, helpSessionFeedback.html, 
+    helpSessions.html, manageHelpSessions.html, recurHelpSession.html, calendarDay_content.html */
+
+.help-session-title {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+
+/* createHelpSession.html, editHelpSession.html, helpSessionFeedback.html, 
+    helpSessions.html, manageHelpSessions.html, recurHelpSession.html, calendarDay_content.html */
+
+.help-session-info-row {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 4px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+
+/* createHelpSession.html, editHelpSession.html, helpSessionFeedback.html, 
+    helpSessions.html, manageHelpSessions.html, recurHelpSession.html, calendarDay_content.html */
+
+.help-session-info-fullrow {
+    display: inline-block;
+    grid-gap: 4px;
+    width: 80%;
+    margin-top: 4px;
+}
+
+
+/* createHelpSession.html, editHelpSession.html, helpSessionFeedback.html, 
+    manageHelpSessions.html, recurHelpSession.html, calendarDay_content.html */
+
+.help-session-buttons-fullrow {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 4px;
+}
+
+
+/* helpSessions.html, recurHelpSession.html, calendarDay_content.html */
+
+.help-session-title-fullrow {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0em;
+    text-align: left;
+    align-items: center;
+}
+
+
+/* helpSessions.html, recurHelpSession.html, calendarDay_content.html */
+
+.help-session-mode {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    vertical-align: middle;
+}
+
+
+/* helpSessions.html, recurHelpSession.html, calendarDay_content.html */
+
+.mode-container {
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+/* createHelpSession.html, editHelpSession.html, helpSessionFeedback.html, 
+    helpSessions.html, manageHelpSessions.html, recurHelpSession.html, calendarDay_content.html */
+
+.help-session-label {
+    background-color: #444444;
+    padding: 4px;
+    height: fit-content;
+}
+
+
+/* createHelpSession.html, editHelpSession.html, helpSessionFeedback.html, 
+    helpSessions.html, manageHelpSessions.html, recurHelpSession.html, calendarDay_content.html */
+
+.help-session-info {
+    background-color: #1D2E3F;
+    padding: 4px;
+}
+
+
+/* Used for downloading reports
+    manageHelpSessions.html */
+
+.download-button {
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+/* manageHelpSessions.html */
+
+.download-button:hover {
+    filter: brightness(.8);
+}
+
+
+/* form element but for the filter */
+
+#select-filter {
+    display: inline-block;
+    background-color: #1D2E3F;
+    border: none;
+    color: #FFFFFF;
+    padding: 7px;
+    width: fit-content;
+    border-radius: none !important;
+    height: fit-content !important;
+}
+
+
+/* form element */
+
+#select-form {
+    display: inline-block;
+    background-color: #1D2E3F;
+    border: none;
+    color: #FFFFFF;
+    padding: 0px !important;
+    margin: 0px !important;
+    width: 100%;
+    min-width: fit-content;
+    border-radius: none !important;
+    height: fit-content !important;
+}
+
+
+/* form element */
+
+#checkbox-form {
+    display: inline-block;
+    background-color: #1D2E3F;
+    border: none;
+    color: #FFFFFF;
+    padding: 0px !important;
+    margin: 0px !important;
+    width: 25px;
+    min-width: fit-content;
+    border-radius: none !important;
+    height: fit-content !important;
+}
+
+
+/* form element */
+
+#text-area-form {
+    display: relative;
+    font: inherit !important;
+    background-color: #0D598E;
+    filter: brightness(.8);
+    border: none;
+    color: #FFFFFF;
+    padding: 0px !important;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    border: 0px !important;
+    border-radius: 0px !important;
+    resize: vertical !important;
+}
+
+
+/* filter_helpSessions.html, filter_manageHelpSessions.html */
+
+#inline {
+    display: inline !important;
+}
+
+
+/* helpSessionFeedback.html, helpSessions.html, manageHelpSessions.html, calendarDay_content.html */
+
+.scroll-content {
+    overflow-y: auto;
+    max-height: 600px;
+}
+
+
+/* helpSessionFeedback.html, helpSessions.html, manageHelpSessions.html, calendarDay_content.html */
+
+.scroll-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track 
+    helpSessionFeedback.html, helpSessions.html, manageHelpSessions.html, calendarDay_content.html */
+
+.scroll-content::-webkit-scrollbar-track {
+    border-radius: 5px !important;
+    background: #1D2E3F;
+}
+
+
+/* Handle 
+    helpSessionFeedback.html, helpSessions.html, manageHelpSessions.html, 
+    calendarDay_content.html */
+
+.scroll-content::-webkit-scrollbar-thumb {
+    border-radius: 5px !important;
+    background: #111111;
+}
+
+
+/* Handle on hover 
+    helpSessionFeedback.html, helpSessions.html, manageHelpSessions.html, calendarDay_content.html */
+
+.scroll-content::-webkit-scrollbar-thumb:hover {
+    background: #444444;
+}
