@@ -22,7 +22,7 @@ services:
 
   db:
     build: .
-    image: postgres:12-alpine
+    image: postgres:latest
     container_name: db
     ports:
       - "5432:5432"
