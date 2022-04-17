@@ -1,23 +1,27 @@
 FROM python:3.8.9-alpine
 
-WORKDIR /app
-
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONNUNBUFFERED 1
 
-RUN apk update
+RUN mkdir /app
+COPY . /app
+WORKDIR /app
+
 RUN apk update && apk add gcc libc-dev make git libffi-dev openssl-dev python3 libxml2-dev libxslt-dev
-RUN apk add postgresql-dev gcc python3-dev musl-dev libc-dev linux-headers 
+RUN apk add postgresql-dev gcc python3-dev musl-dev libc-dev linux-headers
+RUN apk add libpq
 
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY . .
+COPY ./scripts /scripts
+RUN chmod +x /scripts/*
 
-RUN chmod +x *
+RUN mkdir -p /vol/web/media
+RUN mkdir -p /vol/web/static
 
-RUN chmod -R 755 ./
+RUN chmod -R 755 /vol
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/scripts/entrypoint.sh"]
