@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "$DATABASE" = "postgres" ]
+if [ "$DATABASE" = "csbldb" ]
 then
     echo "Waiting for postgres..."
     while ! nc -z "$POSTGRES_HOST" "$POSTGRES_PORT"; do
