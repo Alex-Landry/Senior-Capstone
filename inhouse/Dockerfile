@@ -19,7 +19,7 @@ COPY . .
 WORKDIR /app
 
 RUN mkdir -p /vol/static
-RUN chmod +x *
+RUN chmod +x /vol/static
 
 #RUN chmod -R 755 ./
 RUN chmod -R 755 /vol
