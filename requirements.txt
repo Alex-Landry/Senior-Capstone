@@ -9,4 +9,3 @@ django-allauth
 google-auth
 python-dateutil
 django-environ
-cffi == 1.14.6
