@@ -23,8 +23,8 @@ services:
   app-db:
     image: postgres:12-alpine
     container_name: app-db
-    ports:
-      - "5432:5432"
+    expose:
+      - 8000
     networks:
       - djangonetwork
     restart: always
@@ -34,6 +34,18 @@ services:
       - .env
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
+
+  proxy:
+    build: ./proxy
+    volumes:
+      - static_data:./static
+    restart: always
+    ports:
+      - "8008:80"
+    depends_on:
+      - app
+    networks:
+      - djangonetwork
 
 volumes:
   static_data:
