@@ -1,6 +1,6 @@
-FROM python:3.9.6-alpine
+FROM python:3.8.9-alpine
 
-
+WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONNUNBUFFERED 1
@@ -14,14 +14,10 @@ COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 
-RUN mkdir /app
 COPY . .
-WORKDIR /app
 
-RUN mkdir -p /vol/static
-RUN chmod +x /vol/static
+RUN chmod +x *
 
-#RUN chmod -R 755 ./
-RUN chmod -R 755 /vol
+RUN chmod -R 755 ./
 
 ENTRYPOINT ["./entrypoint.sh"]
