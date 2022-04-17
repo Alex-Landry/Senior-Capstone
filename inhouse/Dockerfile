@@ -16,7 +16,7 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN mkdir -p /static
+RUN mkdir -p /vol/static
 RUN chmod +x *
 
 RUN chmod -R 755 ./
