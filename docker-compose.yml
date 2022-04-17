@@ -3,7 +3,8 @@ version: '3.5'
 
 services:
   app:
-    build: .
+    build:
+      context: .
     command: python ./inhouse/manage.py runserver 0.0.0.0:8000
     volumes:
       - static_data:/static
@@ -20,6 +21,7 @@ services:
       - app-db
 
   app-db:
+    build: .
     image: postgres:12-alpine
     container_name: db
     ports:
