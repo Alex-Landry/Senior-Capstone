@@ -15,12 +15,10 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY . .
-COPY base.py base.py
 
-CMD ["python", "base.py"]
 
-RUN chmod +x *
+#RUN chmod +x *
 
-RUN chmod -R 755 ./
+#RUN chmod -R 755 ./
 
 #ENTRYPOINT ["./entrypoint.sh"]
