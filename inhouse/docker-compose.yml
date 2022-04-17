@@ -9,7 +9,7 @@ services:
     volumes:
       - static_data:/static
     ports:
-      - "8000:8000"
+      - "80:8000"
     restart: always
     env_file:
       - .env
