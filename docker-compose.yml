@@ -33,7 +33,7 @@ services:
       - postgres_data:/var/lib/postgresql/data:rw
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
-      - POSTGRES_DB:csbldb
+      - POSTGRES_DB:db
       - POSTGRES_USER:postgres
       - POSTGRES_PASSWORD:orange
       - TZ:America/New_York
