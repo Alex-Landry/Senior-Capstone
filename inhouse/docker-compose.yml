@@ -13,12 +13,12 @@ services:
     restart: always
     env_file:
       - .env
-    links:
-      - app-db:app-db
     networks:
       - djangonetwork
     depends_on:
       - app-db
+    links:
+      - app-db:app-db
 
   app-db:
     build: .
