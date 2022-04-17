@@ -7,8 +7,8 @@ services:
       context: .
     volumes:
       - static_data:/vol/static
-    ports:
-      - "80:8000"
+    expose:
+      - 8000
     restart: always
     env_file:
       - .env
@@ -23,8 +23,8 @@ services:
   app-db:
     image: postgres:12-alpine
     container_name: app-db
-    expose:
-      - 8000
+    ports:
+      - "5432:5432"
     networks:
       - djangonetwork
     restart: always
