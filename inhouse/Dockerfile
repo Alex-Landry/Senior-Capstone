@@ -1,6 +1,6 @@
 FROM python:3.9.6-alpine
 
-WORKDIR /app
+
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONNUNBUFFERED 1
@@ -14,7 +14,9 @@ COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY . .
+RUN mkdir /app
+COPY . /app
+WORKDIR /app
 
 RUN mkdir -p /vol/static
 RUN chmod +x *
