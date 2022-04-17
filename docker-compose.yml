@@ -4,7 +4,8 @@ version: '3.5'
 services:
   app:
     build: .
-    command: python ./inhouse/manage.py runserver 0.0.0.0:8000
+    command: bash -c "python ./inhouse/manage.py migrate && 
+                      python ./inhouse/manage.py runserver 0.0.0.0:8000"
     volumes:
       - static_data:/static
     ports:
