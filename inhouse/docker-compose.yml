@@ -1,0 +1,49 @@
+version: '3.5'
+
+
+services:
+  app:
+    build:
+      context: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - static_data:/static
+    ports:
+      - "8000:8000"
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - djangonetwork
+    depends_on:
+      - app-db
+    links:
+      - app-db:app-db
+
+  app-db:
+    build: .
+    image: postgres:12-alpine
+    container_name: app-db
+    ports:
+      - "5432:5432"
+    networks:
+      - djangonetwork
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data:rw
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_DB:app-db
+      - POSTGRES_USER:postgres
+      - POSTGRES_PASSWORD:orange
+      - TZ:America/New_York
+
+volumes:
+  static_data:
+  postgres_data:
+
+networks:
+  djangonetwork:
+    driver: bridge
+
+  
