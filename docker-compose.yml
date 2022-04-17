@@ -13,7 +13,7 @@ services:
     env_file:
       - ./inhouse/.env
     links:
-      - app-db:app-db
+      - db:db
     networks:
       - djangonetwork
     depends_on:
@@ -21,6 +21,7 @@ services:
 
   app-db:
     image: postgres:12-alpine
+    container_name: db
     ports:
       - "5432:5432"
     networks:
