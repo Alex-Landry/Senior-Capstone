@@ -20,7 +20,6 @@ services:
       - app-db
 
   app-db:
-    build: .
     image: postgres:12-alpine
     ports:
       - "5432:5432"
