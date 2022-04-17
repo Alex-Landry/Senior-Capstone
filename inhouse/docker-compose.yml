@@ -5,7 +5,6 @@ services:
   app:
     build:
       context: .
-    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - static_data:/static
     ports:
@@ -19,6 +18,7 @@ services:
       - db
     links:
       - db:db
+    command: gunicorn inhouse.wsgi:application -w 2 -b :8000
 
   db:
     build: .
