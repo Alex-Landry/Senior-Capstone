@@ -38,7 +38,7 @@ services:
   proxy:
     build: ./proxy
     volumes:
-      - static_data:./static
+      - static_data:/static/
     restart: always
     ports:
       - "8008:80"
