@@ -15,15 +15,15 @@ services:
     networks:
       - djangonetwork
     depends_on:
-      - db
+      - app-db
     links:
-      - db:db
+      - app-db:app-db
     command: gunicorn inhouse.wsgi:application -w 2 -b :8000
 
-  db:
+  app-db:
     build: .
     image: postgres:12-alpine
-    container_name: db
+    container_name: app-db
     ports:
       - "5432:5432"
     networks:
