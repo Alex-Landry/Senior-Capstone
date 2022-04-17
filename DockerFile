@@ -1,17 +1,14 @@
-# syntax=docker/dockerfile:1
-FROM python:3.9.6-alpine
+FROM python:3.8.9-alpine
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+WORKDIR /app
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONNUNBUFFERED 1
 
 RUN pip install --upgrade pip
-WORKDIR /app
 COPY ./requirements.txt .
+
 RUN pip install -r requirements.txt
-COPY ./inhouse /app
 
-COPY ./entrypoint.sh /
-ENTRYPOINT ["sh", "/entrypoint.sh"]
-
-
+COPY . .
 

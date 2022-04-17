@@ -1,36 +1,14 @@
-version: '3'
+version: '3.5'
    
+
 services:
-  db:
-    image: postgres:latest
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=csbldb
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=orange
-
-  django_gunicorn:
-    volumes:
-      - static:/static
-    env_file:
-      - ./inhouse/.env
-    build: 
-      context: .
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-
-  nginx:
-    build: ./nginx
-    volumes:
-      - static:/static
-    ports:
-      - "80:80"
-    depends_on:
-      - django_gunicorn
-
-volumes:
-  static:
-  postgres_data:
+    app:
+        build: .
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+            - static_data:/vol/web
+        ports:
+            - "8000:8000"
+        restart: always
+        env_file:
+            - ./.env
