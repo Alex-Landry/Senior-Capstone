@@ -7,18 +7,16 @@ services:
       context: .
     volumes:
       - static_data:/vol/static
-    expose:
-      - 8000
     restart: always
     env_file:
       - .env
     networks:
       - djangonetwork
+      - nginxnetwork
     depends_on:
       - app-db
     links:
       - app-db:app-db
-    command: gunicorn inhouse.wsgi:application -w 2 -b :8000
 
   app-db:
     image: postgres:12-alpine
@@ -41,11 +39,11 @@ services:
       - static_data:/vol/static
     restart: always
     ports:
-      - "8008:80"
+      - "8000:80"
     depends_on:
       - app
     networks:
-      - djangonetwork
+      - nginxnetwork
 
 volumes:
   static_data:
@@ -53,6 +51,8 @@ volumes:
 
 networks:
   djangonetwork:
+    driver: bridge
+  nginxnetwork:
     driver: bridge
 
   

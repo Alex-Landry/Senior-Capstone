@@ -25,3 +25,6 @@ RUN chmod +x *
 RUN chmod -R 755 /vol
 
 ENTRYPOINT ["./entrypoint.sh"]
+
+EXPOSE 8000
+CMD ["gunicorn", "--bind", ":8000", "--chdir", "hello.wsgi:application"]
