@@ -1,5 +1,5 @@
 version: '3.5'
-   
+
 
 services:
     app:
@@ -11,4 +11,4 @@ services:
             - "8000:8000"
         restart: always
         env_file:
-            - ./.env
+            - ./inhouse/.env
