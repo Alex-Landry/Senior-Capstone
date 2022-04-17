@@ -21,4 +21,4 @@ COPY . .
 
 #RUN chmod -R 755 ./
 
-#ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
