@@ -2,9 +2,9 @@ version: '3.5'
 
 
 services:
-  inhouse:
+  app:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python ./inhouse/manage.py runserver 0.0.0.0:8000
     volumes:
       - static_data:/static
     ports:
@@ -13,9 +13,9 @@ services:
     env_file:
       - ./inhouse/.env
     depends_on:
-      - inhouse-db
+      - app-db
 
-  inhouse-db:
+  app-db:
     image: postgres:12-alpine
     ports:
       - "5432:5432"
