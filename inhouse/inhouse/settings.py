@@ -154,7 +154,7 @@ USE_TZ = True
 
 # needs addressing at deployment
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"), # Django will search for /static/
+    os.path.join(BASE_DIR, "boardmanlab/static"), # Django will search for /static/
 ]
 STATIC_URL = "static/"
 STATIC_ROOT = "static/"
