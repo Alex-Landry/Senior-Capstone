@@ -15,7 +15,7 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 RUN mkdir /app
-COPY . /app
+COPY . .
 WORKDIR /app
 
 RUN mkdir -p /vol/static
@@ -25,6 +25,3 @@ RUN chmod +x *
 RUN chmod -R 755 /vol
 
 ENTRYPOINT ["./entrypoint.sh"]
-
-EXPOSE 8000
-CMD ["gunicorn", "--bind", ":8000", "--chdir", "hello.wsgi:application"]
