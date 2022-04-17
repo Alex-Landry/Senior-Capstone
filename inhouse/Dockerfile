@@ -19,6 +19,7 @@ COPY . .
 RUN mkdir -p /vol/static
 RUN chmod +x *
 
-RUN chmod -R 755 ./
+#RUN chmod -R 755 ./
+RUN chmod -R 755 /vol
 
 ENTRYPOINT ["./entrypoint.sh"]
