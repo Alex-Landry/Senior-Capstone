@@ -8,3 +8,4 @@ django-cors-headers
 django-allauth
 google-auth
 python-dateutil
+django-environ
