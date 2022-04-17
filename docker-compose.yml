@@ -2,20 +2,20 @@ version: '3.5'
 
 
 services:
-  inhouse:
+  app:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python ./inhouse/manage.py runserver 0.0.0.0:8000
     volumes:
       - static_data:/static
     ports:
       - "8000:8000"
     restart: always
     env_file:
-      - .env
+      - ./inhouse/.env
     depends_on:
-      - inhouse-db
+      - app-db
 
-  inhouse-db:
+  app-db:
     image: postgres:12-alpine
     ports:
       - "5432:5432"
@@ -25,7 +25,7 @@ services:
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
       - POSTGRES_DB:csbldb
-      - POSTGRES_HOST=localhost
+      - POSTGRES_HOST=app-db
       - POSTGRES_PORT=5432
       - POSTGRES_USER:postgres
       - POSTGRES_PASSWORD:orange
