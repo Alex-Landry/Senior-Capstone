@@ -12,13 +12,20 @@ services:
     restart: always
     env_file:
       - ./inhouse/.env
+    links:
+      - app-db:app-db
+    networks:
+      - djangonetwork
     depends_on:
       - app-db
 
   app-db:
+    build: .
     image: postgres:12-alpine
     ports:
       - "5432:5432"
+    networks:
+      - djangonetwork
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data:rw
@@ -34,5 +41,8 @@ services:
 volumes:
   static_data:
   postgres_data:
+
+networks:
+  djangonetwork:
 
   
