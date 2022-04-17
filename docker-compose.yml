@@ -29,5 +29,6 @@ services:
 
 volumes:
   static:
+  postgres_data:
 
   
