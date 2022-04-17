@@ -11,9 +11,9 @@ services:
       - "8000:8000"
     restart: always
     env_file:
-      - ./inhouse/.env
+      - .env
     depends_on:
-      - app-db
+      - inhouse-db
 
   inhouse-db:
     image: postgres:12-alpine
