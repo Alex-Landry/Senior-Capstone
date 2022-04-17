@@ -28,7 +28,7 @@ services:
       - TZ:America/New_York
 
 volumes:
-  static:
+  static_data:
   postgres_data:
 
   
