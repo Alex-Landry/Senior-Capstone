@@ -1,5 +1,5 @@
 Django
-psycopg2-binary
+psycopg2
 django-extensions
 djangorestframework
 gunicorn
