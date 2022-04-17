@@ -5,14 +5,14 @@ services:
   app:
     build:
       context: .
-    command: python ./inhouse/manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - static_data:/static
     ports:
       - "8000:8000"
     restart: always
     env_file:
-      - ./inhouse/.env
+      - .env
     links:
       - app-db:app-db
     networks:
