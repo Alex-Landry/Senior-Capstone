@@ -23,7 +23,7 @@ services:
   app-db:
     build: .
     image: postgres:12-alpine
-    container_name: db
+    container_name: app-db
     ports:
       - "5432:5432"
     networks:
@@ -33,7 +33,7 @@ services:
       - postgres_data:/var/lib/postgresql/data:rw
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
-      - POSTGRES_DB:db
+      - POSTGRES_DB:app-db
       - POSTGRES_USER:postgres
       - POSTGRES_PASSWORD:orange
       - TZ:America/New_York
