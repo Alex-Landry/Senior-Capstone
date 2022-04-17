@@ -43,5 +43,6 @@ volumes:
 
 networks:
   djangonetwork:
+    driver: bridge
 
   
