@@ -87,7 +87,7 @@
                         </form>
                         {% endif %}
                         </div>
-                        {% these_reservations as get_reservations %}
+                        {% get_reservations as these_reservations %}
                         {% for reservation in these_reservations %}
                             {% if reservation.feedback %}
                                 <div class="help-session-info-row" style="background-color: #1d2e3f !important;">
