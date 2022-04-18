@@ -3,9 +3,12 @@ FROM python:3.8.9-alpine
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONNUNBUFFERED 1
 
-RUN mkdir /app
-COPY . /app
-WORKDIR /app
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
+RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/staticfiles
+RUN mkdir $APP_HOME/mediafiles
+WORKDIR $APP_HOME
 
 RUN apk update && apk add gcc libc-dev make git libffi-dev openssl-dev python3 libxml2-dev libxslt-dev
 RUN apk add postgresql-dev gcc python3-dev musl-dev libc-dev linux-headers
@@ -19,8 +22,6 @@ RUN pip install -r requirements.txt
 COPY ./scripts /scripts
 RUN chmod +x /scripts/*
 
-RUN mkdir -p /vol/web/media
-RUN mkdir -p /vol/web/static
 
 RUN chmod -R 755 /vol
 
