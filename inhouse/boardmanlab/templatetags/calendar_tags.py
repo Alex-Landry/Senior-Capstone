@@ -150,15 +150,7 @@ def get_freq(freq):
     if freq == "days":
         return True
 
-@register.simple_tag
-def get_number_of_users():
-    return User.objects.all().count()
 
-@register.simple_tag
-def get_current_number_of_users():
-    today = datetime.date.today()
-    last_week = today - datetime.timedelta(days=7)
-    return User.objects.filter(last_login__range=(last_week, today)).count()
 
 
 

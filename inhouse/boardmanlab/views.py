@@ -41,7 +41,15 @@ def login(request):
 
 @login_required()
 def analytics(request):
-    return render(request, "analytics.html")
+    total_users = User.objects.all().count()
+    today = datetime.date.today()
+    last_week = today - datetime.timedelta(days=7)
+    current_users = User.objects.filter(last_login__range=(last_week, today)).count()
+    context = {
+        "total_users": total_users,
+        "current_users": current_users,
+    }
+    return render(request, "analytics.html", context)
 
 @login_required()
 def profile(request):
