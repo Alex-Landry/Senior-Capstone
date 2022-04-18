@@ -1,5 +1,5 @@
 from django import template
-from inhouse.boardmanlab.models import helpSession
+from boardmanlab.models import helpSession
 
 register = template.Library()
 from reservations.models import Reservation
