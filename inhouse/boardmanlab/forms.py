@@ -80,17 +80,11 @@ class FormCreateHelpSession(forms.ModelForm):
         widget=forms.Select(attrs={"id": "select-form"}),
     )
 
-    # try getting choices (if in db)
-    try:
-        choicesGen=[(topic, topic) for topic in Topic.objects.all()]
-    # except just give it something
-    except:
-        choicesGen=[('topic', 'topic')]
-
-    topic = forms.ChoiceField(
-        choices=choicesGen,
-        widget=forms.Select(attrs={"id": "select-form"}),
-    )
+    topic = forms.ModelChoiceField(
+                required=True,
+                queryset=User.Topic.objects.all(),
+                widget=forms.Select(attrs={"id": "select-form"}),
+                )
 
     is_inperson = forms.NullBooleanField(
         required=False,
@@ -150,15 +144,11 @@ class FormEditHelpSession(forms.ModelForm):
     )
 
     # try getting choices (if in db)
-    try:
-        choicesGen=[(topic, topic) for topic in Topic.objects.all()]
-    except:
-        choicesGen=[('topic', 'topic')]
-
-    topic = forms.ChoiceField(
-        choices=choicesGen,
-        widget=forms.Select(attrs={"id": "select-form"}),
-    )
+    topic = forms.ModelChoiceField(
+                required=True,
+                queryset=User.Topic.objects.all(),
+                widget=forms.Select(attrs={"id": "select-form"}),
+                )
 
     is_inperson = forms.NullBooleanField(
         required=False,
