@@ -10,47 +10,47 @@
         <div class="error-container">
             <div class="input-container">
                 <div class="error-title">
-                    <b>Congratulation!</b> Something to be proud of...
+                    <b>Success</b>
                 </div>
 
                     {% if created_new %}
-                        <p>
+                        <p class="error-text">
                             New Help Session Successfully Created
                         </p>
                     {% endif %}
                     <!-- CHECK IF ALREADY ATTENDING -->
                     {% if already_attending %}
-                        <p class="successful-booking-label">
+                        <p class="error-text">
                             You are already booked for this help session.
                         </p>
                     {% endif %}
                     <!-- CHECK IF SUCCESSFUL BOOKING -->
                     {% if new_reservation %}
-                        <p class="successful-booking-label">
+                        <p class="error-text">
                             Appointment Successfully Booked!
                         </p>
                     {% endif %}
                     <!-- CHECK IF EDITED HELPSESSION -->
                     {% if editedHelpSession %}
-                        <p class="successful-booking-label">
+                        <p class="error-text">
                             Help Session Successfully Edited!
                         </p>
                     {% endif %}
                     <!-- CHECK IS EDITED FEEDBACK-->
                     {% if editedHelpSessionFeedback %}
-                        <p class="successful-booking-label">
+                        <p class="error-text">
                             Help Session Feedback Successfully Edited!
                         </p>
                     {% endif %}
                     <!-- CHECK IS EDITED FEEDBACK-->
                     {% if recur_success %}
-                        <p class="successful-booking-label">
+                        <p class="error-text">
                             Reccurance successfully saved!
                         </p>
                     {% endif %}
 
                     {% if profile_edit %}
-                        <p class="successful-booking-label">
+                        <p class="error-text">
                             You've successfully made a change to your profile!
                         </p>
                     {% endif %}
