@@ -54,7 +54,7 @@ def analytics(request):
         "number_of_sessions": number_of_sessions,
         "number_of_reservations": number_of_reservations,
     }
-    if thisuser.is_admin():
+    if thisuser.is_admin:
         return render(request, "analytics.html", context)
     else:
         return render(request, "profile.html")
