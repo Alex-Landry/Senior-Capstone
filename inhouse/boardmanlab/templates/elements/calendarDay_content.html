@@ -16,7 +16,11 @@
     {% for helpSession in helpSessions %}
         <div class="help-session-box" style="padding: 10px">
             <div class="help-session-title-fullrow">
-                <div>{{ helpSession.topic }}:&nbsp;{% time_format helpSession.time %} - {% add_minutes helpSession.date helpSession.time helpSession.duration %}</div>
+                <div>{{ helpSession.topic }}&nbsp;
+                    <div style="font-weight: 400 !important">
+                    {% time_format helpSession.time %} - {% add_minutes helpSession.date helpSession.time helpSession.duration %}
+                    </div>
+                </div>
                 <div class="help-session-mode">
                     {% if helpSession.is_remote %}
                         <div class="mode-container">
@@ -31,8 +35,20 @@
                 </div>
             </div>
             <div class="help-session-info-row">
+                <div class="help-session-label">Topic</div>
+                <div class="help-session-info">{{ helpSession.topic }}</div>
+            </div>
+            <div class="help-session-info-row">
                 <div class="help-session-label">Helper</div>
                 <div class="help-session-info">{{ helpSession.helper.first_name }} {{ helpSession.helper.last_name }}</div>
+            </div>
+            <div class="help-session-info-row">
+                <div class="help-session-label">Time</div>
+                <div class="help-session-info">{{ helpSession.time }}</div>
+            </div>
+            <div class="help-session-info-row">
+                <div class="help-session-label">Duration</div>
+                <div class="help-session-info">{{ helpSession.duration }} minutes</div>
             </div>
             {% if helpSession.notes %}
             <div class="help-session-info-row">
