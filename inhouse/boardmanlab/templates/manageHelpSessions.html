@@ -90,10 +90,10 @@
                         {% for reservation in myreservations|in_category:helpSession %}
                             {% if reservation.feedback %}
                                 <div class="help-session-info-row">
-                                    <div class="help-session-label" style="background-color: #1d2e3f !important;">
+                                    <div class="help-session-label blue">
                                         {{reservation.user.first_name}}'s Feedback
                                     </div>
-                                    <div class="help-session-info" style="background-color: rgba(0, 0, 0, 0) !important;">
+                                    <div class="help-session-info lightblue">
                                         {{ reservation.feedback }}
                                     </div>
                                 </div>
