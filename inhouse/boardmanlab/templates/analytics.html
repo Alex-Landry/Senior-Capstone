@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 {% load socialaccount %}
-
+{% load calendar_tags %}
 
 
 {% block content %}
@@ -19,18 +19,18 @@
         <!-- PAGE CONTENT GOES HERE -->
         <div class="header-text" style="font-size: max(2.5vw, 16px) !important;">Dashboard</div>
       
-          <div class="help-session-box">
-            <div class="help-session-title">{{user.first_name}} {{user.last_name}}</div>
+          <div class="help-session-box" style="background-color:#1d2e3f !important;">
+            <div class="help-session-title">At a glance</div>
             <div class="help-session-info-row">
-                <div class="help-session-label">Class Standing</div>
+                <div class="help-session-label">Users Registered</div>
                 <div class="help-session-info">
-                    {{user.classStanding}}
+                    {% get_number_of_users %}
                 </div>
             </div>
             <div class="help-session-info-row">
-              <div class="help-session-label">Topics</div>
+              <div class="help-session-label">Active Users (one week)</div>
               <div class="help-session-info">
-                  {{user.topics.all|join:", "}}
+                  {% get_current_number_of_users %}
               </div>
             </div>
             {% if user.is_helper%}
