@@ -17,31 +17,31 @@ awesome/4.7.0/css/font-awesome.min.css">
      
         <!-- PAGE CONTENT GOES HERE -->
       
-          <div class="help-session-box" style="background-color:#1d2e3f !important;">
+          <div class="help-session-box">
             <div class="help-session-title">At A Glance.</div>
             <div class="help-session-info-row">
                 <div class="help-session-label">Users Registered</div>
-                <div class="help-session-info" style="background-color: black !important;">
+                <div class="help-session-info">
                     {{ total_users }}
                 </div>
             </div>
             <div class="help-session-info-row">
               <div class="help-session-label">Active Users</div>
-              <div class="help-session-info" style="background-color: black !important;">
+              <div class="help-session-info">
                   {{ current_users }}
               </div>
             </div>
             {% if user.is_helper%}
             <div class="help-session-info-row">
               <div class="help-session-label">Sessions Created</div>
-              <div class="help-session-info" style="background-color: black !important;">
+              <div class="help-session-info">
                   {{ number_of_sessions }}
               </div>
             </div>
             {% endif %}
             <div class="help-session-info-row">
               <div class="help-session-label">Reservations Made</div>
-              <div class="help-session-info" style="background-color: black !important;">
+              <div class="help-session-info">
                   {{ number_of_reservations }}
               </div>
             </div>
