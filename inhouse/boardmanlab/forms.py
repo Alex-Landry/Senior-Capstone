@@ -82,7 +82,7 @@ class FormCreateHelpSession(forms.ModelForm):
 
     topic = forms.ModelChoiceField(
                 required=True,
-                queryset=User.Topic.objects.all(),
+                queryset=Topic.objects.all(),
                 widget=forms.Select(attrs={"id": "select-form"}),
                 )
 
@@ -146,7 +146,7 @@ class FormEditHelpSession(forms.ModelForm):
     # try getting choices (if in db)
     topic = forms.ModelChoiceField(
                 required=True,
-                queryset=User.Topic.objects.all(),
+                queryset=Topic.objects.all(),
                 widget=forms.Select(attrs={"id": "select-form"}),
                 )
 
