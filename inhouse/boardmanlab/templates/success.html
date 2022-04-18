@@ -1,23 +1,18 @@
-{% extends 'main/base.html' %}
+{% extends 'main/success_base.html' %}
 {% load socialaccount %}
+{% load static %}
 {% block content %}
-    <!-- Center Flex Box -->
-    <div class="center-content">
-        <div class="center-content-tab-container">
-            <a href="/calendarMonth/0/0/0/"
-               class="center-content-closed-tab unselectable">Calendar</a>
-            <a href="/helpsessions" class="center-content-closed-tab unselectable">Sessions</a>
-            {% if user.is_helper or user.is_admin %}
-                <a href="/manageHelpSessions"
-                   class="center-content-closed-tab unselectable">Manage</a>
-            {% endif %}
-            <div class="center-content-blank-tab unselectable"></div>
+    <div class="content-container">
+        <div class="error-container"></div>
+        <div class="content-bgimage">
+            <img src="{% static 'images/sw_bg.jpeg' %}" />
         </div>
-        <div class="center-content-tab-content-container">
-            <div class="center-content-tab-content">
-                <!-- PAGE CONTENT GOES HERE -->
-                <div class="manage-content-strip">
-                    <!-- CHECK IF NEW HELP SESSION WAS CREATED -->
+        <div class="error-container">
+            <div class="input-container">
+                <div class="error-title">
+                    <b>Congratulation!</b> Something to be proud of...
+                </div>
+
                     {% if created_new %}
                         <p>
                             New Help Session Successfully Created
@@ -53,10 +48,15 @@
                             Reccurance successfully saved!
                         </p>
                     {% endif %}
+
+                    {% if profile_edit %}
+                        <p class="successful-booking-label">
+                            You've successfully made a change to your profile!
+                        </p>
+                    {% endif %}
+
                 </div>
-                <!-- END CONTENT -->
+                <div class="error-window-bottom-bar">Success is sweet</div>
             </div>
         </div>
-    </div>
-    <!-- End Center Flex Box -->
-{% endblock %}
+    {% endblock %}

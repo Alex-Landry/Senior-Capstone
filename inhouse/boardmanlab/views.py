@@ -51,7 +51,7 @@ def profileEdit(request):
             formEditUser = ProfileEdit(data=request.POST, instance=editedUser)
             if formEditUser.is_valid():
                 editedUser = formEditUser.save()
-                context = {"created_new": True}
+                context = {"profile_edit": True}
                 return render(request, "success.html", context)
             return render(request, 'profileEdit.html', {'ProfileEdit':formEditUser})
 
