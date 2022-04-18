@@ -9,8 +9,8 @@ services:
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
-    expose:
-      - 8000
+    ports:
+      - "8000:8000"
     restart: always
     env_file:
       - .env
