@@ -152,4 +152,8 @@ def get_freq(freq):
         return True
 
 
+@register.filter
+def in_category(reservations, category):
+    return reservations.filter(helpSession=category)
+
 

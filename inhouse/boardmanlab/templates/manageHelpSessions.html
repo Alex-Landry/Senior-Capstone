@@ -87,7 +87,7 @@
                         </form>
                         {% endif %}
                         </div>
-                        {% for reservation in myreservations %}
+                        {% for reservation in myreservations|in_category:helpSession %}
                             {% if reservation.feedback %}
                                 <div class="help-session-info-row" style="background-color: #1d2e3f !important;">
                                     <div class="help-session-label">Feedback from {{reservation.user.first_name}}</div>
