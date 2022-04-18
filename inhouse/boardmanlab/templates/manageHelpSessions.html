@@ -87,6 +87,16 @@
                         </form>
                         {% endif %}
                         </div>
+                        {% for reservation in get_reservations %}
+                            {% if reservation.feedback %}
+                                <div class="help-session-info-row" style="background-color: #1d2e3f !important;">
+                                    <div class="help-session-label">Feedback from {{reservation.user.first_name}}</div>
+                                    <div class="help-session-info" style="background-color: rgba(0, 0, 0, 0) !important;">
+                                        {{ reservation.feedback }}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% end for %}
                     </div>
                     {% endfor %}
 </div>

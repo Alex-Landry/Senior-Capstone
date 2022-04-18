@@ -1,4 +1,5 @@
 from django import template
+from inhouse.boardmanlab.models import helpSession
 
 register = template.Library()
 from reservations.models import Reservation
@@ -151,6 +152,8 @@ def get_freq(freq):
         return True
 
 
-
+@register.simple_tag
+def get_reservations(cur_helpsession):
+    return Reservation.objects.filter(helpSession=cur_helpsession)
 
 
