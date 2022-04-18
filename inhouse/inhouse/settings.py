@@ -23,6 +23,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
+SITE_ID = 1
 
 # Application definition
 
