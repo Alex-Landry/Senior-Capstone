@@ -14,6 +14,7 @@ from boardmanlab.views import (
     recurHelpSession,
     profile,
     profileEdit,
+    analytics,
 )
 
 from reports.views import course_freq_csv, helper_freq_csv, time_freq_csv
@@ -76,6 +77,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('profile/', profile, name='profile'),
     path('profileEdit/', profileEdit, name='profileEdit'),
+    path('analytics', analytics, name="analytics"),
     path("home/", index),
     path("helpsessions/", helpsessions),
     path("createHelpSession/", createHelpSession, name="createHelpSession"),

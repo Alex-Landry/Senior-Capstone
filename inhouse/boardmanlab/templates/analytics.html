@@ -1,0 +1,71 @@
+{% extends 'main/base.html' %}
+{% load socialaccount %}
+
+
+
+{% block content %}
+<!-- Center Flex Box -->
+<div class="center-content">
+    <div class="center-content-tab-container">
+      <div class="center-content-open-tab unselectable">Analytics</div>
+      <div class="center-content-blank-tab"></div>
+      <div class="center-content-blank-tab"></div>
+    </div>
+    <div class="center-content-tab-content-container">
+
+      <div class="center-content-tab-content">
+
+     
+        <!-- PAGE CONTENT GOES HERE -->
+
+      
+          <div class="help-session-box">
+            <div class="help-session-title">{{user.first_name}} {{user.last_name}}</div>
+            <div class="help-session-info-row">
+                <div class="help-session-label">Class Standing</div>
+                <div class="help-session-info">
+                    {{user.classStanding}}
+                </div>
+            </div>
+            <div class="help-session-info-row">
+              <div class="help-session-label">Topics</div>
+              <div class="help-session-info">
+                  {{user.topics.all|join:", "}}
+              </div>
+            </div>
+            {% if user.is_helper%}
+            <div class="help-session-info-row">
+              <div class="help-session-label">Position</div>
+              <div class="help-session-info">
+                  {{user.position}}
+              </div>
+            </div>
+            {% endif %}
+            <div class="help-session-info-row">
+              <div class="help-session-label">Bio</div>
+              <div class="help-session-info">
+                  {{user.personalBio}}
+              </div>
+            </div>
+            <div class="help-session-buttons-fullrow">
+                <form method="post" class="form-button" action="/profileEdit/">
+                      {% csrf_token %}
+                <input type="submit"
+                    name="edit"
+                    class="ultrablue darktext"
+                    id="small-button"
+                    value="Edit my Account"
+                    style="margin-left: 4px;">
+                </input>
+                </form>
+            </div>
+
+            </div>
+            <!-- END PAGE CONTENT -->
+
+      </div>
+    </div>
+  </div>
+  <!-- End of Center Flex Box -->
+
+  {% endblock %}

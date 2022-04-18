@@ -1,7 +1,7 @@
 <a href="/calendarMonth/0/0/0/" class="sidebar-button-closed unselectable">Calendar</a>
 <a href="/profile"
    class="sidebar-button-closed unselectable">Profile</a>
-{% if request.user.is_helper %}
-    <a href="/calendarMonth/0/0/0/"
+{% if request.user.is_admin %}
+    <a href="/analytics"
        class="sidebar-button-closed unselectable">Analytics</a>
 {% endif %}

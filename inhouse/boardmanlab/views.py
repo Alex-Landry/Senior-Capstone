@@ -40,6 +40,10 @@ def login(request):
     return render(request, "login.html")
 
 @login_required()
+def analytics(request):
+    return render(request, "analytics.html")
+
+@login_required()
 def profile(request):
     return render(request, "profile.html")
 
