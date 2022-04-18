@@ -88,7 +88,6 @@
                         {% endif %}
                         </div>
                         {% for reservation in myreservations %}
-                            {% if reservation.helpSession is helpSession %}
                             {% if reservation.feedback %}
                                 <div class="help-session-info-row" style="background-color: #1d2e3f !important;">
                                     <div class="help-session-label">Feedback from {{reservation.user.first_name}}</div>
@@ -96,7 +95,6 @@
                                         {{ reservation.feedback }}
                                     </div>
                                 </div>
-                            {% endif %}
                             {% endif %}
                         {% endfor %}
                     </div>
