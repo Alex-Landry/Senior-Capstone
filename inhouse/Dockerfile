@@ -21,6 +21,7 @@ RUN pip install -r requirements.txt
 COPY . /home/app/web
 COPY ./scripts /scripts
 RUN chmod +x /scripts/*
+RUN chown -R 755 /home/app/web/staticfiles
 
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
