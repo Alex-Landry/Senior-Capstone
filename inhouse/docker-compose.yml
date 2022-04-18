@@ -44,7 +44,7 @@ services:
       - media_volume:/home/app/web/mediafiles
     restart: always
     ports:
-      - "1337:80"
+      - "2083:80"
     depends_on:
       - app
     networks:
