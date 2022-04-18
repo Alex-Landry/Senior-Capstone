@@ -80,6 +80,7 @@ MIDDLEWARE = [
     "oauth2_provider.middleware.OAuth2TokenMiddleware",
 ]
 
+CSRF_TRUSTED_ORIGINS = ["https://www.boardmanlab.com", "https://boardmanlab.com"]
 CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = "inhouse.urls"
