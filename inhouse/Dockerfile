@@ -22,6 +22,4 @@ COPY ./scripts /scripts
 RUN chmod +x /scripts/*
 
 
-RUN chmod -R 755 /vol
-
 ENTRYPOINT ["/scripts/entrypoint.sh"]
