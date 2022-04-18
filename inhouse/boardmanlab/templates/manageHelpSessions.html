@@ -23,15 +23,7 @@ awesome/4.7.0/css/font-awesome.min.css">
                     <!-- Filter -->
                     {% include 'elements/filter_manageHelpSessions.html' %}
                     <!-- End of Filter -->
-                    <!-- CSV Files -->
-                    {% if user.is_admin %}
-                    <div class="manage-content-strip" style="margin-top: 10px; margin-bottom: 10px;">
-                        <a class="download-button blue" href='/course_freq_csv'><i class="fa fa-download"></i> course_freq.csv</a>
-                        <a class="download-button blue" href='/helper_freq_csv'><i class="fa fa-download"></i> helper_freq.csv</a>
-                        <a class="download-button blue" href='/time_freq_csv'><i class="fa fa-download"></i> time_freq.csv</a>
-                    </div>
-                    {% endif %}
-                    <!-- End of CSV Files -->
+                    
                 {% endif %}
                 <!-- END MANAGE MENU -->
                 <!-- BEGIN SCROLLABLE CONTENT -->

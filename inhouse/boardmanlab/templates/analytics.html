@@ -6,9 +6,8 @@
 <!-- Center Flex Box -->
 <div class="center-content">
     <div class="center-content-tab-container">
-      <div class="center-content-open-tab unselectable">Analytics</div>
-      <div class="center-content-blank-tab"></div>
-      <div class="center-content-blank-tab"></div>
+      <div class="center-content-open-tab unselectable"></div>
+      <!-- <div class="center-content-blank-tab"></div> -->
     </div>
     <div class="center-content-tab-content-container">
 
@@ -46,6 +45,35 @@
                   {{ number_of_reservations }}
               </div>
             </div>
+
+            <div class="help-session-box" style="background-color:#1d2e3f !important;">
+                <div class="help-session-title">More Data</div>
+                <div class="help-session-info-row">
+                    <div class="help-session-label">Course Freqency</div>
+                    <div class="help-session-info" style="background-color: black !important;">
+                        <a href='/course_freq_csv'><i class="fa fa-download"></i> course_freq.csv</a>
+                    </div>
+                </div>
+                <div class="help-session-info-row">
+                  <div class="help-session-label">Helper Frequency</div>
+                  <div class="help-session-info" style="background-color: black !important;">
+                    <a href='/helper_freq_csv'><i class="fa fa-download"></i> helper_freq.csv</a>
+                  </div>
+                </div>
+                {% if user.is_helper%}
+                <div class="help-session-info-row">
+                  <div class="help-session-label">Time Frequency</div>
+                  <div class="help-session-info" style="background-color: black !important;">
+                    <a href='/time_freq_csv'><i class="fa fa-download"></i> time_freq.csv</a>
+                  </div>
+                </div>
+                {% endif %}
+                <div class="help-session-info-row">
+                  <div class="help-session-label">Reservations Made</div>
+                  <div class="help-session-info" style="background-color: black !important;">
+                      {{ number_of_reservations }}
+                  </div>
+                </div>
             
 
             </div>

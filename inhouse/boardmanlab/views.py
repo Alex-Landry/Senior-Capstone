@@ -41,6 +41,7 @@ def login(request):
 
 @login_required()
 def analytics(request):
+    thisuser = request.user
     total_users = User.objects.all().count()
     today = datetime.now()
     last_week = today - timedelta(days=7)
@@ -53,7 +54,10 @@ def analytics(request):
         "number_of_sessions": number_of_sessions,
         "number_of_reservations": number_of_reservations,
     }
-    return render(request, "analytics.html", context)
+    if thisuser.is_admin():
+        return render(request, "analytics.html", context)
+    else:
+        return render(request, "profile.html")
 
 @login_required()
 def profile(request):
