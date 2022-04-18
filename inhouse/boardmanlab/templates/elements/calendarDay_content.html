@@ -17,7 +17,7 @@
         <div class="help-session-box" style="padding: 10px">
             <div class="help-session-title-fullrow">
                 <div>{{ helpSession.topic }}&nbsp;
-                    <div style="font-weight: 400 !important">
+                    <div style="font-weight: 400 !important; display: inline !important;">
                     {% time_format helpSession.time %} - {% add_minutes helpSession.date helpSession.time helpSession.duration %}
                     </div>
                 </div>
