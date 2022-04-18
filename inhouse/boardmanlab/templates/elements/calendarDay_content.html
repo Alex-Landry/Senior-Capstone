@@ -31,21 +31,27 @@
                 </div>
             </div>
             <div class="help-session-info-row">
-                <div class="help-session-label">Time</div>
-                <div class="help-session-info">{{ helpSession.time }}</div>
+                <div class="help-session-label">Topic</div>
+                <div class="help-session-info">{{ helpSession.topic }}</div>
             </div>
             <div class="help-session-info-row">
                 <div class="help-session-label">Helper</div>
                 <div class="help-session-info">{{ helpSession.helper.first_name }} {{ helpSession.helper.last_name }}</div>
             </div>
             <div class="help-session-info-row">
-                <div class="help-session-label">Topic</div>
-                <div class="help-session-info">{{ helpSession.topic }}</div>
+                <div class="help-session-label">Time</div>
+                <div class="help-session-info">{{ helpSession.time }}</div>
             </div>
             <div class="help-session-info-row">
                 <div class="help-session-label">Duration</div>
                 <div class="help-session-info">{{ helpSession.duration }} minutes</div>
             </div>
+            {% if helpSession.notes %}
+            <div class="help-session-info-row">
+                <div class="help-session-label">Notes</div>
+                <div class="help-session-info">{{ helpSession.notes }}</div>
+            </div>
+            {% endif %}
             {% if helpSession.is_remote and reservation.helpSession.remote_link %}
             <div class="help-session-info-row">
                 <div class="help-session-label">Remote Link</div>
