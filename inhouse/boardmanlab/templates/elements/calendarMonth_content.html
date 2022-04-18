@@ -1,7 +1,4 @@
 {% load calendar_tags %}
-<div style="font-size: 10px; font-weight: 300;">
-    This is a check to make sure we are getting {{ user.first_name }} {{ user.last_name }}'s profile.
-</div>
 <div class="calendar-content-strip">
     <div class="calendar-content-view-menu">
         <a href="/calendarMonth/{% decrement_year year month %}/{% decrement_month_alt year month day %}/0/"
