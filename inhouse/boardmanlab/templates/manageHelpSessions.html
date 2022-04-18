@@ -36,21 +36,29 @@
                                 </div>
                             </div>
                             <div class="help-session-info-row">
-                                <div class="help-session-label">Helper</div>
-                                <div class="help-session-info">{{ helpSession.helper.first_name }} {{ helpSession.helper.last_name }}</div>
-                            </div>
-                            <div class="help-session-info-row">
                                 <div class="help-session-label">Topic</div>
                                 <div class="help-session-info">{{ helpSession.topic }}</div>
                             </div>
                             <div class="help-session-info-row">
-                                <div class="help-session-label">Duration</div>
-                                <div class="help-session-info">{{ helpSession.duration }} minutes</div>
+                                <div class="help-session-label">Helper</div>
+                                <div class="help-session-info">{{ helpSession.helper.first_name }} {{ helpSession.helper.last_name }}</div>
                             </div>
                             <div class="help-session-info-row">
                                 <div class="help-session-label">Signed Up</div>
                                 <div class="help-session-info">{% get_student_sign_up helpSession %} Students</div>
                             </div>
+                            {% for reservation in myreservations|in_category:helpSession %}
+                            {% if reservation.feedback %}
+                                <div class="help-session-info-row">
+                                    <div class="help-session-label">
+                                        {{reservation.user.first_name}}'s Feedback
+                                    </div>
+                                    <div class="help-session-info">
+                                        {{ reservation.feedback }}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% endfor %}
                             <div class="help-session-buttons-fullrow" style="justify-content: right;">
                                 {% if user.is_helper and helpSession.helper == user %}
                                     <form method="post" class="form-button" action="/editHelpSession">
@@ -87,18 +95,7 @@
                         </form>
                         {% endif %}
                         </div>
-                        {% for reservation in myreservations|in_category:helpSession %}
-                            {% if reservation.feedback %}
-                                <div class="help-session-info-row">
-                                    <div class="help-session-label">
-                                        {{reservation.user.first_name}}'s Feedback
-                                    </div>
-                                    <div class="help-session-info">
-                                        {{ reservation.feedback }}
-                                    </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                        
                     </div>
                     {% endfor %}
 </div>
