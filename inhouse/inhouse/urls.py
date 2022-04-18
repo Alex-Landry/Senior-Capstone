@@ -77,7 +77,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('profile/', profile, name='profile'),
     path('profileEdit/', profileEdit, name='profileEdit'),
-    path('analytics', analytics, name="analytics"),
+    path('dashboard/', analytics, name="analytics"),
     path("home/", index),
     path("helpsessions/", helpsessions),
     path("createHelpSession/", createHelpSession, name="createHelpSession"),
