@@ -56,7 +56,7 @@
                 <div class="help-session-info">{{ helpSession.notes }}</div>
             </div>
             {% endif %}
-            {% if helpSession.is_remote and reservation.helpSession.remote_link %}
+            {% if helpSession.is_remote and helpSession.remote_link %}
             <div class="help-session-info-row">
                 <div class="help-session-label">Remote Link</div>
                 <div class="help-session-info" style="padding:0px">
