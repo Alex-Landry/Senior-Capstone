@@ -41,7 +41,7 @@ def login(request):
 
 @login_required()
 def analytics(request):
-    total_users = User.objects.all().count()
+    total_users = 12 #User.objects.all().count()
     today = datetime.date.today()
     last_week = today - datetime.timedelta(days=7)
     current_users = 5 #User.objects.filter(last_login__range=(last_week, today)).count()
