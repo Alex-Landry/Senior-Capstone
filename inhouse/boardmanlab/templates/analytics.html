@@ -19,45 +19,34 @@
         <div class="header-text" style="font-size: max(2.5vw, 16px) !important;">Dashboard</div>
       
           <div class="help-session-box" style="background-color:#1d2e3f !important;">
-            <div class="help-session-title">At a glance</div>
+            <div class="help-session-title">At A Glance.</div>
             <div class="help-session-info-row">
                 <div class="help-session-label">Users Registered</div>
-                <div class="help-session-info">
+                <div class="help-session-info" style="background-color: black !important;">
                     {{ total_users }}
                 </div>
             </div>
             <div class="help-session-info-row">
-              <div class="help-session-label">Active Users (one week)</div>
-              <div class="help-session-info">
+              <div class="help-session-label">Active Users</div>
+              <div class="help-session-info" style="background-color: black !important;">
                   {{ current_users }}
               </div>
             </div>
             {% if user.is_helper%}
             <div class="help-session-info-row">
-              <div class="help-session-label">Position</div>
-              <div class="help-session-info">
-                  {{user.position}}
+              <div class="help-session-label">Sessions Created</div>
+              <div class="help-session-info" style="background-color: black !important;">
+                  {{ number_of_sessions }}
               </div>
             </div>
             {% endif %}
             <div class="help-session-info-row">
-              <div class="help-session-label">Bio</div>
-              <div class="help-session-info">
-                  {{user.personalBio}}
+              <div class="help-session-label">Reservations Made</div>
+              <div class="help-session-info" style="background-color: black !important;">
+                  {{ number_of_reservations }}
               </div>
             </div>
-            <div class="help-session-buttons-fullrow">
-                <form method="post" class="form-button" action="/profileEdit/">
-                      {% csrf_token %}
-                <input type="submit"
-                    name="edit"
-                    class="ultrablue darktext"
-                    id="small-button"
-                    value="Edit my Account"
-                    style="margin-left: 4px;">
-                </input>
-                </form>
-            </div>
+            
 
             </div>
             <!-- END PAGE CONTENT -->

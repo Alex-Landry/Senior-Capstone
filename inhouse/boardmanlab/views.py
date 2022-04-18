@@ -45,9 +45,13 @@ def analytics(request):
     today = datetime.now()
     last_week = today - timedelta(days=7)
     current_users = User.objects.filter(last_login__range=(last_week, today)).count()
+    number_of_sessions = helpSession.objects.all().count()
+    number_of_reservations = Reservation.objects.all().count()
     context = {
         "total_users": total_users,
         "current_users": current_users,
+        "number_of_sessions": number_of_sessions,
+        "number_of_reservations": number_of_reservations,
     }
     return render(request, "analytics.html", context)
 
