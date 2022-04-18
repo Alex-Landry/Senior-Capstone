@@ -5,8 +5,8 @@ ENV PYTHONNUNBUFFERED 1
 
 RUN mkdir /home/app
 RUN mkdir /home/app/web
-RUN mkdir /home/app/web/staticfiles
-RUN mkdir /home/app/web/mediafiles
+RUN mkdir /home/app/web/static
+RUN mkdir /home/app/web/media
 WORKDIR /home/app/web
 
 RUN apk update && apk add gcc libc-dev make git libffi-dev openssl-dev python3 libxml2-dev libxslt-dev

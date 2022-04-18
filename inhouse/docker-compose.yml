@@ -40,8 +40,8 @@ services:
   proxy:
     build: ./proxy
     volumes:
-      - static_volume:/home/app/web/staticfiles
-      - media_volume:/home/app/web/mediafiles
+      - static_volume:/home/app/web/static
+      - media_volume:/home/app/web/media
     restart: always
     ports:
       - "1337:80"
