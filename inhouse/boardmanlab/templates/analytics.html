@@ -46,25 +46,31 @@
               </div>
             </div>
 
+            </div>
+
             <div class="help-session-box" style="background-color:#1d2e3f !important;">
                 <div class="help-session-title">More Data</div>
                 <div class="help-session-info-row">
                     <div class="help-session-label">Course Freqency</div>
                     <div class="help-session-info" style="background-color: black !important;">
-                        <a href='/course_freq_csv'><i class="fa fa-download"></i> course_freq.csv</a>
+                    <!-- CSV Files -->
+                        <a class="download-button blue" href='/course_freq_csv'><i class="fa fa-download"></i> course_freq.csv</a>
+                        
+                        
+                    <!-- End of CSV Files -->
                     </div>
                 </div>
                 <div class="help-session-info-row">
                   <div class="help-session-label">Helper Frequency</div>
                   <div class="help-session-info" style="background-color: black !important;">
-                    <a href='/helper_freq_csv'><i class="fa fa-download"></i> helper_freq.csv</a>
+                    <a class="download-button blue" href='/helper_freq_csv'><i class="fa fa-download"></i> helper_freq.csv</a>
                   </div>
                 </div>
                 {% if user.is_helper%}
                 <div class="help-session-info-row">
                   <div class="help-session-label">Time Frequency</div>
                   <div class="help-session-info" style="background-color: black !important;">
-                    <a href='/time_freq_csv'><i class="fa fa-download"></i> time_freq.csv</a>
+                    <a class="download-button blue" href='/time_freq_csv'><i class="fa fa-download"></i> time_freq.csv</a>
                   </div>
                 </div>
                 {% endif %}
@@ -74,9 +80,9 @@
                       {{ number_of_reservations }}
                   </div>
                 </div>
-            
-
+                
             </div>
+
             <!-- END PAGE CONTENT -->
 
       </div>
