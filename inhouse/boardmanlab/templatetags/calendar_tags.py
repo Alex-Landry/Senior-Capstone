@@ -152,7 +152,7 @@ def get_freq(freq):
         return True
 
 
-@register.simple_tag
+@register.assignment_tag
 def get_reservations(cur_helpsession):
     theseReservations = Reservation.objects.filter(helpSession=cur_helpsession)
     return theseReservations
