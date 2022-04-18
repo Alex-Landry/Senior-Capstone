@@ -232,6 +232,7 @@ def helpsessions(request):
 def managehelpsessions(request):
     # !!! wouldnt the admin like to see all help sessions and manage them? !!!
     helpsessions = helpSession.objects.filter(helper=request.user).order_by("-date")
+    myreservations = Reservation.objects.filter(helpSession__helper=request.user)
     # Post requests
     if request.method == "POST":
         # FILTER
@@ -245,6 +246,7 @@ def managehelpsessions(request):
                 ).order_by("-date")
                 # filter context
                 context = {
+                    "myreservations" : myreservations,
                     "helpSessions": helpsessions,
                     "created_new": False, # redundant?
                     "FormDeleteHelpSession": FormDeleteHelpSession(),
@@ -275,6 +277,7 @@ def managehelpsessions(request):
 
         # if nothing is in the post request, but is still a post request?
         context = {
+            "myreservations" : myreservations,
             "helpSessions": helpsessions,
             "created_new": False,
             "FormDeleteHelpSession": FormDeleteHelpSession(),
@@ -287,6 +290,7 @@ def managehelpsessions(request):
     # Base
     context = {
         "filterbool": False,
+        "myreservations" : myreservations,
         "helpSessions": helpsessions,
         "created_new": False,
         "FormFilterDate": FormFilterDate(),
