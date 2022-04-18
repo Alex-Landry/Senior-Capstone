@@ -65,6 +65,12 @@
                                     </div>
                                 </div>
                             {% endif %}
+                            {% if reservation.helpSession.notes %}
+                                <div class="help-session-info-row">
+                                    <div class="help-session-label">Notes</div>
+                                    <div class="help-session-info">{{ reservation.helpSession.notes }}</div>
+                                </div>
+                            {% endif %}
                             <div class="help-session-info-fullrow">
                                 <form method="post" class="form-button" action="/helpSessionFeedback">
                                     {% csrf_token %}
