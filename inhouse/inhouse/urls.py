@@ -22,6 +22,8 @@ from django.conf import settings
 from boardmanlab.views import ApiEndpoint, Home
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
 
 # OAuth2 provider endpoints
 oauth2_endpoint_views = [
@@ -105,6 +107,9 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('images/favicon.ico')))
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Error handling
 
