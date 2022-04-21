@@ -28,7 +28,7 @@
                 </form>
             {% else %}
                 <p>
-                    Please login to see this page.
+                    Welcome to the Boardman Computer Science Lab! Please login with your Umaine account to get started.
                 </p>
                 <form method="post" action="{% provider_login_url 'google' %}">
                     {% csrf_token %}
